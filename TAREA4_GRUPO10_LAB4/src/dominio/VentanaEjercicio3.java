@@ -18,10 +18,10 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JSeparator;
 
 public class VentanaEjercicio3 extends JFrame {
 
+	private static final long serialVersionUID = 3L;
 	private JPanel contentPane;
 	private JTextField txtHoras;
 
@@ -120,14 +120,6 @@ public class VentanaEjercicio3 extends JFrame {
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(427, 344, 115, 29);
 		contentPane.add(btnAceptar);
-		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(109, 74, 1, 2);
-		contentPane.add(separator);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(29, 276, 1, -173);
-		contentPane.add(separator_1);
 		btnAceptar.addActionListener(new ActionListener() {
 			
 			@Override
