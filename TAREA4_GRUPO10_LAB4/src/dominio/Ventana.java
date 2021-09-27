@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 public class Ventana extends JFrame{
 	
@@ -24,12 +25,20 @@ public class Ventana extends JFrame{
 		panel.setLayout(null);
 		
 		JButton btnEjercicio = new JButton("Ejercicio 1");
-		btnEjercicio.setBounds(68, 59, 104, 21);
+		btnEjercicio.setBounds(68, 59, 115, 29);
 		panel.add(btnEjercicio);
 		
 		JButton btnEjercicio2 = new JButton("Ejercicio 2");
-		btnEjercicio2.setBounds(68, 90, 104, 21);
+		btnEjercicio2.setBounds(68, 95, 115, 29);
 		panel.add(btnEjercicio2);
+		
+		JButton btnEjercicio3 = new JButton("Ejercicio 3");
+		btnEjercicio3.setBounds(68, 130, 115, 29);
+		panel.add(btnEjercicio3);
+		
+		JLabel lblGrupo = new JLabel("GRUPO NRO: 10");
+		lblGrupo.setBounds(15, 16, 145, 20);
+		panel.add(lblGrupo);
 		
 		
 		
@@ -48,6 +57,14 @@ public class Ventana extends JFrame{
 			}
 		});
 		
+		btnEjercicio3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				VentanaEjercicio3 nuevaVentana = new VentanaEjercicio3();
+				nuevaVentana.cambiarVisible(true);				
+			}
+		});		
 		
 		
 		

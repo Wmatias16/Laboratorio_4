@@ -61,12 +61,12 @@ public class VentanaEjercicio2 extends JFrame {
 				if((caracter<'0' || caracter >'9') && TxtNota1.getText().contains(".") && (caracter!=(char)KeyEvent.VK_BACK_SPACE))
 				{
 					e.consume();
-					JOptionPane.showMessageDialog(null,"solo se adimten numeros");
+					JOptionPane.showMessageDialog(null,"Sólo se admiten números");
 				}
 				else if ((caracter<'0' || caracter >'9') && (caracter!='.') && (caracter!=(char)KeyEvent.VK_BACK_SPACE)) 
 				{
 					e.consume();
-					JOptionPane.showMessageDialog(null,"solo se adimten numeros");
+					JOptionPane.showMessageDialog(null,"Sólo se admiten números");
 				}
 		
 			}
@@ -90,12 +90,12 @@ public class VentanaEjercicio2 extends JFrame {
 				if((caracter<'0' || caracter >'9') && TxtNota2.getText().contains(".") && (caracter!=(char)KeyEvent.VK_BACK_SPACE))
 				{
 					e.consume();
-					JOptionPane.showMessageDialog(null,"solo se adimten numeros");
+					JOptionPane.showMessageDialog(null,"Sólo se admiten números");
 				}
 				else if ((caracter<'0' || caracter >'9') && (caracter!='.') && (caracter!=(char)KeyEvent.VK_BACK_SPACE)) 
 				{
 					e.consume();
-					JOptionPane.showMessageDialog(null,"solo se adimten numeros");
+					JOptionPane.showMessageDialog(null,"Sólo se admiten números");
 				}
 		
 			}
@@ -119,12 +119,12 @@ public class VentanaEjercicio2 extends JFrame {
 				if((caracter<'0' || caracter >'9') && TxtNota3.getText().contains(".") && (caracter!=(char)KeyEvent.VK_BACK_SPACE))
 				{
 					e.consume();
-					JOptionPane.showMessageDialog(null,"solo se adimten numeros");
+					JOptionPane.showMessageDialog(null,"Sólo se admiten números");
 				}
 				else if ((caracter<'0' || caracter >'9') && (caracter!='.') && (caracter!=(char)KeyEvent.VK_BACK_SPACE)) 
 				{
 					e.consume();
-					JOptionPane.showMessageDialog(null,"solo se adimten numeros");
+					JOptionPane.showMessageDialog(null,"Sólo se admiten números");
 				}
 		
 			}
@@ -229,13 +229,13 @@ public class VentanaEjercicio2 extends JFrame {
 						}
 						else
 						{
-							JOptionPane.showMessageDialog(null,"las notas deben ser de 1 a 10 ");
+							JOptionPane.showMessageDialog(null,"Las notas deben ser de 1 a 10 ");
 						}
 						
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null,"Debe Ingresar las notas");
+						JOptionPane.showMessageDialog(null,"Debe ingresar las notas");
 					}
 				}
 				
