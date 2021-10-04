@@ -1,26 +1,36 @@
 package dominio;
 
 public class Peliculas {
-	private int id;
+	private final int id ;
 	private String nombre;
 	private Categorias categoria;	
-
-	public Peliculas() {
 	
+	private static int contId = 0;
+	
+	
+	public Peliculas() {
+		this.id = contId;
+		this.nombre = "";
+		this.categoria = categoria ;
+		contId ++;
 	}
 		
-	public Peliculas(int id, String nombre, Categorias categoria) {
-		this.id = id;
+	public Peliculas(String nombre, Categorias categoria) {
+		this.id = contId;
 		this.nombre = nombre;
 		this.categoria = categoria;
+		contId++;
 	}
 	
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	
+	public int getcontId() {
+		return contId;
 	}
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -33,6 +43,9 @@ public class Peliculas {
 	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
 	}	
+	
+	
+	
 	
 	@Override
 	public String toString() {
