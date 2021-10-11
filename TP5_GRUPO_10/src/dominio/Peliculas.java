@@ -5,14 +5,14 @@ public class Peliculas {
 	private String nombre;
 	private Categorias categoria;	
 	
-	private static int contId = 0;
+	private static int contId = 1;
 	
 	
 	public Peliculas() {
 		this.id = contId;
 		this.nombre = "";
-		this.categoria = categoria ;
-		contId ++;
+		this.categoria = new Categorias();
+		contId++;
 	}
 		
 	public Peliculas(String nombre, Categorias categoria) {
@@ -26,10 +26,13 @@ public class Peliculas {
 		return id;
 	}
 	
-	public int getcontId() {
+	public static int getContId() {
 		return contId;
 	}
 
+	public static void setContId(int contId) {
+		Peliculas.contId = contId;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -49,7 +52,7 @@ public class Peliculas {
 	
 	@Override
 	public String toString() {
-		return "Peliculas [id=" + id + ", nombre=" + nombre + ", categoria=" + categoria + "]";
+		return "ID = " + id + ", Nombre = " + nombre + ", Categoría = " + categoria.getNombre();
 	}	
 	
 }

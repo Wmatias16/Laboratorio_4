@@ -2,6 +2,8 @@ package dominio;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 
@@ -17,15 +19,11 @@ public class JpaneAgregarPeliculas extends JPanel {
 	
 	private JTextField TxtNombre;
 	private DefaultListModel<Peliculas> listModel;
-	private Categorias categoria = new Categorias();
-	private Peliculas peliculas ;
 	/**
 	 * Create the panel.
 	 */
 	public JpaneAgregarPeliculas() {
 		setLayout(null);
-		
-		peliculas =  new Peliculas();
 		
 		
 		JLabel lblNewLabel = new JLabel("ID");
@@ -34,7 +32,7 @@ public class JpaneAgregarPeliculas extends JPanel {
 		add(lblNewLabel);
 		
 		
-		JLabel lblNewLabel_1 = 	new JLabel(Integer. toString(peliculas.getcontId()));
+		JLabel lblNewLabel_1 = 	new JLabel(Integer.toString(Peliculas.getContId()));
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblNewLabel_1.setBounds(251, 40, 45, 13);
 		add(lblNewLabel_1);
@@ -58,7 +56,7 @@ public class JpaneAgregarPeliculas extends JPanel {
 		JComboBox<String> comboBoxGenero = new JComboBox<String>();
 		comboBoxGenero.setBounds(251, 134, 151, 21);
 		add(comboBoxGenero);
-		comboBoxGenero.addItem("Seleccione un Genero");
+		comboBoxGenero.addItem("Seleccione un género");
 		comboBoxGenero.addItem("Terror");
 		comboBoxGenero.addItem("Accion");
 		comboBoxGenero.addItem("Suspenso");
@@ -68,7 +66,15 @@ public class JpaneAgregarPeliculas extends JPanel {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//Registrar list model
+				if (TxtNombre.getText().isEmpty() || comboBoxGenero.getSelectedItem().toString() == "Seleccione un género") {
+					JOptionPane.showMessageDialog(null, "Debe completar la información para agregar la película");
+				} else {
+					Peliculas nuevaPelicula = new Peliculas(TxtNombre.getText(), new Categorias(comboBoxGenero.getSelectedItem().toString()));
+					listModel.addElement(nuevaPelicula);
+					TxtNombre.setText("");
+					lblNewLabel_1.setText(Integer.toString(Peliculas.getContId()));
+					comboBoxGenero.setSelectedIndex(0);
+				}
 				
 				
 				

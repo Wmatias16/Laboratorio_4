@@ -2,6 +2,7 @@ package dominio;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -18,7 +19,6 @@ public class VentanaPrincipal {
 	
 	
 	private JFrame frame;
-	private JPanel contentPane;
 	private static DefaultListModel<Peliculas> listModel;
 	
 	public VentanaPrincipal() {
@@ -27,6 +27,7 @@ public class VentanaPrincipal {
 
 	private void initialize() {
 		frame = new JFrame();
+		listModel = new DefaultListModel<Peliculas>();
 		frame.setTitle("Programa");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,6 +55,16 @@ public class VentanaPrincipal {
 		mnNewMenu.add(mntmAgregar);
 		
 		JMenuItem mntmListar = new JMenuItem("Listar");
+		mntmListar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.getContentPane().removeAll();
+				JPanelListarPeliculas JPanelListarPeliculas = new JPanelListarPeliculas();
+				JPanelListarPeliculas.setListModel(listModel);
+				frame.getContentPane().add(JPanelListarPeliculas, BorderLayout.CENTER);
+				frame.getContentPane().repaint();
+				frame.getContentPane().revalidate();
+			}
+		});
 		mnNewMenu.add(mntmListar);
 		
 		
