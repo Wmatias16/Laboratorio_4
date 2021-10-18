@@ -2,21 +2,20 @@ package presentacion.vista;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class JPanelAgregarPersona extends JPanel {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private JTextField txtDni;
-	private JButton btnAceptar;
+	private JButton btnAceptar;	
+	
 	public JPanelAgregarPersona() {
-		setLayout(null);
+		this.setLayout(null);	
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setBounds(133, 95, 46, 14);
@@ -45,7 +44,7 @@ public class JPanelAgregarPersona extends JPanel {
 		txtDni.setBounds(189, 146, 138, 20);
 		add(txtDni);
 		
-		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar = new JButton("Aceptar");
 		btnAceptar.setBounds(133, 197, 89, 23);
 		add(btnAceptar);
 
@@ -70,11 +69,15 @@ public class JPanelAgregarPersona extends JPanel {
 		this.txtDni = txtDni;
 	}
 	public JButton getBtnAceptar() {
-		return btnAceptar;
+		return this.btnAceptar;
 	}
 	public void setBtnAceptar(JButton btnAceptar) {
 		this.btnAceptar = btnAceptar;
 	}
 	
+	public void mostrarMensaje(String mensaje)
+	{
+		JOptionPane.showMessageDialog(null, mensaje);
+	}
 	
 }

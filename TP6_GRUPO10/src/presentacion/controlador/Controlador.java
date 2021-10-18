@@ -3,24 +3,26 @@ package presentacion.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import entidad.Persona;
 import presentacion.vista.JPanelAgregarPersona;
+import entidad.Persona;
+import negocio.IPersonaNegocio;
 import presentacion.vista.VentanaPrincipal;
 
 public class Controlador implements ActionListener{
 
 	private VentanaPrincipal ventanaPrincipal;
+	private IPersonaNegocio pNeg;
 	private JPanelAgregarPersona panelAgregar;
 	
-	public Controlador(VentanaPrincipal principal)
+	public Controlador(VentanaPrincipal principal,IPersonaNegocio personaNegocio)
 	{
 		this.ventanaPrincipal = principal;
-		
+		this.pNeg = personaNegocio;		
 		this.panelAgregar = new JPanelAgregarPersona();
 		
 		this.ventanaPrincipal.getMenuAgregar().addActionListener(a->EventoAbrirVentanaAgregar(a));
 		
-		this.panelAgregar.getBtnAceptar().addActionListener(a->EventoBtnAgregarUsuario(a));
+		this.panelAgregar.getBtnAceptar().addActionListener(s->EventoBtnAgregarUsuario(s));
 	}
 	
 	
@@ -35,15 +37,30 @@ public class Controlador implements ActionListener{
 	
 	
 	
-	public void EventoBtnAgregarUsuario(ActionEvent a) 
+	public void EventoBtnAgregarUsuario(ActionEvent s) 
 	{
-		String nombre = "";
-		String apellido = "";
-		String dni = "";
+		String nombre = this.panelAgregar.getTxtNombre().getText();
+		String apellido = this.panelAgregar.getTxtApellido().getText();
+		String dni = this.panelAgregar.getTxtDni().getText();
 		
 		Persona persona = new Persona(dni,nombre,apellido);
 		
-		persona.toString();
+		Boolean estado = pNeg.insert(persona);
+		String mensaje = "";
+		
+		if(estado)
+		{
+			mensaje = "Persona agregada corractamente";
+			this.panelAgregar.getTxtDni().setText("");
+			this.panelAgregar.getTxtNombre().setText("");
+			this.panelAgregar.getTxtApellido().setText("");
+		}
+		else
+		{
+			mensaje = "Error en agregar usuario";
+		}
+		
+		this.panelAgregar.mostrarMensaje(mensaje);
 		
 	}
 	
