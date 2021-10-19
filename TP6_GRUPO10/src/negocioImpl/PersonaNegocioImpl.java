@@ -13,7 +13,7 @@ public class PersonaNegocioImpl implements IPersonaNegocio{
 	
 	public boolean insert(Persona persona) {
 		
-		Boolean estado = false;
+		boolean estado = false;
 		
 		if(persona.getNombre().trim().length() != 0 && persona.getApellido().trim().length() != 0 && persona.getDni().trim().length() != 0)
 		{
@@ -25,16 +25,16 @@ public class PersonaNegocioImpl implements IPersonaNegocio{
 
 
 	public boolean delete(Persona persona) {
-		return false;
+		return pdao.delete(persona);
 	}
 
 
 	public boolean update(Persona persona) {
-		return false;
+		return pdao.update(persona);
 	}
 
 	public List<Persona> getAll() {
-		return null;
+		return pdao.getAll();
 	}
 
 }
