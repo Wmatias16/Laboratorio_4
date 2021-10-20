@@ -67,25 +67,26 @@ public class Controlador implements ActionListener{
 		if(pNeg.VerificarDni(dni) > 0) {
 			this.panelAgregar.mostrarMensaje("El Dni  se encuentra Registrado");
 		}else {
-			this.panelAgregar.mostrarMensaje("El Dni no se encuentra Registrado");
+			
+			Boolean estado = pNeg.insert(persona);
+			String mensaje = "";
+			
+			if(estado)
+			{
+				mensaje = "Persona agregada correctamente";
+				this.panelAgregar.getTxtDni().setText("");
+				this.panelAgregar.getTxtNombre().setText("");
+				this.panelAgregar.getTxtApellido().setText("");
+			}
+			else
+			{
+				mensaje = "Error en agregar usuario";
+			}
+			
+			this.panelAgregar.mostrarMensaje(mensaje);
 		}
 		
-		Boolean estado = pNeg.insert(persona);
-		String mensaje = "";
 		
-		if(estado)
-		{
-			mensaje = "Persona agregada correctamente";
-			this.panelAgregar.getTxtDni().setText("");
-			this.panelAgregar.getTxtNombre().setText("");
-			this.panelAgregar.getTxtApellido().setText("");
-		}
-		else
-		{
-			mensaje = "Error en agregar usuario";
-		}
-		
-		this.panelAgregar.mostrarMensaje(mensaje);
 		
 	}
 	
