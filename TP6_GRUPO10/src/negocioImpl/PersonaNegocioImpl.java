@@ -37,4 +37,13 @@ public class PersonaNegocioImpl implements IPersonaNegocio{
 		return pdao.getAll();
 	}
 
+
+	@Override
+	public int VerificarDni(String dni) {
+		
+		return pdao.VerificarDni(dni);
+	}
+
+
+	
 }
