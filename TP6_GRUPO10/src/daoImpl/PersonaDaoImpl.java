@@ -78,7 +78,27 @@ public class PersonaDaoImpl implements IPersonaDao{
 		}
 		return personas;
 	}
+	
+	public int VerificarDni(String Dni) {
+		
+		
+		Connection conexion = Conexion.getConexion().getSQLConexion();
+		try {
+			PreparedStatement preparedStatement = conexion.prepareStatement("select count(Dni) from personas where Dni = ?" );
+			preparedStatement.setString(1, Dni);
+			ResultSet resultSet = preparedStatement.executeQuery();
 
+			if(resultSet.next()) {
+				return resultSet.getInt(1);
+			}
+			
+			return 1;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 1;
+		}
+	}
 	
 	public boolean delete(Persona persona) {
 		Connection conexion = Conexion.getConexion().getSQLConexion();

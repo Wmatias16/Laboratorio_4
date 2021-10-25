@@ -9,4 +9,5 @@ public interface IPersonaDao {
 	public boolean update(Persona persona);
 	public List<Persona> getAll();
 	public boolean delete(Persona persona);
+	public int VerificarDni(String dni);
 }
