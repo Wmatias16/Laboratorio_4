@@ -1,7 +1,6 @@
 package entidad;
 
-public class Persona {
-	
+public class Persona {	
 	private String dni;
 	private String nombre;
 	private String apellido;	
@@ -44,6 +43,5 @@ public class Persona {
 	public String toString() {
 		return nombre + " " + apellido + " " + dni;
 	}
-	
 	
 }

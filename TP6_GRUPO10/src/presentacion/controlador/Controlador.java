@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.event.ListSelectionEvent;
 
 import presentacion.vista.JPanelAgregarPersona;
