@@ -7,19 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="">Inicio </a><a href="">Agregar seguro </a><a href="">Listar seguros</a>
+<a href="inicio.jsp">Inicio </a><a href="">Agregar seguro </a><a href="">Listar seguros</a>
 <h1>Agregar seguros</h1>
 
 <%! String id = "0"; %>
 
 Id seguro   <%=id %> <br>
 <form>
-Descripcion <input type="text" name="txtDescripcion"><br>
+Descripción <input type="text" name="txtDescripcion"><br>
 Tipo seguro <select name="tipoSeguro">
 				<option>Seguro de casas</option>
 			</select> <br>
-Costo contratacion <input type="text" name="txtContratacion"><br>
-Costo Maxio asegurado <input type="text" name="txtCostoMax"><br>
+Costo contratación <input type="text" name="txtContratacion"><br>
+Costo máximo asegurado <input type="text" name="txtCostoMax"><br>
 <input type="submit" name="btnEnviar" value="Enviar">
 
 			
