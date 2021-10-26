@@ -1,14 +1,14 @@
 package dominio;
 
-public class TipoSeguros {
+public class TipoSeguro {
 	private int id;
 	private String descripcion;
 	
-	public TipoSeguros() {
+	public TipoSeguro() {
 		
 	}	
 	
-	public TipoSeguros(int id, String descripcion) {
+	public TipoSeguro(int id, String descripcion) {
 		this.id = id;
 		this.descripcion = descripcion;
 	}
@@ -28,7 +28,7 @@ public class TipoSeguros {
 	
 	@Override
 	public String toString() {
-		return "TipoSeguros [id=" + id + ", descripcion=" + descripcion + "]";
+		return "TipoSeguro [id=" + id + ", descripcion=" + descripcion + "]";
 	}
 	
 	
