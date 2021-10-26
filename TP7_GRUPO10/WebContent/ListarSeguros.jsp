@@ -6,9 +6,59 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Listar seguros</title>
 </head>
 <body>
+
+<a href="inicio.jsp">Inicio </a><a href="AgregarSeguro.jsp">Agregar seguro </a><a href="ListarSeguros.jsp">Listar seguros</a>
+
+<h3>Tipo de seguros de la base de datos</h3>
+
+<form method="" action="">
+	Busqueda por tipo de seguros: <select name="tipoSeguro">
+								  		<option>Seguro de casas</option>
+								  </select>
+	<input type="submit" value="Filtrar">
+</form>
+
+<% 
+	ArrayList<Seguro> listaSeguros = null;
+	if(request.getAttribute("listaSeguros")!=null)
+	{
+		listaSeguros = (ArrayList<Seguro>)request.getAttribute("listaSeguros");
+	}
+
+ %>
+
+
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripcion</th>
+            <th>Tipo seguro</th>
+            <th>Costo contratacion</th>
+            <th>Costo asegurado</th>
+        </tr>
+    </thead>
+    <tbody>
+       <%  if(listaSeguros!=null)
+		for(Seguro seg : listaSeguros) 
+		{
+	%>
+		<tr>  
+				<td><%=seg.getIdSeguro() %></td> 
+				<td><%=seg.getDescripcion()%></td>   
+				<td><%=seg.getTipoSeguro().getId()%></td>
+				<td><%=seg.getCostoContratacion()%></td>  
+				<td><%=seg.getCostoAsegurado() %></td>   
+		</tr>
+	<%  } %>
+    </tbody>
+</table>
+
+
+
 
 </body>
 </html>
