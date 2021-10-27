@@ -53,7 +53,7 @@ public class servletSeguro extends HttpServlet {
 			
 			request.setAttribute("listaSeguros", lista);
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");   
+			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");
 	        rd.forward(request, response);
 			
 		}

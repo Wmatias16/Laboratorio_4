@@ -1,3 +1,4 @@
+<%@page import="dominio.SeguroDao"%>
 <%@page import="dominio.TipoSeguro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dominio.TipoSeguroDao"%>
@@ -38,7 +39,8 @@
 </form>
 
 <% 
-	List<Seguro> listaSeguros = null;
+	SeguroDao segDao = new SeguroDao();
+	List<Seguro> listaSeguros = segDao.obtenerSeguros();
 	if(request.getAttribute("listaSeguros")!=null)
 	{
 		listaSeguros = (List<Seguro>)request.getAttribute("listaSeguros");
@@ -47,7 +49,7 @@
  %>
 
 
-<table id="table_id" class="display">
+<table id="table_id" class="display" border="1">
     <thead>
         <tr>
             <th>ID</th>
@@ -65,7 +67,7 @@
 		<tr>  
 				<td><%=seg.getIdSeguro() %></td> 
 				<td><%=seg.getDescripcion()%></td>   
-				<td><%=seg.getTipoSeguro().getId()%></td>
+				<td><%=seg.getTipoSeguro().getDescripcion()%></td>
 				<td><%=seg.getCostoContratacion()%></td>  
 				<td><%=seg.getCostoAsegurado() %></td>   
 		</tr>
