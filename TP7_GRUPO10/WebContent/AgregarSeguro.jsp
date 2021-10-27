@@ -1,6 +1,7 @@
 <%@page import="dominio.TipoSeguro"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dominio.TipoSeguroDao"%>
+<%@page import="dominio.SeguroDao"%>
 <%@page import="dominio.Seguro"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -15,7 +16,13 @@
 <a href="inicio.jsp">Inicio </a><a href="AgregarSeguro.jsp">Agregar seguro </a><a href="ListarSeguros.jsp">Listar seguros</a>
 <h1>Agregar seguros</h1>
 
-<%! String id = "0"; %>
+<%! 
+	SeguroDao seg = new  SeguroDao();
+	
+
+	String id = Integer.toString(seg.UltimoID()); 
+
+%>
 
 Id seguro   <%=id %> <br>
 <form action="servletSeguro" method="get">

@@ -149,4 +149,39 @@ public class SeguroDao {
 		}
 		return tipoSeguro;
 	}
+	
+	public int UltimoID() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		int cant = 0 ;  
+		Connection con = null;
+		try{
+			con = DriverManager.getConnection(host + dbName, user, pass);
+			PreparedStatement miSentencia = con.prepareStatement("SELECT count(ifnull(idSeguro,1)) FROM seguros");
+			
+			ResultSet resultado = miSentencia.executeQuery();
+			resultado.next();
+			
+			cant = resultado.getInt(1);
+			
+		    con.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println("Conexion fallida");
+		}
+		finally
+		{
+		}
+			
+		return cant;
+	}
+
+	
+	
 }
