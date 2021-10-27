@@ -1,3 +1,6 @@
+<%@page import="dominio.TipoSeguro"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dominio.TipoSeguroDao"%>
 <%@page import="dominio.Seguro"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -15,9 +18,22 @@
 <h3>Tipo de seguros de la base de datos</h3>
 
 <form method="" action="">
-	Busqueda por tipo de seguros: <select name="tipoSeguro">
-								  		<option>Seguro de casas</option>
-								  </select>
+	Busqueda por tipo de seguros: 
+	
+	<select name="tipoSeguro">
+	<%  
+		TipoSeguroDao tipoSegDao = new TipoSeguroDao();
+		ArrayList<TipoSeguro> listTipoSeg = tipoSegDao.getAllTipoSeguro();
+		
+		if(listTipoSeg!=null)
+		for(TipoSeguro tipoSeg : listTipoSeg) 
+		{
+	%>
+		<option value=<%=tipoSeg.getId() %>><%=tipoSeg.getDescripcion()%></option>
+		
+	<%} %>
+	 </select>
+	 
 	<input type="submit" value="Filtrar">
 </form>
 

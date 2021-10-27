@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import dominio.Seguro;
 import dominio.SeguroDao;
 
-
 /**
  * Servlet implementation class servletSeguro
  */
@@ -32,6 +31,7 @@ public class servletSeguro extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		if(request.getParameter("Param")!=null) {
 			//Entra por haber echo click en el hyperlink listar seguros
 			SeguroDao seguroDao = new SeguroDao();
@@ -45,6 +45,7 @@ public class servletSeguro extends HttpServlet {
 		}
 		
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
