@@ -62,7 +62,7 @@ public class servletSeguro extends HttpServlet {
 			
 			Seguro seg = new Seguro();
 			SeguroDao dao = new SeguroDao();
-			TipoSeguro tipo = new TipoSeguro(1,"casa");// Prueba 
+			TipoSeguro tipo = new TipoSeguro(Integer.parseInt(request.getParameter("tipoSeguro")),"");// Prueba 
 			
 			seg.setDescripcion(request.getParameter("txtDescripcion"));
 			//modificar

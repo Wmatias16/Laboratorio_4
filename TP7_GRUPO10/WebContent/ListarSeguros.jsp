@@ -18,7 +18,7 @@
 
 <h3>Tipo de seguros de la base de datos</h3>
 
-<form method="GET" action="servletSeguro">
+<form method="get" action="servletSeguro?Param=3">
 	Busqueda por tipo de seguros: 
 	
 	<select name="tipoSeguro">
