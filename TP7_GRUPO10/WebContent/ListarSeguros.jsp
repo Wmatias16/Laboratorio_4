@@ -17,7 +17,7 @@
 
 <h3>Tipo de seguros de la base de datos</h3>
 
-<form method="" action="">
+<form method="GET" action="servletSeguro">
 	Busqueda por tipo de seguros: 
 	
 	<select name="tipoSeguro">
@@ -34,7 +34,7 @@
 	<%} %>
 	 </select>
 	 
-	<input type="submit" value="Filtrar">
+	<input type="submit" name="btnFiltrar"value="Filtrar">
 </form>
 
 <% 

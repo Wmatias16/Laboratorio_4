@@ -79,6 +79,45 @@ public class SeguroDao {
 		return lista;
 	}
 	
+	public List<Seguro> obtenerSegurosPorTipo(int idTipo) {
+
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		List<Seguro> lista = new ArrayList<>();
+		Connection conn = null;
+		try{
+			conn = DriverManager.getConnection(host + dbName, user, pass);
+			PreparedStatement query = conn.prepareStatement("Select * FROM seguros where idTipo=?");
+			query.setInt(1, idTipo); //Cargo el ID recibido
+			ResultSet rs = query.executeQuery();		
+			
+			
+			while(rs.next()){
+				
+				Seguro seguroRs = new Seguro();
+				seguroRs.setIdSeguro(rs.getInt(1));
+				seguroRs.setDescripcion(rs.getString(2));
+				seguroRs.setTipoSeguro(obtenerTipoSeguro(rs.getInt(3)));
+				seguroRs.setCostoContratacion(rs.getDouble(4));
+				seguroRs.setCostoAsegurado(rs.getDouble(5));
+				
+				lista.add(seguroRs);
+			}
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+		
+		}
+		
+		return lista;
+	}
+	
 	public TipoSeguro obtenerTipoSeguro (int idTipoSeguro) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

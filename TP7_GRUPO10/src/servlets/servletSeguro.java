@@ -33,6 +33,19 @@ public class servletSeguro extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		if(request.getParameter("btnFiltrar")!=null) {
+			SeguroDao seguroDao = new SeguroDao();
+			int id = Integer.parseInt(request.getParameter("tipoSeguro"));
+			List<Seguro> lista= seguroDao.obtenerSegurosPorTipo(id);			
+			request.setAttribute("listaSeguros", lista);			
+			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");   
+	        rd.forward(request, response);
+			
+		}
+		
+		
+		
 		if(request.getParameter("Param")!=null) {
 			//Entra por haber echo click en el hyperlink listar seguros
 			SeguroDao seguroDao = new SeguroDao();
@@ -58,7 +71,6 @@ public class servletSeguro extends HttpServlet {
 			seg.setCostoAsegurado(Double.parseDouble(request.getParameter("txtCostoMax")));
 			
 			int filas = dao.agregarSeguro(seg);
-			
 			
 			
 			request.setAttribute("CantFilas", filas);
