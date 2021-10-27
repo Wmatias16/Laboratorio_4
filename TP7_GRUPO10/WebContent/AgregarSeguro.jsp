@@ -13,7 +13,7 @@
 <%! String id = "0"; %>
 
 Id seguro   <%=id %> <br>
-<form>
+<form action="servletSeguro" method="get">
 Descripción <input type="text" name="txtDescripcion"><br>
 Tipo seguro <select name="tipoSeguro">
 				<option>Seguro de casas</option>
@@ -22,11 +22,20 @@ Costo contratación <input type="text" name="txtContratacion"><br>
 Costo máximo asegurado <input type="text" name="txtCostoMax"><br>
 <input type="submit" name="btnEnviar" value="Enviar">
 
-			
-
-			
+				
 </form>
 
+
+	<%
+	int filas = 0;
+	if(request.getAttribute("CantFilas")!=null){
+		filas = Integer.parseInt(request.getAttribute("CantFilas").toString());				
+	}
+%>
+
+<%if(filas == 1){ %>
+	Seguro Agregado Con Exito
+<%} %>	
 
 </body>
 </html>

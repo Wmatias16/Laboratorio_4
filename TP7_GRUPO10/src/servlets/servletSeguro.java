@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dominio.Seguro;
 import dominio.SeguroDao;
+import dominio.TipoSeguro;
 
 /**
  * Servlet implementation class servletSeguro
@@ -40,6 +41,28 @@ public class servletSeguro extends HttpServlet {
 			request.setAttribute("listaSeguros", lista);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/ListarSeguros.jsp");   
+	        rd.forward(request, response);
+			
+		}
+		
+		if(request.getParameter("btnEnviar")!=null) {
+			
+			Seguro seg = new Seguro();
+			SeguroDao dao = new SeguroDao();
+			TipoSeguro tipo = new TipoSeguro(1,"casa");// Prueba 
+			
+			seg.setDescripcion(request.getParameter("txtDescripcion"));
+			//modificar
+			seg.setTipoSeguro(tipo);
+			seg.setCostoContratacion(Double.parseDouble(request.getParameter("txtContratacion")));
+			seg.setCostoAsegurado(Double.parseDouble(request.getParameter("txtCostoMax")));
+			
+			int filas = dao.agregarSeguro(seg);
+			
+			
+			
+			request.setAttribute("CantFilas", filas);
+			RequestDispatcher rd = request.getRequestDispatcher("/AgregarSeguro.jsp");   
 	        rd.forward(request, response);
 			
 		}
