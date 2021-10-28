@@ -167,7 +167,7 @@ public class SeguroDao {
 			ResultSet resultado = miSentencia.executeQuery();
 			resultado.next();
 			
-			cant = resultado.getInt(1);
+			cant = resultado.getInt(1) + 1;
 			
 		    con.close();
 		}
