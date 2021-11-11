@@ -6,10 +6,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<title>Alumnos</title>
+<title>Docentese</title>
 </head>
 <body>
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -31,9 +31,9 @@
 <div class="container" style="margin-top: 100px;">
     <div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
-            <button class="btn btn-success" style="margin: 5px;">Alta de alumno</button>
-            <button class="btn btn-warning" style="margin: 5px;">Modificar alumno</button>
-            <button class="btn btn-danger" style="margin: 5px;">Eliminar alumno</button>
+            <button class="btn btn-success" style="margin: 5px;">Alta de docente</button>
+            <button class="btn btn-warning" style="margin: 5px;">Modificar docente</button>
+            <button class="btn btn-danger" style="margin: 5px;">Eliminar docente</button>
         </div>     
     <div class="col-sm-12">    
         <table class="table table-striped">
@@ -60,7 +60,7 @@
                 <td>Direccion xxxx</td>
                 <td>Argentina</td>
                 <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
+                <td>profesor@profesor.com</td>
                 <td>987654321</td>
             </tr>
             <tr>
@@ -71,7 +71,7 @@
                 <td>Direccion xxxx</td>
                 <td>Argentina</td>
                 <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
+                <td>profesor@profesor.com</td>
                 <td>987654321</td>
             </tr>
             <tr>
@@ -82,7 +82,7 @@
                 <td>Direccion xxxx</td>
                 <td>Argentina</td>
                 <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
+                <td>profesor@profesor.com</td>
                 <td>987654321</td>
             </tr>
             <tr>
@@ -93,7 +93,7 @@
                 <td>Direccion xxxx</td>
                 <td>Argentina</td>
                 <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
+                <td>profesor@profesor.com</td>
                 <td>987654321</td>
             </tr>
             <tr>
@@ -104,7 +104,7 @@
                 <td>Direccion xxxx</td>
                 <td>Argentina</td>
                 <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
+                <td>profesor@profesor.com</td>
                 <td>987654321</td>
             </tr>
             <tr>
@@ -115,7 +115,7 @@
                 <td>Direccion xxxx</td>
                 <td>Argentina</td>
                 <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
+                <td>profesor@profesor.com</td>
                 <td>987654321</td>
             </tr>
 
@@ -125,5 +125,6 @@
         </div>
     </div>
 </div>
+	
 </body>
 </html>
