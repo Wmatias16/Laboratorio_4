@@ -29,7 +29,6 @@
       </nav>
 
 
-
     <div class="container" style="margin-top: 100px; width: 700px;">
         <h1 style="text-align: center;">Alta cursos</h1>
         <form>

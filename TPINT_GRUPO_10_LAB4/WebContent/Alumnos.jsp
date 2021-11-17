@@ -1,3 +1,6 @@
+
+<%@page import="dominio.Alumno"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +12,15 @@
 <title>Alumnos</title>
 </head>
 <body>
+<% 
+	ArrayList<Alumno> listaAlumnos = null;
+	if(request.getAttribute("listaAlumnos")!=null)
+	{
+		listaAlumnos = (ArrayList<Alumno>)request.getAttribute("listaAlumnos");
+	}
+	
+ %>
+
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +46,7 @@
             <button class="btn btn-success" style="margin: 5px;">Alta de alumno</button>
             <button class="btn btn-warning" style="margin: 5px;">Modificar alumno</button>
             <button class="btn btn-danger" style="margin: 5px;">Eliminar alumno</button>
-        </div>     
+        </div> 
     <div class="col-sm-12">    
         <table class="table table-striped">
             <thead>
@@ -52,72 +64,24 @@
             </tr>
             </thead>
             <tbody>
+             <%  if(listaAlumnos!=null)
+					for(Alumno alum : listaAlumnos) 
+					{
+			  %>
             <tr>
                 <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
-                <td>987654321</td>
+               <td><%=alum.getLegajo() %></td>  
+               <td><%=alum.getDni() %></td>  
+               <td>12-12-12</td>  
+               <td><%=alum.getDireccion() %></td>  
+               <td><%=alum.getNacionalidad() %></td>  
+               <td><%=alum.getLocalidad() %></td>  
+               <td><%=alum.getEmail() %></td>  
+               <td><%=alum.getTelefono() %></td>  
+					
             </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>alumno@alumno.com</td>
-                <td>987654321</td>
-            </tr>
+            
+            <%} %>
 
             </tbody>
             </table>
