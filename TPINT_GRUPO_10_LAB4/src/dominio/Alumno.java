@@ -7,6 +7,7 @@ public class Alumno extends Persona{
 		
 	}
 	
+	
 	public Alumno(int nota) {
 		this.nota = nota;
 	}

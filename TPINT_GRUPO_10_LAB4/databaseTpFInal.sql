@@ -23,5 +23,10 @@ CREATE TABLE Alumnos(
 INSERT INTO Alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)
 VALUES("12345678","Juan","Perez","alumno@alumno.com","2017-06-15","Juramento 2480","Escobar","Argentina","1190894760",true);
 
+
+INSERT INTO Alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)
+VALUES("101001010","Rodrigo","Perez","alumno1@alumno.com","2017-06-15","Juramento 2480","Escobar","Argentina","1190894760",true);
+
+
 select nombre from alumnos;
 

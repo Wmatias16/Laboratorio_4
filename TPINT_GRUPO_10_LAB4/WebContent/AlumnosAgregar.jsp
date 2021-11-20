@@ -29,63 +29,60 @@
       </nav>
 
 
-    <div class="container" style="margin-top: 100px; width: 700px;">
-        <h1 style="text-align: center;">Alta alumno</h1>
-        <form>
+        <div class="container">
+         <form method="POST" action="servletAlumnos">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Ingrese email">
                       </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Dni</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese dni">
+                        <input type="text" name="dni" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese dni">
                       </div>
                       <div class="form-group">
                           <label for="exampleInputEmail1">Nombre</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre">
+                          <input type="text" name="nombre"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Apellido</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese apellido">
+                          <input type="text" name="apellido" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese apellido">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Fecha de nacimiento</label>
-                          <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese fecha de nacimiento">
+                          <input type="date" name="fecha"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese fecha de nacimiento">
                         </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Direccion</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion">
+                        <input type="text" name="direccion"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Localidad</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese localidad">
+                        <input type="text" name="localidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese localidad">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Nacionalidad</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nacionalidad">
+                        <input type="text" name="nacionalidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nacionalidad">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Telefono</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono">
+                        <input type="text" name="telefono"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono">
                       </div>
                     
               </div>
               <div class="col-sm-12" style="text-align: center;">
-                <button type="submit" class="btn btn-success btn-lg btn-block" style="text-align: center; margin-top: 10px; width: 100%;">Aceptar</button>
+                <button type="submit" name="altaAlumno" class="btn btn-success btn-lg btn-block" style="text-align: center; margin-top: 10px; width: 100%;">Aceptar</button>
               </div>
             </div>
                 
-                   
-            
           </form>
-    </div>
+    	</div>
 </body>
 </html>

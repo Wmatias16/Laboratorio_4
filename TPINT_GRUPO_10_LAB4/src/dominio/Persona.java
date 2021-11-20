@@ -8,7 +8,7 @@ public class Persona {
 	private String nombre;
 	private String apellido;
 	private String email;
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	private String direccion;
 	private String nacionalidad;
 	private String localidad;
@@ -50,10 +50,10 @@ public class Persona {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getDireccion() {

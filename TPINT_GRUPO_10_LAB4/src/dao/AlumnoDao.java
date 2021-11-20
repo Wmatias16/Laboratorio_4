@@ -16,9 +16,38 @@ public class AlumnoDao {
 	private String dbName = "tpfinal?useSSL=false";
 
 	
-	public ArrayList<Alumno> getAlumnos() {
+	public int agregarAlumno(Alumno alumno)
+	{
 		
-		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	
+		int filas=0;
+		Connection cn = null;
+		try
+		{
+			cn = DriverManager.getConnection(host+dbName, user,pass);
+			Statement st = cn.createStatement();
+			int estado = 1;
+			
+			String dni = alumno.getDni();
+			System.out.print(dni);
+			
+			String query = "Insert into alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado) values ('"+alumno.getDni()+"','"+alumno.getNombre()+"','"+alumno.getApellido()+"','"+alumno.getEmail()+"','"+alumno.getFechaNacimiento()+"','"+alumno.getDireccion()+"','"+alumno.getLocalidad()+"','"+alumno.getNacionalidad()+"','"+alumno.getTelefono()+"','"+estado+"')";
+			filas=st.executeUpdate(query);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return filas;
+	}	
+	
+	public ArrayList<Alumno> getAlumnos() {	
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -48,7 +77,6 @@ public class AlumnoDao {
 				usuarioRs.setLocalidad(rs.getString("localidad"));
 				usuarioRs.setEmail(rs.getString("email"));
 				usuarioRs.setTelefono(rs.getString("telefono"));
-
 				
 				lista.add(usuarioRs);
 			}
@@ -61,5 +89,7 @@ public class AlumnoDao {
 		
 		return lista;
 	}
+	
+	
 
 }

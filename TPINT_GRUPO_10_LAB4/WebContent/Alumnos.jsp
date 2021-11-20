@@ -39,12 +39,12 @@
           </ul>
         </div>
       </nav>
-
+      
 <div class="container" style="margin-top: 100px;">
     <div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
-            <button class="btn btn-success" style="margin: 5px;">Alta de alumno</button>
-            <button class="btn btn-warning" style="margin: 5px;">Modificar alumno</button>
+            <a href="AlumnosAgregar.jsp" class="btn btn-success" style="margin: 5px;">Alta de alumno</a>
+            <a id="btnModificar" class="btn btn-warning" style="margin: 5px;">Modificar alumno</a>
             <button class="btn btn-danger" style="margin: 5px;">Eliminar alumno</button>
         </div> 
     <div class="col-sm-12">    
@@ -69,8 +69,8 @@
 					{
 			  %>
             <tr>
-                <th scope="row"><input type="checkbox"></th>
-               <td><%=alum.getLegajo() %></td>  
+               <th scope="row"><input type="checkbox"></th>
+               <td id="legajo"><%=alum.getLegajo() %></td>  
                <td><%=alum.getDni() %></td>  
                <td>12-12-12</td>  
                <td><%=alum.getDireccion() %></td>  
@@ -89,5 +89,39 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>    
+	// Boton modificar
+   const btn = document.getElementById('btnModificar');
+	
+   // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
+   btn.addEventListener('click',(e)=>{
+       // Array cantidad checkbox en estado true
+       let cantCheck = [];
+       
+       // JQUERY recorre todos los checkbox en estado true
+       $("input[type=checkbox]:checked").each(function(cant) {
+           // Guarda cantidad de checkbox en estado true
+           cantCheck.push(cant);
+       });
+       
+       // Verificamos que no tengan mas de una seleccion
+       if(cantCheck.length == 1){
+           const legajo = document.getElementById('legajo').innerText;
+           btn.href="servletAlumnos?legajo="+legajo
+       }else if(cantCheck.length > 1){
+           alert("Solo debe seleccionar un registro!");
+       }else{
+           alert("Debe seleccionar un registro!");
+       }
+   }); 
+</script>
+
+
 </body>
 </html>
