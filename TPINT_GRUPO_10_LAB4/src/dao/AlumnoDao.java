@@ -82,8 +82,7 @@ public class AlumnoDao {
 			}
 			conn.close();
 		}catch(Exception e){
-			e.printStackTrace();
-		}finally{
+z		}finally{
 		
 		}
 		
