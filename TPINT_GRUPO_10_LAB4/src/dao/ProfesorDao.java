@@ -3,6 +3,7 @@ package dao;
 import java.awt.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class ProfesorDao {
 	private String pass = "Root";
 	private String dbName = "tpfinal?useSSL=false";
 	
-	public int AgregarDocente(Profesor profesor) {
+	public void AgregarDocente(Profesor profesor) {
 		
 
 		try {
@@ -27,21 +28,31 @@ public class ProfesorDao {
 			e.printStackTrace();
 		}		
 	
-		int filas=0;
 		Connection cn = null;
 		try
 		{
+			String Query ="INSERT INTO Profesores(dni,nombre,apellido,email,contraseña,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)VALUES(?,?,?,?,?,?,?,?,?,?,true)";
 			cn = DriverManager.getConnection(host+dbName, user,pass);
-			Statement st = (Statement) cn.createStatement();
-			String Query ="Insert into alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado) values ('"+profesor.getDni()+"','"+profesor.getNombre()+"','"+profesor.getApellido()+"','"+profesor.getEmail()+"','"+profesor.getFechaNacimiento()+"','"+profesor.getDireccion()+"','"+profesor.getLocalidad()+"','"+profesor.getNacionalidad()+"','"+profesor.getTelefono()+"','"+1+"')";
-			filas = st.executeUpdate(Query);
+			PreparedStatement miSentencia = cn.prepareStatement(Query);
+			
+			miSentencia.setString(1, profesor.getDni());
+			miSentencia.setString(2, profesor.getNombre());
+			miSentencia.setString(3, profesor.getApellido());
+			miSentencia.setString(4, profesor.getEmail());
+			miSentencia.setString(5, profesor.getContraseña());
+			miSentencia.setString(6, "2017-06-15");
+			miSentencia.setString(7, profesor.getDireccion());
+			miSentencia.setString(8, profesor.getLocalidad());
+			miSentencia.setString(9, profesor.getNacionalidad());
+			miSentencia.setString(10, profesor.getTelefono());
+
+			miSentencia.executeUpdate();			
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
 		
-		return filas;
 	}
 	
 	public ArrayList<Profesor> ListarProfesores(){
@@ -57,7 +68,7 @@ public class ProfesorDao {
 		try {
 			cn = DriverManager.getConnection(host+dbName,user,pass);
 			Statement st = (Statement) cn.createStatement();
-			ResultSet rs = st.executeQuery("Select legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesor");			
+			ResultSet rs = st.executeQuery("Select legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesores");			
 			
 			while (rs.next()) {
 				

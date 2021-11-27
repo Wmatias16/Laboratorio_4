@@ -47,6 +47,7 @@ public class servletDocente extends HttpServlet {
 			Profesor profesor = new Profesor();
 			
 			profesor.setEmail(request.getParameter("email"));
+			profesor.setContraseña(request.getParameter("contraseña"));
 			profesor.setDni(request.getParameter("dni"));
 			profesor.setLocalidad(request.getParameter("localidad"));
 			profesor.setNacionalidad(request.getParameter("nacionalidad"));
