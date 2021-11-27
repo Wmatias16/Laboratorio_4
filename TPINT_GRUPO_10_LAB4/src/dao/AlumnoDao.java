@@ -105,8 +105,8 @@ public class AlumnoDao {
 			conn = DriverManager.getConnection(host+dbName,user,pass);
 			Statement st = conn.createStatement();
 			
-			ResultSet rs = st.executeQuery("Select legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM alumnos");
-			System.out.print("NO!");
+			ResultSet rs = st.executeQuery("Select legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM alumnos where estado = 1");
+
 			while(rs.next()){
 				
 				Alumno usuarioRs = new Alumno();
@@ -172,7 +172,33 @@ public class AlumnoDao {
 	}
 	
 	
-	
+	public void cambiarEstadoAlumno(int legajo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Connection cn = null;
+		try{
+			cn = DriverManager.getConnection(host+dbName, user,pass);
+			PreparedStatement miSentencia = cn.prepareStatement("update alumnos set  estado = false where legajo = ?");
+			
+			miSentencia.setInt(1, legajo);
+			
+			miSentencia.executeUpdate();
+			
+		    cn.close();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
+		finally
+		{
+		}
+	}
 	
 
 }

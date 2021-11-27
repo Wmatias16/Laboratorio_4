@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,7 +44,20 @@ public class servletAlumno extends HttpServlet {
 			request.setAttribute("AlumnoEditar", alum);
 			RequestDispatcher rd = request.getRequestDispatcher("/AlumnosAgregar.jsp");   
 	        rd.forward(request, response);		
+		}	
+		
+		
+		if(request.getParameter("delete")!=null) {
+			AlumnoDao alumDao = new AlumnoDao();
+			String[] legajos = request.getParameter("legajos").split(",");
+
+			for(int i=0;i<legajos.length;i++) {
+				alumDao.cambiarEstadoAlumno(Integer.parseInt(legajos[i]));
+			}
+			
+			actualizarAlumnos(request,response);
 		}
+		
 		
 		
 		

@@ -45,7 +45,7 @@
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
             <a href="AlumnosAgregar.jsp" class="btn btn-success" style="margin: 5px;">Alta de alumno</a>
             <a id="btnModificar" class="btn btn-warning" style="margin: 5px;">Modificar alumno</a>
-            <button class="btn btn-danger" style="margin: 5px;">Eliminar alumno</button>
+            <a id="btnEliminar" class="btn btn-danger" style="margin: 5px;">Eliminar alumno</a>
         </div> 
     <div class="col-sm-12">    
         <table class="table table-striped" id="table">
@@ -99,11 +99,12 @@
 
 // Boton modificar
 
-   const btn = document.getElementById('btnModificar');
+   const btnModificar = document.getElementById('btnModificar');
+   const btnEliminar = document.getElementById('btnEliminar');
+
 	 	
-	
    // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
-   btn.addEventListener('click',function(e){
+   btnModificar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
        let cantCheck = [];
        let legajoSeleccionado = [];
@@ -116,13 +117,36 @@
        
        // Verificamos que no tengan mas de una seleccion
        if(cantCheck.length == 1){
-          btn.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
+    	   btnModificar.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
        }else if(cantCheck.length > 1){
            alert("Solo debe seleccionar un registro!");
        }else{
            alert("Debe seleccionar un registro!");
        }	
-   }); 
+   });
+   
+   
+   btnEliminar.addEventListener('click',function(e){
+       // Array cantidad checkbox en estado true
+       let cantCheck = [];
+       let legajoSeleccionado = [];
+       // JQUERY recorre todos los checkbox en estado true
+       $("input[type=checkbox]:checked").each(function(cant,e) {
+           // Guarda cantidad de checkbox en estado true
+           legajoSeleccionado.push(e.value);
+           cantCheck.push(cant);
+       });
+       
+       // Verificamos que no tengan mas de una seleccion
+       if(cantCheck.length >= 1){
+    	   btnEliminar.href="servletAlumnos?delete=true&legajos="+legajoSeleccionado;
+       }else{
+           alert("Debe seleccionar un registro!");
+       }	
+   });
+   
+   
+   
 </script>
 
 
