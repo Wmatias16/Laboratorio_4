@@ -34,6 +34,19 @@ public class servletAlumno extends HttpServlet {
 		if(request.getParameter("listar")!=null) {
 			actualizarAlumnos(request,response);
 		}
+		
+		if(request.getParameter("edit")!=null) {
+			String legajo = request.getParameter("legajo");
+			AlumnoDao alumDao = new AlumnoDao();
+			Alumno alum = alumDao.getAlumnoLegajo(legajo);
+			
+			request.setAttribute("AlumnoEditar", alum);
+			RequestDispatcher rd = request.getRequestDispatcher("/AlumnosAgregar.jsp");   
+	        rd.forward(request, response);		
+		}
+		
+		
+		
 	}
 	
 
@@ -66,6 +79,31 @@ public class servletAlumno extends HttpServlet {
 	        rd.forward(request, response);		
 		}
 		
+	if(request.getParameter("mdAlumnos")!=null) {
+			
+			Alumno alumno = new Alumno();
+			
+			alumno.setLegajo(Integer.parseInt(request.getParameter("legajo")));
+			alumno.setDni(request.getParameter("dni"));
+			alumno.setNombre(request.getParameter("nombre"));
+			alumno.setApellido(request.getParameter("apellido"));
+			alumno.setEmail(request.getParameter("email"));
+			alumno.setFechaNacimiento("2017-06-15");
+			alumno.setDireccion(request.getParameter("direccion"));
+			alumno.setLocalidad(request.getParameter("localidad"));
+			alumno.setNacionalidad(request.getParameter("nacionalidad"));
+			alumno.setTelefono(request.getParameter("telefono"));
+			AlumnoDao adao = new AlumnoDao();
+			
+			adao.modificarAlumno(alumno);
+			actualizarAlumnos(request,response);
+			RequestDispatcher rd = request.getRequestDispatcher("/Alumnos.jsp");   
+	        rd.forward(request, response);		
+		}
+		
+		
+		
+		
 		doGet(request, response);
 	}
 	
@@ -73,7 +111,6 @@ public class servletAlumno extends HttpServlet {
 	public void actualizarAlumnos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			AlumnoDao adao = new AlumnoDao();
 			ArrayList<Alumno> lista= adao.getAlumnos();
-			
 			request.setAttribute("listaAlumnos", lista);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/Alumnos.jsp");   

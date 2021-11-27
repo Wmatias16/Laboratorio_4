@@ -48,7 +48,7 @@
             <button class="btn btn-danger" style="margin: 5px;">Eliminar alumno</button>
         </div> 
     <div class="col-sm-12">    
-        <table class="table table-striped">
+        <table class="table table-striped" id="table">
             <thead>
             <tr>
                 <th scope="col"><input type="checkbox"></th>
@@ -68,9 +68,9 @@
 					for(Alumno alum : listaAlumnos) 
 					{
 			  %>
-            <tr>
-               <th scope="row"><input type="checkbox"></th>
-               <td id="legajo"><%=alum.getLegajo() %></td>  
+            <tr class="registroAlumno">
+               <td><input type="checkbox" value=<%=alum.getLegajo() %>></td>
+               <td class="legajo"><%=alum.getLegajo() %></td>  
                <td><%=alum.getDni() %></td>  
                <td>12-12-12</td>  
                <td><%=alum.getDireccion() %></td>  
@@ -96,29 +96,32 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script>    
-	// Boton modificar
+
+// Boton modificar
+
    const btn = document.getElementById('btnModificar');
+	 	
 	
    // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
-   btn.addEventListener('click',(e)=>{
+   btn.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
        let cantCheck = [];
-       
+       let legajoSeleccionado = [];
        // JQUERY recorre todos los checkbox en estado true
-       $("input[type=checkbox]:checked").each(function(cant) {
+       $("input[type=checkbox]:checked").each(function(cant,e) {
            // Guarda cantidad de checkbox en estado true
+           legajoSeleccionado.push(e.value);
            cantCheck.push(cant);
        });
        
        // Verificamos que no tengan mas de una seleccion
        if(cantCheck.length == 1){
-           const legajo = document.getElementById('legajo').innerText;
-           btn.href="servletAlumnos?legajo="+legajo
+          btn.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
        }else if(cantCheck.length > 1){
            alert("Solo debe seleccionar un registro!");
        }else{
            alert("Debe seleccionar un registro!");
-       }
+       }	
    }); 
 </script>
 
