@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
     <%@page import="dominio.Profesor"%>
 <%@page import="java.util.ArrayList"%>
+    
+<%@page import="java.io.Console"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
     
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,15 +12,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-<title>Docentese</title>
+<title>Docentes</title>
 </head>
 <body>
 
 	<%
 		ArrayList<Profesor> listarProfesor = null;
-		if(request.getParameter("listaProfesor")!=null){
+		if(request.getAttribute("listaProfesor") != null){
 			listarProfesor = (ArrayList<Profesor>)request.getAttribute("listaProfesor");
-		}
+		 }
+		
 	%>
 
 
@@ -74,15 +76,15 @@
             		{
             %>
             <tr class="RegistroProfesor">
-                <th><input type="checkbox" value=<%profe.getLegajo();%>></th>
-                <td class ="legajo" ><%profe.getLegajo();%></td>
-                <td><%profe.getDni();%></td>
-                <td><%profe.getFechaNacimiento();%></td>
-                <td><%profe.getDireccion(); %></td>
-                <td><%profe.getNacionalidad();%></td>
-                <td><%profe.getLocalidad();%></td>
-                <td><%profe.getEmail();%></td>
-                <td><%profe.getTelefono();%></td>
+                <th><input type="checkbox" value=<%=profe.getLegajo()%>></th>
+                <td class ="legajo" ><%=profe.getLegajo()%></td>
+                <td><%=profe.getDni()%></td>
+                <td><%=profe.getFechaNacimiento()%></td>
+                <td><%=profe.getDireccion()%></td>
+                <td><%=profe.getNacionalidad()%></td>
+                <td><%=profe.getLocalidad()%></td>
+                <td><%=profe.getEmail()%></td>
+                <td><%=profe.getTelefono()%></td>
             </tr>
          		<% } %>
             </tbody>
@@ -91,6 +93,7 @@
         </div>
     </div>
 </div>
+
 	
 </body>
 </html>

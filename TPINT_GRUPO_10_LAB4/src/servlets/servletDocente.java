@@ -33,9 +33,9 @@ public class servletDocente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//listar Profesor
-				if(request.getParameter("listar")!=null) {
-					ListarProfesores(request,response);
-				}
+		if(request.getParameter("listar")!=null) {
+			ListarProfesores(request, response);
+		}
 		
 	}
 	
@@ -84,11 +84,11 @@ public class servletDocente extends HttpServlet {
 		
 		ProfesorDao dao = new ProfesorDao();
 		ArrayList<Profesor> lista = dao.ListarProfesores();
-		request.setAttribute("listaProfesor", lista);
-		
+			
+        request.setAttribute("listaProfesor", lista);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Docentes.jsp");   
-        rd.forward(request, response);		
+        rd.forward(request, response);	
 	}
 	
 	

@@ -86,15 +86,15 @@ public class ProfesorDao {
 				profesorRs.setTelefono(rs.getString("telefono"));
 				
 				lista.add(profesorRs);
-
-				
-			}
+							}
 			
 			cn.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 		return lista;
 	}
 	
