@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    <%@page import="dominio.Profesor"%>
+<%@page import="java.util.ArrayList"%>
+    
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,6 +14,17 @@
 <title>Docentese</title>
 </head>
 <body>
+
+	<%
+		ArrayList<Profesor> listarProfesor = null;
+		if(request.getParameter("listaProfesor")!=null){
+			listarProfesor = (ArrayList<Profesor>)request.getAttribute("listaProfesor");
+		}
+	%>
+
+
+
+
 	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,73 +68,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>profesor@profesor.com</td>
-                <td>987654321</td>
+            <%
+            	if(listarProfesor!=null)
+            		for(Profesor profe : listarProfesor)
+            		{
+            %>
+            <tr class="RegistroProfesor">
+                <th><input type="checkbox" value=<%profe.getLegajo();%>></th>
+                <td class ="legajo" ><%profe.getLegajo();%></td>
+                <td><%profe.getDni();%></td>
+                <td><%profe.getFechaNacimiento();%></td>
+                <td><%profe.getDireccion(); %></td>
+                <td><%profe.getNacionalidad();%></td>
+                <td><%profe.getLocalidad();%></td>
+                <td><%profe.getEmail();%></td>
+                <td><%profe.getTelefono();%></td>
             </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>profesor@profesor.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>profesor@profesor.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>profesor@profesor.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>profesor@profesor.com</td>
-                <td>987654321</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>
-                <td>01/01/2000</td>
-                <td>Direccion xxxx</td>
-                <td>Argentina</td>
-                <td>Buenos aires</td>
-                <td>profesor@profesor.com</td>
-                <td>987654321</td>
-            </tr>
-
+         		<% } %>
             </tbody>
             </table>
 

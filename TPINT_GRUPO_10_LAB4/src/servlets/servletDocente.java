@@ -1,7 +1,7 @@
 package servlets;
 
-import java.io.IOException;  
-
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,6 +32,11 @@ public class servletDocente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//listar Profesor
+				if(request.getParameter("listar")!=null) {
+					ListarProfesores(request,response);
+				}
+		
 	}
 	
 
@@ -41,9 +46,9 @@ public class servletDocente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//alta alumno
 		if(request.getParameter("btnAceptar")!= null )
 		{
-			
 			Profesor profesor = new Profesor();
 			
 			profesor.setEmail(request.getParameter("email"));
@@ -63,14 +68,28 @@ public class servletDocente extends HttpServlet {
 			
 			//Request
 			RequestDispatcher rd=request.getRequestDispatcher("/Docentes.jsp"); 
-			rd.forward(request, response);
-			
-			
+			rd.forward(request, response);		
 		}
+		
+		
+		
+		
+		
 		
 		doGet(request, response);
 	}
 	
+	
+	public void ListarProfesores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ProfesorDao dao = new ProfesorDao();
+		ArrayList<Profesor> lista = dao.ListarProfesores();
+		request.setAttribute("listaProfesor", lista);
+		
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/Docentes.jsp");   
+        rd.forward(request, response);		
+	}
 	
 	
 	

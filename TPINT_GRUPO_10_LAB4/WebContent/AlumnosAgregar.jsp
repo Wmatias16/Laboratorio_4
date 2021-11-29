@@ -11,6 +11,7 @@
 <title>Alta alumnos</title>
 </head>
 <body>
+
 <% 
 	Alumno alum = null;
 	if(request.getAttribute("AlumnoEditar")!=null)

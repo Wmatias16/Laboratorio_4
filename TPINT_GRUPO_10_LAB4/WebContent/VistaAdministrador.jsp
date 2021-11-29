@@ -79,7 +79,7 @@
                       </div>
                     </div>
                     <div class="card-footer text-muted">
-                      <a href="#" class="btn btn-primary btn-block" >Ver</a>
+                      <a href="servletDocente?listar=true" class="btn btn-primary btn-block" >Ver</a>
                    </div>
                   </div>
                 </div>            

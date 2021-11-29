@@ -24,7 +24,7 @@ CREATE TABLE Profesores(
     nombre VARCHAR(45),
     apellido VARCHAR(50),
     email VARCHAR(40),
-    contraseña VARCHAR(50),
+    password VARCHAR(50),
 	fechaNacimiento DATE,
     direccion VARCHAR(50),
     localidad VARCHAR(50),

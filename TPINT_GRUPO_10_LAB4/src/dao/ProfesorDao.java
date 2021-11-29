@@ -15,7 +15,7 @@ public class ProfesorDao {
 	
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "Root";
+	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
 	
 	public void AgregarDocente(Profesor profesor) {
@@ -31,7 +31,7 @@ public class ProfesorDao {
 		Connection cn = null;
 		try
 		{
-			String Query ="INSERT INTO Profesores(dni,nombre,apellido,email,contraseña,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)VALUES(?,?,?,?,?,?,?,?,?,?,true)";
+			String Query ="INSERT INTO Profesores(dni,nombre,apellido,email,password,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)VALUES(?,?,?,?,?,?,?,?,?,?,true)";
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			PreparedStatement miSentencia = cn.prepareStatement(Query);
 			
@@ -76,11 +76,11 @@ public class ProfesorDao {
 				
 				profesorRs.setLegajo(rs.getInt("legajo"));
 				profesorRs.setDni(rs.getString("dni"));
-				profesorRs.setNombre(rs.getNString("nombre"));
+				profesorRs.setNombre(rs.getString("nombre"));
 				profesorRs.setApellido(rs.getString("apellido"));
 				profesorRs.setEmail(rs.getString("email"));
 				//profesorRs.setFechaNacimiento(dbName); corregir ------------------
-				profesorRs.setDireccion(rs.getString("direcciom"));
+				profesorRs.setDireccion(rs.getString("direccion"));
 				profesorRs.setNacionalidad(rs.getString("nacionalidad"));
 				profesorRs.setLocalidad(rs.getString("localidad"));
 				profesorRs.setTelefono(rs.getString("telefono"));
