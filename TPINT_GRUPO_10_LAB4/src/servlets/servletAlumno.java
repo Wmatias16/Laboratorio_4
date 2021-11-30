@@ -38,7 +38,7 @@ public class servletAlumno extends HttpServlet {
 		
 		if(request.getParameter("edit")!=null) {
 			obtenerDatosAlumno(request, response);	
-		}	
+		}
 				
 		if(request.getParameter("delete")!=null) {
 			bajaAlumno(request, response);

@@ -49,9 +49,9 @@
 <div class="container" style="margin-top: 100px;">
     <div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
-            <button class="btn btn-success" style="margin: 5px;">Alta de docente</button>
-            <button class="btn btn-warning" style="margin: 5px;">Modificar docente</button>
-            <button class="btn btn-danger" style="margin: 5px;">Eliminar docente</button>
+            <a href="DocentesAgregar.jsp" lass="btn btn-success" style="margin: 5px;">Alta de docente</a>
+            <a id="btnModificar" class="btn btn-warning" style="margin: 5px;">Modificar docente</a>
+            <a id="btnEliminar" class="btn btn-danger" style="margin: 5px;">Eliminar docente</a>
         </div>     
     <div class="col-sm-12">    
         <table class="table table-striped">
@@ -93,6 +93,65 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>    
+
+// Boton modificar
+
+   const btnModificar = document.getElementById('btnModificar');
+   const btnEliminar = document.getElementById('btnEliminar');
+
+	 	
+   // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
+   btnModificar.addEventListener('click',function(e){
+       // Array cantidad checkbox en estado true
+       let cantCheck = [];
+       let legajoSeleccionado = [];
+       // JQUERY recorre todos los checkbox en estado true
+       $("input[type=checkbox]:checked").each(function(cant,e) {
+           // Guarda cantidad de checkbox en estado true
+           legajoSeleccionado.push(e.value);
+           cantCheck.push(cant);
+       });
+       
+       // Verificamos que no tengan mas de una seleccion
+       if(cantCheck.length == 1){
+    	   btnModificar.href="servletDocente?edit=true&legajo="+legajoSeleccionado[0];
+       }else if(cantCheck.length > 1){
+           alert("Solo debe seleccionar un registro!");
+       }else{
+           alert("Debe seleccionar un registro!");
+       }	
+   });
+   
+   
+   ///btn eliminar
+   btnEliminar.addEventListener('click',function(e){
+       // Array cantidad checkbox en estado true
+       let cantCheck = [];
+       let legajoSeleccionado = [];
+       // JQUERY recorre todos los checkbox en estado true
+       $("input[type=checkbox]:checked").each(function(cant,e) {
+           // Guarda cantidad de checkbox en estado true
+           legajoSeleccionado.push(e.value);
+           cantCheck.push(cant);
+       });
+       
+       // Verificamos que no tengan mas de una seleccion
+       if(cantCheck.length >= 1){
+    	   btnEliminar.href="servletDocente?delete=true&legajos="+legajoSeleccionado;
+       }else{
+           alert("Debe seleccionar un registro!");
+       }	
+   });
+  
+   
+   
+</script>
 
 	
 </body>

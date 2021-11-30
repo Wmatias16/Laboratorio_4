@@ -1,3 +1,4 @@
+<%@page import="dominio.Profesor"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,6 +10,18 @@
 <title>Alta docentes</title>
 </head>
 <body>
+
+	<% 
+	Profesor profe = null;
+	if(request.getAttribute("ProfesorEditar")!=null)
+	{
+		profe = (Profesor)request.getAttribute("ProfesorEditar");
+	}
+	
+ %>
+
+
+
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +41,75 @@
         </div>
       </nav>
 
+	<%if(request.getAttribute("ProfesorEditar")!=null){ %>
+	<div class="container">
+         <form method="POST" action="servletDocente?legajo=<%=profe.getLegajo()%>">
+            <div class="row">
+            	
+                <div class="col-sm-6">
+                 	<div class="form-group">
+ 						<label for="Legajo">Legajo</label>
+                        <input type="text" value=<%=profe.getLegajo()%> class="form-control" id="idLegajo"  name="legajo" disabled>
+                      </div>
+                       <div class="form-group">
+                          <label for="exampleInputEmail1">Nombre</label>
+                          <input type="text" value=<%=profe.getNombre()%> name="nombre"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre">
+                        </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Dni</label>
+                        <input type="text"  value=<%=profe.getDni()%> name="dni" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese dni">
+                      </div>
+                       <div class="form-group">
+                          <label for="exampleInputEmail1">Fecha de nacimiento</label>
+                          <input type="date" name="fecha"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese fecha de nacimiento">
+                        </div>
+                         <div class="form-group">
+                        <label for="exampleInputEmail1">Telefono</label>
+                        <input type="text" value=<%=profe.getTelefono()%> name="telefono"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono">
+                      </div>
+                     
+                </div>
 
-<div class="container" style="margin-top: 100px; width: 700px;">
+                <div class="col-sm-6">
+                   
+                   <div class="form-group">
+						<label for="exampleInputEmail1">Email</label>
+                        <input type="email" value=<%=profe.getEmail()%> class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="Ingrese email">
+                      </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Apellido</label>
+                          <input type="text" value=<%=profe.getApellido()%> name="apellido" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese apellido">
+                        </div>
+                        
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Direccion</label>
+                        <input type="text" value=<%=profe.getDireccion()%> name="direccion"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Localidad</label>
+                        <input type="text" value=<%=profe.getLocalidad()%> name="localidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese localidad">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Nacionalidad</label>
+                        <input type="text" value=<%=profe.getNacionalidad()%> name="nacionalidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nacionalidad">
+                      </div>
+                     
+                </div>
+
+                
+              <div class="col-sm-12" style="text-align: center;">
+                <button type="submit" name="EditProfesor" class="btn btn-success btn-lg btn-block" style="text-align: center; margin-top: 10px; width: 100%;">Aceptar</button>
+              </div>
+            </div>
+                
+          </form>
+    	</div>
+	
+
+	
+	<%}else{ %>
+
+		<div class="container" style="margin-top: 100px; width: 700px;">
         <h1 style="text-align: center;">Alta docente</h1>
         <form method="post" action=servletDocente>
             <div class="row">
@@ -80,10 +160,10 @@
                        
                 </div>             
               <div class="col-sm-12" style="text-align: center;">
-                <button type="submit" name="btnAceptar" class="btn btn-success btn-lg btn-block" style="text-align: center; margin-top: 10px; width: 100%;">Aceptar</button>
+                <button type="submit" name="Alta" class="btn btn-success btn-lg btn-block" style="text-align: center; margin-top: 10px; width: 100%;">Aceptar</button>
               </div>
         </div>
-                
+            <%} %>    
                    
             
           </form>
