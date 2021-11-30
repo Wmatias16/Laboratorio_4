@@ -1,19 +1,19 @@
 package dominio;
 
 public class Profesor extends Persona{
-	private String contraseña;
+	private String contrasenia;
 
 	
-	void Profesor() {
+	public Profesor() {
 		
 	}
 	
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 	
 	

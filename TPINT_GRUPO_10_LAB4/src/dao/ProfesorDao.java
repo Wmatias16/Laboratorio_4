@@ -32,7 +32,7 @@ public class ProfesorDao {
 		Connection cn = null;
 		try
 		{
-			String Query ="INSERT INTO Profesores(dni,nombre,apellido,email,password,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)VALUES(?,?,?,?,?,?,?,?,?,?,true)";
+			String Query ="INSERT INTO Profesores(dni,nombre,apellido,email,contrasenia,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)VALUES(?,?,?,?,?,?,?,?,?,?,true)";
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			PreparedStatement miSentencia = cn.prepareStatement(Query);
 			
@@ -40,7 +40,7 @@ public class ProfesorDao {
 			miSentencia.setString(2, profesor.getNombre());
 			miSentencia.setString(3, profesor.getApellido());
 			miSentencia.setString(4, profesor.getEmail());
-			miSentencia.setString(5, profesor.getContraseña());
+			miSentencia.setString(5, profesor.getContrasenia());
 			miSentencia.setString(6, "2017-06-15");
 			miSentencia.setString(7, profesor.getDireccion());
 			miSentencia.setString(8, profesor.getLocalidad());
@@ -148,7 +148,7 @@ public class ProfesorDao {
 		
 		Connection cn = null;
 		try{
-			String query = "update profesores set  dni = ?, nombre = ?, apellido = ?, email = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? where legajo = ?";
+			String query = "update profesores set  dni = ?, nombre = ?, apellido = ?, email = ?, contrasenia = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? where legajo = ?";
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			PreparedStatement miSentencia = cn.prepareStatement(query);
 			
@@ -156,11 +156,12 @@ public class ProfesorDao {
 			miSentencia.setString(2, profesor.getNombre());
 			miSentencia.setString(3, profesor.getApellido());
 			miSentencia.setString(4, profesor.getEmail());
-			miSentencia.setString(5, profesor.getDireccion());
-			miSentencia.setString(6, profesor.getLocalidad());
-			miSentencia.setString(7, profesor.getNacionalidad());
-			miSentencia.setString(8, profesor.getTelefono());
-			miSentencia.setInt(9, profesor.getLegajo());
+			miSentencia.setString(5, profesor.getContrasenia());
+			miSentencia.setString(6, profesor.getDireccion());
+			miSentencia.setString(7, profesor.getLocalidad());
+			miSentencia.setString(8, profesor.getNacionalidad());
+			miSentencia.setString(9, profesor.getTelefono());
+			miSentencia.setInt(10, profesor.getLegajo());
 			
 			
 			miSentencia.executeUpdate();
