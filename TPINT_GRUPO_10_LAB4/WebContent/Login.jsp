@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="dominio.Administrador"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,12 @@
 <title>Login</title>
 </head>
 <body>
+<%
+	Administrador administrador = null;
+	if (request.getAttribute("AdministradorLogin") != null) {
+		administrador = (Administrador)request.getAttribute("AdministradorLogin");
+	}
+%>
 	 <div class="container">
         <div class="row">
           <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -26,7 +33,7 @@
                     <label for="floatingPassword">Contraseña</label>
                   </div>
                   <div class="d-grid">
-                    <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">
+                    <button class="btn btn-primary btn-login text-uppercase fw-bold" id="btnIniciarSesion" type="submit">
                         Iniciar sesion
                     </button>
                   </div>
@@ -36,5 +43,13 @@
           </div>
         </div>
       </div>
+<script>
+	const btnIniciarSesion = document.getElementById('btnIniciarSesion');
+	btnIniciarSesion.addEventListener('click', function(e) {
+		let email = document.getElementById('floatingInput').value;
+		let contrasenia = document.getElementById('floatingPassword').value;
+		btnIniciarSesion.href = "servletAdministrador?loguearAdmin=true&email="+email+"&contrasenia="+contrasenia;
+	});
+</script>
 </body>
 </html>

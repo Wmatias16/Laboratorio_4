@@ -13,7 +13,7 @@
     <h1 class="jumbotron-heading">¡Bienvenido!</h1>
     <p class="lead text-muted">Para iniciar sesion seleccione que tipo de usuario desea utilizar</p>
     <p>
-        <a href="#" class="btn btn-primary my-2">Administrador</a>
+        <a href="Login.jsp" class="btn btn-primary my-2">Administrador</a>
         <a href="#" class="btn btn-secondary my-2">Docente</a>
     </p>
     </div>  
