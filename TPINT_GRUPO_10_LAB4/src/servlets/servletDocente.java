@@ -157,8 +157,6 @@ public class servletDocente extends HttpServlet {
 		ArrayList<Profesor> lista= adao.ListarProfesores();
 		request.setAttribute("listaProfesor", lista);
 		
-
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/Docentes.jsp");   
         rd.forward(request, response);		
 	}
