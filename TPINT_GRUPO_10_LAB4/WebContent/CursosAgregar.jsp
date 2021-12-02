@@ -220,7 +220,7 @@
        console.log(selectProfesor.value);
        console.log(legajoSeleccionado);
 
-       btn.href = "servlet?materia="+selectMateria.value+"&profesor="+selectProfesor.value+"&"+"legajo="+legajoSeleccionado
+       btn.href = "servletCursos?curso=true&idMateria="+selectMateria.value+"&legajoProfesor="+selectProfesor.value+"&"+"legajos="+legajoSeleccionado;
   })
 
 

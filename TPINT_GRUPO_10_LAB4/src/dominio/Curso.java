@@ -6,6 +6,12 @@ public class Curso {
 	private Profesor profesor;
 	private String semestre;
 	private String anio;
+	
+	
+	public Curso() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

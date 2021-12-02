@@ -43,14 +43,24 @@ CREATE TABLE Cursos(
 	idCurso INT AUTO_INCREMENT PRIMARY KEY,
     idMateria INT,
 	legajoDocente INT,
+    semestre VARCHAR(30),
     anio varchar(10)
 );ALTER TABLE Materias AUTO_INCREMENT=1;
+
+CREATE TABLE AlumnosXcurso(
+	nroInscripcion INT AUTO_INCREMENT PRIMARY KEY,
+    idCurso INT,
+    legajoAlumno INT,
+    estado bool
+);ALTER TABLE AlumnosXcurso AUTO_INCREMENT=100;
 
 /*INSERTS DE LAS TABLAS*/
 
 /*ALUMNOS*/
 INSERT INTO Alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)
 VALUES("12345678","Juan","Perez","alumno@alumno.com","2017-06-15","Juramento 2480","Escobar","Argentina","1190894760",true);
+INSERT INTO Alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado)
+VALUES("12325678","Roberto","Perez","alumno@alumno.com","2017-06-15","Juramento 2480","Escobar","Argentina","1190894760",true);
 
 
 /*PROFESORES*/
@@ -62,5 +72,4 @@ INSERT INTO Materias(idCarrera,nombre) VALUES(1,"Matematicas");
 INSERT INTO Materias(idCarrera,nombre) VALUES(1,"Programacion");
 INSERT INTO Materias(idCarrera,nombre) VALUES(1,"Laboratorio");
 INSERT INTO Materias(idCarrera,nombre) VALUES(1,"Base de datos");
-
 

@@ -9,6 +9,10 @@ public class Materia {
 		this.setId(id);
 		this.setNombre(nombre);
 	}
+	
+	public Materia(int id) {
+		this.setId(id);
+	}
 
 
 	public String getNombre() {

@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AlumnoDao;
+import dao.CursoDao;
 import dao.MateriaDao;
 import dao.ProfesorDao;
 import dominio.Alumno;
+import dominio.Curso;
 import dominio.Materia;
 import dominio.Profesor;
 
@@ -39,6 +41,10 @@ public class servletCursos extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("getDatos") != null) {
 			getDatosBD(request,response);
+		}
+		
+		if(request.getParameter("curso") != null){
+			crearCurso(request,response);
 		}
 	}
 
@@ -72,5 +78,35 @@ public class servletCursos extends HttpServlet {
         rd.forward(request, response);		
 		
 	}
+	
+	
+	
+	public void crearCurso(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		Curso curso = new Curso();
+		
+		// PARAMETROS DEL FRONT
+		curso.setProfesor(new Profesor(Integer.parseInt(request.getParameter("legajoProfesor"))));
+		curso.setMateria(new Materia(Integer.parseInt(request.getParameter("idMateria"))));
+		curso.setAnio("2021");
+		curso.setSemestre("Primer semestre");
+		String[] legajos = request.getParameter("legajos").split(",");
+		
+		CursoDao cdao = new CursoDao();
+		// SI CREO EL CURSO PASO A AGREGAR LOS ALUMNOS EN ALUMNOSXCURSO
+		int fila = cdao.altaCurso(curso);		
+		if(fila == 1) {
+			
+			// ID DEL CURSO RECIEN CREADO
+			int idCurso = cdao.buscarMaxId();
+			
+			// RECORRE LOS LEGAJOS
+			for(int i = 0;i < legajos.length; i++) {
+				cdao.altaCursoXalumno(idCurso,legajos[i]);
+			}		
+			
+		}
+		
+	}
+	
 	
 }
