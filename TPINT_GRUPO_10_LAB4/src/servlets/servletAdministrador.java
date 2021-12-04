@@ -22,7 +22,7 @@ public class servletAdministrador extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("loguearAdmin") != null) {
+		if (request.getParameter("loguearAdmin") == null) {
 			obtenerDatosAdministrador(request, response);			
 		}
 	}
@@ -32,8 +32,12 @@ public class servletAdministrador extends HttpServlet {
 		String contrasenia = request.getParameter("contrasenia");
 		AdministradorDao administradorDao = new AdministradorDao();
 		Administrador administrador = administradorDao.getAdministradorByEmailAndContrasenia(email, contrasenia);
-		request.setAttribute("AdministradorLogin", administrador);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Login.jsp");
+		if (administrador.getId() > 0) {
+			request.setAttribute("AdministradorLogin", administrador);
+		} else {
+			request.setAttribute("AdministradorLogin", null);
+		}
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/LoginAdministrador.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}

@@ -45,6 +45,10 @@ public class servletDocente extends HttpServlet {
 			bajaDocente(request, response);
 		}
 		
+		if (request.getParameter("loguearDocente")!=null) {
+			ObetenerDatosProfesorByEmailAndContrasenia(request, response);
+		}
+		
 	}
 	
 
@@ -125,6 +129,21 @@ public class servletDocente extends HttpServlet {
 		
 		request.setAttribute("ProfesorEditar", profe);
 		RequestDispatcher rd = request.getRequestDispatcher("/DocentesAgregar.jsp");   
+        rd.forward(request, response);
+	}
+	
+	//buscamos los datos del profesor mediante el email y contraseña
+	public void ObetenerDatosProfesorByEmailAndContrasenia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		String email = request.getParameter("email");
+		String contrasenia = request.getParameter("contrasenia");
+		ProfesorDao ProfeDao = new ProfesorDao();
+		Profesor profe = ProfeDao.getProfesorByEmailAndContrasenia(email, contrasenia);
+		if (profe.getLegajo() > 0) {
+			request.setAttribute("DocenteLogin", profe);
+		} else {
+			request.setAttribute("DocenteLogin", null);
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("/LoginDocente.jsp");   
         rd.forward(request, response);
 	}
 

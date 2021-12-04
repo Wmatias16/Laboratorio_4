@@ -15,6 +15,7 @@
 	Administrador administrador = null;
 	if (request.getAttribute("AdministradorLogin") != null) {
 		administrador = (Administrador)request.getAttribute("AdministradorLogin");
+		response.sendRedirect("VistaAdministrador.jsp");
 	}
 %>
 	 <div class="container">
@@ -25,17 +26,17 @@
                 <h5 class="card-title text-center mb-5 fw-light fs-5">Login</h5>
                 <form>
                   <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email</label>
+                    <input type="email" class="form-control" id="loginEmailAdministrador" placeholder="name@example.com">
+                    <label for="loginEmailAdministrador">Email</label>
                   </div>
                   <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Contraseña</label>
+                    <input type="password" class="form-control" id="loginPasswordAdministrador" placeholder="Password">
+                    <label for="loginPasswordAdministrador">Contraseña</label>
                   </div>
                   <div class="d-grid">
-                    <button class="btn btn-primary btn-login text-uppercase fw-bold" id="btnIniciarSesion" type="submit">
-                        Iniciar sesion
-                    </button>
+                    <a class="btn btn-primary btn-login text-uppercase fw-bold" id="btnIniciarSesionAdministrador" type="submit">
+                        Iniciar sesión
+                    </a>
                   </div>
                 </form>
               </div>
@@ -44,10 +45,10 @@
         </div>
       </div>
 <script>
-	const btnIniciarSesion = document.getElementById('btnIniciarSesion');
+	const btnIniciarSesion = document.getElementById('btnIniciarSesionAdministrador');
 	btnIniciarSesion.addEventListener('click', function(e) {
-		let email = document.getElementById('floatingInput').value;
-		let contrasenia = document.getElementById('floatingPassword').value;
+		let email = document.getElementById('loginEmailAdministrador').value;
+		let contrasenia = document.getElementById('loginPasswordAdministrador').value;
 		btnIniciarSesion.href = "servletAdministrador?loguearAdmin=true&email="+email+"&contrasenia="+contrasenia;
 	});
 </script>

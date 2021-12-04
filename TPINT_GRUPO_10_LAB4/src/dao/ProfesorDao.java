@@ -137,6 +137,42 @@ public class ProfesorDao {
 		return profesor;
 	}
 	
+	public Profesor getProfesorByEmailAndContrasenia(String email, String contrasenia) {	
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Profesor profesor = new Profesor();
+		Connection conn = null;
+		try{
+			conn = DriverManager.getConnection(host+dbName,user,pass);
+			Statement st = (Statement) conn.createStatement();
+			
+			ResultSet rs = st.executeQuery("Select DISTINCT legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesores where email = " +email + " and contrasenia = " +contrasenia);
+			while(rs.next()){
+				profesor.setLegajo(rs.getInt("legajo"));
+				profesor.setDni(rs.getString("dni"));
+				profesor.setNombre(rs.getString("nombre"));
+				profesor.setApellido(rs.getString("apellido"));
+				//profesor.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				profesor.setDireccion(rs.getString("direccion"));
+				profesor.setNacionalidad(rs.getString("nacionalidad"));
+				profesor.setLocalidad(rs.getString("localidad"));
+				profesor.setEmail(rs.getString("email"));
+				profesor.setTelefono(rs.getString("telefono"));				
+			}
+			conn.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+		
+		}
+		
+		return profesor;
+	}
+	
 	public void ModificarProfesor(Profesor profesor)
 	{		
 		try {
