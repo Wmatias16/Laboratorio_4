@@ -63,7 +63,7 @@
                 <th scope="col">Fecha de nacimiento</th>
                 <th scope="col">Direccion</th>
                 <th scope="col">Nacionalidad</th>
-                <th scope="col">Provincia</th>
+                <th scope="col">Localidad</th>
                 <th scope="col">Email</th>
                 <th scope="col">Telefono</th>
 

@@ -87,7 +87,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Localidad</label>
-                        <input type="text" value=<%=profe.getLocalidad()%> name="localidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese localidad">
+                        <input type="text" value='<%=profe.getLocalidad()%>' name="localidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese localidad">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Nacionalidad</label>

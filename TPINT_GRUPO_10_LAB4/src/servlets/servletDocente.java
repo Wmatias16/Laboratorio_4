@@ -66,7 +66,6 @@ public class servletDocente extends HttpServlet {
 		
 		
 		if(request.getParameter("EditProfesor")!=null) {
-			System.out.println("entro al edit profe  ");
 			modificarProfesor(request, response);	
 		}
 		
@@ -126,7 +125,7 @@ public class servletDocente extends HttpServlet {
 		String legajo = request.getParameter("legajo");
 		ProfesorDao ProfeDao = new ProfesorDao();
 		Profesor profe = ProfeDao.getProfesorLegajo(legajo);
-		
+				
 		request.setAttribute("ProfesorEditar", profe);
 		RequestDispatcher rd = request.getRequestDispatcher("/DocentesAgregar.jsp");   
         rd.forward(request, response);
@@ -140,7 +139,6 @@ public class servletDocente extends HttpServlet {
 		ProfesorDao ProfeDao = new ProfesorDao();
 		Profesor profe = ProfeDao.getProfesorByEmailAndContrasenia(email, contrasenia);
 		
-		System.out.print("LEGAJO: "+ profe.getLegajo());
 		if (profe.getLegajo() > 0) {
 			request.setAttribute("DocenteLogin", profe);
 		} else {
