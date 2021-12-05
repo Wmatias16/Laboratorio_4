@@ -133,11 +133,14 @@ public class servletDocente extends HttpServlet {
 	}
 	
 	//buscamos los datos del profesor mediante el email y contraseña
+	
 	public void ObetenerDatosProfesorByEmailAndContrasenia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("contrasenia");
 		ProfesorDao ProfeDao = new ProfesorDao();
 		Profesor profe = ProfeDao.getProfesorByEmailAndContrasenia(email, contrasenia);
+		
+		System.out.print("LEGAJO: "+ profe.getLegajo());
 		if (profe.getLegajo() > 0) {
 			request.setAttribute("DocenteLogin", profe);
 		} else {

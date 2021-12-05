@@ -150,8 +150,12 @@ public class ProfesorDao {
 			conn = DriverManager.getConnection(host+dbName,user,pass);
 			Statement st = (Statement) conn.createStatement();
 			
-			ResultSet rs = st.executeQuery("Select DISTINCT legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesores where email = " +email + " and contrasenia = " +contrasenia);
-			while(rs.next()){
+			
+			ResultSet rs = st.executeQuery("Select legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesores where email='"+email+"'and contrasenia='"+contrasenia+"'");
+			while(rs.next()){	
+				
+				System.out.print("LEGAJO:" + rs.getInt("legajo"));
+				
 				profesor.setLegajo(rs.getInt("legajo"));
 				profesor.setDni(rs.getString("dni"));
 				profesor.setNombre(rs.getString("nombre"));
