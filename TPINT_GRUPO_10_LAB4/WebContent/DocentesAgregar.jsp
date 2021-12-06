@@ -120,7 +120,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Contraseña</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Contraseña">
+                        <input type="password" name="contrasenia" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Contraseña">
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Dni</label>
