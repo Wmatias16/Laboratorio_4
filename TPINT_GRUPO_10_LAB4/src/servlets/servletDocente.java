@@ -83,7 +83,7 @@ public class servletDocente extends HttpServlet {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
-		profesor.setContrasenia(request.getParameter("contrasenia"));
+		profesor.setContrasenia(request.getParameter("contrasenia")); 
 		profesor.setDni(request.getParameter("dni"));
 		profesor.setLocalidad(request.getParameter("localidad"));
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
@@ -95,15 +95,30 @@ public class servletDocente extends HttpServlet {
 		
 		ProfesorDao profdao = new ProfesorDao();
 		
-		profdao.AgregarDocente(profesor);
+		int Validar =  profdao.AgregarDocente(profesor);
 		
+		String mensaje = "";
+		Boolean error = false;
+		
+		if(Validar == 1) {
+			mensaje = "Se agrego usuario con exito!!";
+		}else {
+			mensaje = "Error!! no se agrego usuario";
+			error = true;
+		}
+		
+		
+		request.setAttribute("error", error);
+		request.setAttribute("mensaje",mensaje);
+		
+	
 		
 		ActualizarProfesores(request, response);
 		//Request
 		RequestDispatcher rd=request.getRequestDispatcher("/Docentes.jsp"); 
 		rd.forward(request, response);		
-	
-	
+		
+		
 	}
 	
 	
@@ -152,7 +167,7 @@ public class servletDocente extends HttpServlet {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
-		profesor.setContrasenia(request.getParameter("contraseña"));
+		profesor.setContrasenia(request.getParameter("Contrasenia"));
 		profesor.setDni(request.getParameter("dni"));
 		profesor.setLocalidad(request.getParameter("localidad"));
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
@@ -165,7 +180,24 @@ public class servletDocente extends HttpServlet {
 		ProfesorDao adao = new ProfesorDao();
 		
 
-		adao.ModificarProfesor(profesor);
+		int validar = adao.ModificarProfesor(profesor);
+		
+		
+		String mensajeMdf = "";
+		Boolean errorMdf = false;
+		
+		if(validar == 1) {
+			mensajeMdf = "Se Modifico usuario con exito!!";
+		}else {
+			mensajeMdf = "Error!! no se Modifico usuario";
+			errorMdf = true;
+		}
+		
+		
+		request.setAttribute("error", errorMdf);
+		request.setAttribute("mensaje",mensajeMdf);
+		
+
 		
 		ActualizarProfesores(request,response);
 		RequestDispatcher rd = request.getRequestDispatcher("/Docentes.jsp");   
@@ -184,10 +216,28 @@ public class servletDocente extends HttpServlet {
 	public void bajaDocente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ProfesorDao profesorDao = new ProfesorDao();
 		String[] legajos = request.getParameter("legajos").split(",");
-
+		
+		int Validar = 0;
+		
 		for(int i=0;i<legajos.length;i++) {
-			profesorDao.CambiarEstadoProfesor(Integer.parseInt(legajos[i]));
+			Validar = profesorDao.CambiarEstadoProfesor(Integer.parseInt(legajos[i]));
 		}
+		
+		String mensajeElm = "";
+		Boolean errorElm = false;
+		
+		if(Validar == 1) {
+			mensajeElm = "Se Elimino el  usuario con exito!!";
+		}else {
+			mensajeElm = "Error!! no se Elimino el usuario";
+			errorElm = true;
+		}
+		
+		
+		request.setAttribute("error", errorElm);
+		request.setAttribute("mensaje",mensajeElm);
+		
+		
 		ActualizarProfesores(request,response);
 	}
 	

@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 <title>Docentes</title>
 </head>
@@ -22,10 +22,48 @@
 			listarProfesor = (ArrayList<Profesor>)request.getAttribute("listaProfesor");
 		 }
 		
+		
+		// Cuando carga la pagina por primera ves crea el mensaje vacio y el error lo crea como nulo!
+		String mensaje = "";
+		Boolean error  = null;
+		
+		// Si existe alguna error o no creamos el mensaje con el mensaje que nos trae el servletDocente
+		
+		// Puede ser mensaje de agregado o de error
+		if(request.getAttribute("error") != null){
+			
+			error = (Boolean)request.getAttribute("error");
+			mensaje = (String)request.getAttribute("mensaje");
+		}
+		
+		if(request.getAttribute("errorMdf") != null){
+			
+			error = (Boolean)request.getAttribute("errorMdf");
+			mensaje = (String)request.getAttribute("mensajeMdf");
+		}
+		
+		if(request.getAttribute("errorElm") != null){
+			
+			error = (Boolean)request.getAttribute("errorElm");
+			mensaje = (String)request.getAttribute("mensajeElm");
+		}
+		
 	%>
 
-
-
+	<% 
+	
+	//Preguntamos si no es nulo, eso significa que es la primera vez que ingresamos a la pagina o que no hicimos ninguna accion de agregar o modificar
+		if(error != null)
+		  {%>
+		
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  <strong><%=mensaje %></strong>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		
+		<%}%>
+		
+			
 
 	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
@@ -149,10 +187,8 @@
        }	
    });
   
-   
-   
+	
 </script>
-
 	
 </body>
 </html>

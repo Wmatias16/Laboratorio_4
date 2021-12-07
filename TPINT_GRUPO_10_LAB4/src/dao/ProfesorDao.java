@@ -19,7 +19,7 @@ public class ProfesorDao {
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
 	
-	public void AgregarDocente(Profesor profesor) {
+	public int AgregarDocente(Profesor profesor) {
 		
 
 		try {
@@ -28,6 +28,8 @@ public class ProfesorDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+		
+		int filas = 0 ;
 	
 		Connection cn = null;
 		try
@@ -41,18 +43,22 @@ public class ProfesorDao {
 			miSentencia.setString(3, profesor.getApellido());
 			miSentencia.setString(4, profesor.getEmail());
 			miSentencia.setString(5, profesor.getContrasenia());
-			miSentencia.setString(6, "2017-06-15");
+			miSentencia.setString(6, profesor.getFechaNacimiento());
 			miSentencia.setString(7, profesor.getDireccion());
 			miSentencia.setString(8, profesor.getLocalidad());
 			miSentencia.setString(9, profesor.getNacionalidad());
 			miSentencia.setString(10, profesor.getTelefono());
 
-			miSentencia.executeUpdate();			
+			filas = miSentencia.executeUpdate();	
+			System.out.println("Devolvio la base de datos =  " +  filas );
+			
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		return filas;
 		
 	}
 	
@@ -80,7 +86,7 @@ public class ProfesorDao {
 				profesorRs.setNombre(rs.getString("nombre"));
 				profesorRs.setApellido(rs.getString("apellido"));
 				profesorRs.setEmail(rs.getString("email"));
-				//profesorRs.setFechaNacimiento(dbName); corregir ------------------
+				profesorRs.setFechaNacimiento("fechaNacimiento");
 				profesorRs.setDireccion(rs.getString("direccion"));
 				profesorRs.setNacionalidad(rs.getString("nacionalidad"));
 				profesorRs.setLocalidad(rs.getString("localidad"));
@@ -114,17 +120,18 @@ public class ProfesorDao {
 			conn = DriverManager.getConnection(host+dbName,user,pass);
 			Statement st = (Statement) conn.createStatement();
 			
-			ResultSet rs = st.executeQuery("Select legajo,dni,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesores where legajo="+legajo);
+			ResultSet rs = st.executeQuery("Select legajo,dni,contrasenia,nombre,apellido,fechaNacimiento,direccion,nacionalidad,localidad,email,telefono FROM profesores where legajo="+legajo);
 			while(rs.next()){
 				profesor.setLegajo(rs.getInt("legajo"));
 				profesor.setDni(rs.getString("dni"));
 				profesor.setNombre(rs.getString("nombre"));
 				profesor.setApellido(rs.getString("apellido"));
-				//profesor.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				profesor.setContrasenia(rs.getString("contrasenia"));
+				profesor.setFechaNacimiento(rs.getString("fechaNacimiento")); 
 				profesor.setDireccion(rs.getString("direccion"));
 				profesor.setNacionalidad(rs.getString("nacionalidad"));
 				
-				System.out.print("LOCALIDAD: "+rs.getString("localidad"));
+				System.out.print("LOCALIDAD: "+rs.getString("localidad"));/// ???
 				profesor.setLocalidad(rs.getString("localidad"));
 				profesor.setEmail(rs.getString("email"));
 				profesor.setTelefono(rs.getString("telefono"));				
@@ -179,7 +186,7 @@ public class ProfesorDao {
 		return profesor;
 	}
 	
-	public void ModificarProfesor(Profesor profesor)
+	public int ModificarProfesor(Profesor profesor)
 	{		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -188,9 +195,11 @@ public class ProfesorDao {
 			e.printStackTrace();
 		}
 		
+		int validar = 0;
+		
 		Connection cn = null;
 		try{
-			String query = "update profesores set  dni = ?, nombre = ?, apellido = ?, email = ?, contrasenia = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? where legajo = ?";
+			String query = "update profesores set  dni = ?, nombre = ?, apellido = ?, email = ?, contrasenia = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? , contrasenia = ? where legajo = ?";
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			PreparedStatement miSentencia = cn.prepareStatement(query);
 			
@@ -203,10 +212,11 @@ public class ProfesorDao {
 			miSentencia.setString(7, profesor.getLocalidad());
 			miSentencia.setString(8, profesor.getNacionalidad());
 			miSentencia.setString(9, profesor.getTelefono());
-			miSentencia.setInt(10, profesor.getLegajo());
+			miSentencia.setString(10, profesor.getContrasenia());
+			miSentencia.setInt(11, profesor.getLegajo());
 			
 			
-			miSentencia.executeUpdate();
+			validar = miSentencia.executeUpdate();
 						
 		    cn.close();
 		       
@@ -218,6 +228,8 @@ public class ProfesorDao {
 		finally
 		{
 		}
+		
+		return validar;
 		
 	}	
 	
@@ -249,13 +261,15 @@ public class ProfesorDao {
 		}
 	}
 	
-	public void CambiarEstadoProfesor(int legajo) {
+	public int CambiarEstadoProfesor(int legajo) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int Validar = 0;
 		
 		Connection cn = null;
 		try{
@@ -264,7 +278,7 @@ public class ProfesorDao {
 			
 			miSentencia.setInt(1, legajo);
 			
-			miSentencia.executeUpdate();
+			Validar = miSentencia.executeUpdate();
 			
 		    cn.close();
 		}
@@ -275,6 +289,8 @@ public class ProfesorDao {
 		finally
 		{
 		}
+		
+		return Validar;
 	}
 	
 	
