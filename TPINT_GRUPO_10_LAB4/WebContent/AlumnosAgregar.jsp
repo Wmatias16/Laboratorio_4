@@ -24,7 +24,7 @@
 
 
 	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
+        <a class="navbar-brand" href="VistaAdministrador.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,10 +32,10 @@
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrador
+                <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Salir</a>
+                <a class="dropdown-item" href="Home.jsp">Salir</a>
               </div>
             </li>
           </ul>
@@ -57,7 +57,7 @@
                           <input type="text" value=<%=alum.getNombre()%> name="nombre"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nombre">
                         </div>
                        <div class="form-group">
-                        <label for="exampleInputEmail1">Dni</label>
+                        <label for="exampleInputEmail1">DNI</label>
                         <input type="text"  value=<%=alum.getDni()%> name="dni" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese dni">
                       </div>
                        <div class="form-group">
@@ -65,7 +65,7 @@
                           <input type="date" name="fecha"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese fecha de nacimiento">
                         </div>
                          <div class="form-group">
-                        <label for="exampleInputEmail1">Telefono</label>
+                        <label for="exampleInputEmail1">Teléfono</label>
                         <input type="text" value=<%=alum.getTelefono()%> name="telefono"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono">
                       </div>
                      
@@ -83,7 +83,7 @@
                         </div>
                         
                         <div class="form-group">
-                        <label for="exampleInputEmail1">Direccion</label>
+                        <label for="exampleInputEmail1">Dirección</label>
                         <input type="text" value=<%=alum.getDireccion()%> name="direccion"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion">
                       </div>
                       <div class="form-group">
@@ -121,7 +121,7 @@
 
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Dni</label>
+                        <label for="exampleInputEmail1">DNI</label>
                         <input type="text"  name="dni" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese dni">
                       </div>
                       <div class="form-group">
@@ -140,7 +140,7 @@
 
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Direccion</label>
+                        <label for="exampleInputEmail1">Dirección</label>
                         <input type="text" name="direccion"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion">
                       </div>
                       <div class="form-group">
@@ -152,7 +152,7 @@
                         <input type="text"  name="nacionalidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese nacionalidad">
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Telefono</label>
+                        <label for="exampleInputEmail1">Teléfono</label>
                         <input type="text"  name="telefono"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono">
                       </div>
                     

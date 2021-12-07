@@ -24,10 +24,10 @@
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrador
+                <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Salir</a>
+                <a class="dropdown-item" href="Home.jsp">Salir</a>
               </div>
             </li>
           </ul>

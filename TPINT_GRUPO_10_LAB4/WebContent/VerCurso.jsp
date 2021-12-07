@@ -10,7 +10,7 @@
 </head>
 <body>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
+        <a class="navbar-brand" href="VistaCursos.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,10 +18,10 @@
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrador
+                <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Salir</a>
+                <a class="dropdown-item" href="Home.jsp">Salir</a>
               </div>
             </li>
           </ul>
@@ -40,7 +40,7 @@
             <tr>
                 <th scope="col"><input type="checkbox"></th>
                 <th scope="col">Legajo</th>
-                <th scope="col">Dni</th>
+                <th scope="col">DNI</th>
                 <th scope="col">Email</th>
                 <th scope="col">Parcial 1</th>
                 <th scope="col">Parcial 2</th>

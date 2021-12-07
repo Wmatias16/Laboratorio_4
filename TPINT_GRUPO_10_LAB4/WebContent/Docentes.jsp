@@ -66,7 +66,7 @@
 			
 
 	 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
+        <a class="navbar-brand" href="VistaAdministrador.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -74,10 +74,10 @@
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrador
+                <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Salir</a>
+                <a class="dropdown-item" href="Home.jsp">Salir</a>
               </div>
             </li>
           </ul>
@@ -87,7 +87,7 @@
 <div class="container" style="margin-top: 100px;">
     <div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
-            <a href="DocentesAgregar.jsp" lass="btn btn-success" style="margin: 5px;">Alta de docente</a>
+            <a href="DocentesAgregar.jsp" class="btn btn-success" style="margin: 5px;">Alta de docente</a>
             <a id="btnModificar" class="btn btn-warning" style="margin: 5px;">Modificar docente</a>
             <a id="btnEliminar" class="btn btn-danger" style="margin: 5px;">Eliminar docente</a>
         </div>     
@@ -97,13 +97,13 @@
             <tr>
                 <th scope="col"><input type="checkbox"></th>
                 <th scope="col">Legajo</th>
-                <th scope="col">Dni</th>
+                <th scope="col">DNI</th>
                 <th scope="col">Fecha de nacimiento</th>
-                <th scope="col">Direccion</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">Nacionalidad</th>
                 <th scope="col">Localidad</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telefono</th>
+                <th scope="col">Teléfono</th>
 
             </tr>
             </thead>

@@ -15,6 +15,7 @@
 	Profesor profesor = null;
 	if (request.getAttribute("DocenteLogin") != null) {
 		profesor = (Profesor)request.getAttribute("DocenteLogin");
+		session.setAttribute("usuarioSession", profesor.getNombre() + " " + profesor.getApellido());
 		response.sendRedirect("VistaCursos.jsp");
 	}
 %>

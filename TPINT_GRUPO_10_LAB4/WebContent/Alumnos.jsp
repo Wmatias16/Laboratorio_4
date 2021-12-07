@@ -23,7 +23,7 @@
  	
 
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
+        <a class="navbar-brand" href="VistaAdministrador.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,10 +31,10 @@
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Administrador
+                <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Salir</a>
+                <a class="dropdown-item" href="Home.jsp">Salir</a>
               </div>
             </li>
           </ul>
@@ -54,13 +54,13 @@
             <tr>
                 <th scope="col"><input type="checkbox"></th>
                 <th scope="col">Legajo</th>
-                <th scope="col">Dni</th>
+                <th scope="col">DNI</th>
                 <th scope="col">Fecha de nacimiento</th>
-                <th scope="col">Direccion</th>
+                <th scope="col">Dirección</th>
                 <th scope="col">Nacionalidad</th>
                 <th scope="col">Provincia</th>
                 <th scope="col">Email</th>
-                <th scope="col">Telefono</th>
+                <th scope="col">Teléfono</th>
 
             </tr>
             </thead>
@@ -119,9 +119,9 @@
        if(cantCheck.length == 1){
     	   btnModificar.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
        }else if(cantCheck.length > 1){
-           alert("Solo debe seleccionar un registro!");
+           alert("¡Debe seleccionar solamente un registro!");
        }else{
-           alert("Debe seleccionar un registro!");
+           alert("¡Debe seleccionar un registro!");
        }	
    });
    
@@ -141,7 +141,7 @@
        if(cantCheck.length >= 1){
     	   btnEliminar.href="servletAlumnos?delete=true&legajos="+legajoSeleccionado;
        }else{
-           alert("Debe seleccionar un registro!");
+           alert("¡Debe seleccionar un registro!");
        }	
    });
    
