@@ -160,9 +160,9 @@
        if(cantCheck.length == 1){
     	   btnModificar.href="servletDocente?edit=true&legajo="+legajoSeleccionado[0];
        }else if(cantCheck.length > 1){
-           alert("Solo debe seleccionar un registro!");
+           alert("Debe seleccionar solamente un registro!");
        }else{
-           alert("Debe seleccionar un registro!");
+           alert("¡Debe seleccionar un registro!");
        }	
    });
    
@@ -183,7 +183,7 @@
        if(cantCheck.length >= 1){
     	   btnEliminar.href="servletDocente?delete=true&legajos="+legajoSeleccionado;
        }else{
-           alert("Debe seleccionar un registro!");
+           alert("¡Debe seleccionar solamente un registro!");
        }	
    });
   

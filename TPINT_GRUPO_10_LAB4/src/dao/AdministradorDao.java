@@ -24,7 +24,7 @@ public class AdministradorDao {
 		try {
 			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT DISTINCT id, dni, nombre, apellido, email FROM administradores WHERE email = " +email + " AND contrasenia = " +contrasenia);
+			ResultSet resultSet = statement.executeQuery("SELECT DISTINCT id, dni, nombre, apellido, email FROM administradores WHERE email = '"+email+"'AND contrasenia ='"+contrasenia+"'");
 			while (resultSet.next()) {
 				administrador.setId(resultSet.getInt("id"));
 				administrador.setDni(resultSet.getString("dni"));

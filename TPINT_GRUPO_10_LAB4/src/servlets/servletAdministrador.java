@@ -22,7 +22,7 @@ public class servletAdministrador extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("loguearAdmin") == null) {
+		if (request.getParameter("loguearAdmin") != null) {
 			obtenerDatosAdministrador(request, response);			
 		}
 	}

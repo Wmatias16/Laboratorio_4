@@ -101,9 +101,9 @@ public class servletDocente extends HttpServlet {
 		Boolean error = false;
 		
 		if(Validar == 1) {
-			mensaje = "Se agrego usuario con exito!!";
+			mensaje = "¡Se agregó el usuario exitosamente!";
 		}else {
-			mensaje = "Error!! no se agrego usuario";
+			mensaje = "¡Error! No se agregó el usuario";
 			error = true;
 		}
 		
@@ -167,7 +167,7 @@ public class servletDocente extends HttpServlet {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
-		profesor.setContrasenia(request.getParameter("Contrasenia"));
+		profesor.setContrasenia(request.getParameter("contrasenia"));
 		profesor.setDni(request.getParameter("dni"));
 		profesor.setLocalidad(request.getParameter("localidad"));
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
@@ -187,9 +187,9 @@ public class servletDocente extends HttpServlet {
 		Boolean errorMdf = false;
 		
 		if(validar == 1) {
-			mensajeMdf = "Se Modifico usuario con exito!!";
+			mensajeMdf = "¡Se modificó el usuario exitosamente!";
 		}else {
-			mensajeMdf = "Error!! no se Modifico usuario";
+			mensajeMdf = "¡Error! No se modificó el usuario";
 			errorMdf = true;
 		}
 		
@@ -227,9 +227,9 @@ public class servletDocente extends HttpServlet {
 		Boolean errorElm = false;
 		
 		if(Validar == 1) {
-			mensajeElm = "Se Elimino el  usuario con exito!!";
+			mensajeElm = "¡Se eliminó el usuario exitosamente!";
 		}else {
-			mensajeElm = "Error!! no se Elimino el usuario";
+			mensajeElm = "¡Error! No se eliminó el usuario";
 			errorElm = true;
 		}
 		
