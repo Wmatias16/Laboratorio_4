@@ -68,18 +68,12 @@ CREATE TABLE AlumnosXcurso(
 	nroInscripcion INT AUTO_INCREMENT PRIMARY KEY,
     idCurso INT,
     legajoAlumno INT,
-    estado BOOL,
+    notaPrimerParcial DOUBLE,
+    notaSegundoParcial DOUBLE,
+    notaPrimerRecuperatorio DOUBLE,
+    notaSegundoRecuperatorio DOUBLE,
     regularidad VARCHAR(15),
-    FOREIGN KEY (idCurso) REFERENCES Cursos (idCurso) ON DELETE CASCADE,
-    FOREIGN KEY (legajoAlumno) REFERENCES Alumnos (legajo) ON DELETE CASCADE
-);
-
-CREATE TABLE Notas(
-	idNota INT AUTO_INCREMENT PRIMARY KEY,
-    idCurso INT,
-    legajoAlumno INT,
-    tipo INT,
-    calificacion DOUBLE,
+    estado BOOL,
     FOREIGN KEY (idCurso) REFERENCES Cursos (idCurso) ON DELETE CASCADE,
     FOREIGN KEY (legajoAlumno) REFERENCES Alumnos (legajo) ON DELETE CASCADE
 );
@@ -130,26 +124,9 @@ INSERT INTO Cursos (idMateria, legajoDocente, semestre, anio) VALUES
 (1, 1000, "Primer semestre", "2021");
 
 /* ALUMNOSXCURSO */
-INSERT INTO AlumnosXcurso (idCurso, legajoAlumno, estado, regularidad) VALUES
-(1, 1000, true, "Regular"),
-(1, 1001, true, "Libre"),
-(1, 1002, true, "Libre"),
-(1, 1003, true, "Regular"),
-(1, 1004, true, "Regular");
-
-/* NOTAS */
-INSERT INTO Notas (idCurso, legajoAlumno, tipo, calificacion) VALUES
-(1, 1000, 1, 7.50),
-(1, 1000, 2, 7),
-(1, 1001, 1, 4),
-(1, 1001, 2, 5),
-(1, 1001, 3, 6),
-(1, 1001, 4, 4),
-(1, 1002, 1, 2),
-(1, 1002, 2, 2.50),
-(1, 1003, 1, 6),
-(1, 1003, 2, 5),
-(1, 1003, 4, 8.50),
-(1, 1004, 1, 4),
-(1, 1004, 2, 8),
-(1, 1004, 3, 6.50);
+INSERT INTO AlumnosXcurso (idCurso, legajoAlumno, notaPrimerParcial, notaSegundoParcial, notaPrimerRecuperatorio, notaSegundoRecuperatorio, regularidad, estado) VALUES
+(1, 1000, 7.50, 7, 0, 0, "Regular", true),
+(1, 1001, 4, 5, 6, 4, "Libre", true),
+(1, 1002, 2, 2.50, 0, 0, "Libre", true),
+(1, 1003, 6, 5, 0, 8.50, "Regular", true),
+(1, 1004, 4, 8, 6.50, 0, "Regular", true);
