@@ -49,7 +49,7 @@
                         <img src="./img/UTN_logo-removebg-preview.png" alt="" width="85">
                     </div>
                      <h1 class="jumbotron-heading">¡Bienvenido!</h1>
-                     <p class="lead text-muted">Para iniciar sesion seleccione que tipo de usuario desea utilizar</p>
+                     <p class="lead text-muted">Para iniciar sesión seleccione qué tipo de usuario desea utilizar</p>
                      <p>
                          <a href="LoginAdministrador.jsp" class="btn btn-primary my-2">Administrador</a>
         				 <a href="LoginDocente.jsp" class="btn btn-secondary my-2">Docente</a>

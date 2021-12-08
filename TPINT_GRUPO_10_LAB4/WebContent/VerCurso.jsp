@@ -1,3 +1,5 @@
+<%@page import="dominio.AlumnoXCurso"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,10 +13,14 @@
 <body>
 <% if (!session.getAttribute("tipoUsuario").equals("Docente")) {
 	response.sendRedirect("Home.jsp");
+	}
+	List<AlumnoXCurso> listaAlumnosXCurso = null;
+	if (request.getAttribute("listaAlumnosXCurso") != null) {
+		listaAlumnosXCurso = (List<AlumnoXCurso>)request.getAttribute("listaAlumnosXCurso");
 }
 %>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="VistaCursos.jsp">TP FINAL LABORATORIO</a>
+        <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,9 +37,10 @@
           </ul>
         </div>
       </nav>
-
+<% if (listaAlumnosXCurso.size() > 0) {
+%>
 <div class="container" style="margin-top: 100px;">
-    <h1>Laboratorio</h1>
+    <h1><%=listaAlumnosXCurso.get(0).getCurso().getMateria().getNombre() %></h1>
     <div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
             <button class="btn btn-success" style="margin: 5px;">Calificar</button>
@@ -45,6 +52,8 @@
                 <th scope="col"><input type="checkbox"></th>
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Nombre</th>
                 <th scope="col">Email</th>
                 <th scope="col">Parcial 1</th>
                 <th scope="col">Parcial 2</th>
@@ -54,79 +63,28 @@
             </tr>
             </thead>
             <tbody>
+            <% for (AlumnoXCurso alumnoXCurso : listaAlumnosXCurso) {
+            	%>
             <tr>
                 <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>               
-                <td>alumno@alumno.com</td>
-                <td>10</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Regular</td>
-
+                <td><%=alumnoXCurso.getAlumno().getLegajo() %></td>
+                <td><%=alumnoXCurso.getAlumno().getDni() %></td>
+                <td><%=alumnoXCurso.getAlumno().getApellido() %></td>   
+                <td><%=alumnoXCurso.getAlumno().getNombre() %></td>
+                <td><%=alumnoXCurso.getAlumno().getEmail() %></td>
+                <td><%=alumnoXCurso.getNotaPrimerParcial() %></td>
+                <td><%=alumnoXCurso.getNotaSegundoParcial() %></td>
+                <td><%=alumnoXCurso.getNotaPrimerRecuperatorio() %></td>  
+                <td><%=alumnoXCurso.getNotaSegundoRecuperatorio() %></td>    
+                <td><%=alumnoXCurso.getRegularidad() %></td>             
             </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>               
-                <td>alumno@alumno.com</td>
-                <td>10</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Regular</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>               
-                <td>alumno@alumno.com</td>
-                <td>10</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Regular</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>               
-                <td>alumno@alumno.com</td>
-                <td>10</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Regular</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>               
-                <td>alumno@alumno.com</td>
-                <td>10</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Regular</td>
-            </tr>
-            <tr>
-                <th scope="row"><input type="checkbox"></th>
-                <td>9999</td>
-                <td>123456789</td>               
-                <td>alumno@alumno.com</td>
-                <td>10</td>
-                <td>10</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Regular</td>
-            </tr>
-
+            <%} %>
             </tbody>
             </table>
 
         </div>
     </div>
+<%} %>
 </div>
 	
 

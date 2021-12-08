@@ -29,7 +29,7 @@
 	}
 %>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
+        <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,18 +70,14 @@
                           <i class="icon-pencil primary font-large-2 float-left"></i>
                         </div>
                         <div class="media-body text-right">
-                          <h3><%System.out.println(curso.getMateria().getNombre());
-                          System.out.println(curso.getSemestre());
-                          System.out.println(curso.getAnio());
-                          curso.getMateria().getNombre();
-                          curso.getSemestre();
-                          curso.getAnio(); %></h3>
+                          <h3><%=curso.getMateria().getNombre()%></h3>
+                          <h3><%=curso.getSemestre() %> - <%=curso.getAnio() %></h3>
                         </div>
 
                       </div>
                     </div>
                     <div class="card-footer text-muted">
-                      <a href="#" class="btn btn-primary btn-block" >Ver curso</a>
+                      <a href="servletAlumnosXCurso?listar=true&idCurso=<%=curso.getId() %>" class="btn btn-primary btn-block" >Ver curso</a>
                    </div>
                   </div>
                 </div>            

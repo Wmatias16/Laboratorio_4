@@ -144,6 +144,39 @@ public class ProfesorDao {
 		return profesor;
 	}
 	
+	public Profesor getProfesorByLegajo(int legajo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Profesor profesor = new Profesor();
+		try{
+			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT legajo, dni, nombre, apellido, fechaNacimiento, direccion, nacionalidad, localidad, email, telefono FROM profesores WHERE estado = true AND legajo = " +legajo);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()){					
+				profesor.setLegajo(resultSet.getInt("legajo"));
+				profesor.setDni(resultSet.getString("dni"));
+				profesor.setNombre(resultSet.getString("nombre"));
+				profesor.setApellido(resultSet.getString("apellido"));
+				//profesor.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				profesor.setDireccion(resultSet.getString("direccion"));
+				profesor.setNacionalidad(resultSet.getString("nacionalidad"));
+				profesor.setLocalidad(resultSet.getString("localidad"));
+				profesor.setEmail(resultSet.getString("email"));
+				profesor.setTelefono(resultSet.getString("telefono"));				
+			}
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return profesor;
+	}
+	
 	public Profesor getProfesorByEmailAndContrasenia(String email, String contrasenia) {	
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -152,32 +185,28 @@ public class ProfesorDao {
 			e.printStackTrace();
 		}
 		Profesor profesor = new Profesor();
-		Connection conn = null;
 		try{
-			conn = DriverManager.getConnection(host+dbName,user,pass);
-			Statement st = (Statement) conn.createStatement();
-			
-			
-			ResultSet rs = st.executeQuery("SELECT legajo, dni, nombre, apellido, fechaNacimiento, direccion, nacionalidad, localidad, email, telefono FROM profesores WHERE email='"+email+"'AND contrasenia='"+contrasenia+"'"+" AND estado = true");
-			while(rs.next()){					
-				profesor.setLegajo(rs.getInt("legajo"));
-				profesor.setDni(rs.getString("dni"));
-				profesor.setNombre(rs.getString("nombre"));
-				profesor.setApellido(rs.getString("apellido"));
+			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT legajo, dni, nombre, apellido, fechaNacimiento, direccion, nacionalidad, localidad, email, telefono FROM profesores WHERE email='"+email+"'AND contrasenia='"+contrasenia+"'"+" AND estado = true");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()){					
+				profesor.setLegajo(resultSet.getInt("legajo"));
+				profesor.setDni(resultSet.getString("dni"));
+				profesor.setNombre(resultSet.getString("nombre"));
+				profesor.setApellido(resultSet.getString("apellido"));
 				//profesor.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
-				profesor.setDireccion(rs.getString("direccion"));
-				profesor.setNacionalidad(rs.getString("nacionalidad"));
-				profesor.setLocalidad(rs.getString("localidad"));
-				profesor.setEmail(rs.getString("email"));
-				profesor.setTelefono(rs.getString("telefono"));				
+				profesor.setDireccion(resultSet.getString("direccion"));
+				profesor.setNacionalidad(resultSet.getString("nacionalidad"));
+				profesor.setLocalidad(resultSet.getString("localidad"));
+				profesor.setEmail(resultSet.getString("email"));
+				profesor.setTelefono(resultSet.getString("telefono"));				
 			}
-			conn.close();
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally{
-		
 		}
-		
 		return profesor;
 	}
 	

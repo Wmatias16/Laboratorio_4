@@ -86,7 +86,7 @@ public class servletCursos extends HttpServlet {
 		
 	}
 	
-	private void getCursoByLegajoDocente(HttpServletRequest request, HttpServletResponse response, int legajo) throws ServletException, IOException {
+	public void getCursoByLegajoDocente(HttpServletRequest request, HttpServletResponse response, int legajo) throws ServletException, IOException {
 		CursoDao cursoDao = new CursoDao();
 		List<Curso> cursos = cursoDao.getCursosDelDocente(legajo);
 		request.setAttribute("listaCursos", cursos);

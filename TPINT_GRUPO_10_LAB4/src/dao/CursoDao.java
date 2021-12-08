@@ -19,6 +19,7 @@ public class CursoDao {
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
 	private MateriaDao materiaDao = new MateriaDao();
+	private ProfesorDao profesorDao = new ProfesorDao();
 
 	
 	
@@ -132,6 +133,33 @@ public class CursoDao {
 		return lista;
 	}
 	
+	public Curso getCursoById(int idCurso) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		Curso curso = new Curso();
+		try {
+			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT idCurso, idMateria, legajoDocente, semestre, anio FROM cursos WHERE idCurso = " +idCurso);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				curso.setId(resultSet.getInt(1));
+				curso.setMateria(materiaDao.getMateria(resultSet.getInt(2)));
+				curso.setProfesor(profesorDao.getProfesorByLegajo(resultSet.getInt(3)));
+				curso.setSemestre(resultSet.getString(4));
+				curso.setAnio(resultSet.getString(5));
+			}
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return curso;
+	}
+	
 	public List<Curso> getCursosDelDocente(int legajo) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -147,7 +175,7 @@ public class CursoDao {
 				Curso curso = new Curso();
 				curso.setId(resultSet.getInt(1));
 				curso.setMateria(materiaDao.getMateria(resultSet.getInt(2)));
-				curso.setProfesor(new Profesor(resultSet.getInt(3)));
+				curso.setProfesor(profesorDao.getProfesorByLegajo(resultSet.getInt(3)));
 				curso.setSemestre(resultSet.getString(4));
 				curso.setAnio(resultSet.getString(5));
 				cursos.add(curso);				
