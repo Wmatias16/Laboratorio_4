@@ -16,6 +16,7 @@
 	if (request.getAttribute("AdministradorLogin") != null) {
 		administrador = (Administrador)request.getAttribute("AdministradorLogin");
 		session.setAttribute("usuarioSession", administrador.getNombre() + " " + administrador.getApellido());
+		session.setAttribute("tipoUsuario", "Administrador");
 		response.sendRedirect("VistaAdministrador.jsp");
 	}
 %>

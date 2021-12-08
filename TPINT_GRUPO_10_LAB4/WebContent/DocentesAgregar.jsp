@@ -17,6 +17,9 @@
 <body>
 
 	<% 
+	if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
+		response.sendRedirect("Home.jsp");
+	}
 	Profesor profe = null;
 	if(request.getAttribute("ProfesorEditar")!=null)
 	{

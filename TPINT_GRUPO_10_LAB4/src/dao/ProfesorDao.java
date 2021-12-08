@@ -160,7 +160,7 @@ public class ProfesorDao {
 			Statement st = (Statement) conn.createStatement();
 			
 			
-			ResultSet rs = st.executeQuery("SELECT legajo, dni, nombre, apellido, fechaNacimiento, direccion, nacionalidad, localidad, email, telefono FROM profesores WHERE email='"+email+"'and contrasenia='"+contrasenia+"'");
+			ResultSet rs = st.executeQuery("SELECT legajo, dni, nombre, apellido, fechaNacimiento, direccion, nacionalidad, localidad, email, telefono FROM profesores WHERE email='"+email+"'AND contrasenia='"+contrasenia+"'"+" AND estado = true");
 			while(rs.next()){					
 				profesor.setLegajo(rs.getInt("legajo"));
 				profesor.setDni(rs.getString("dni"));

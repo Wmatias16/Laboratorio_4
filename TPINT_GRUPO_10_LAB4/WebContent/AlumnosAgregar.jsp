@@ -13,6 +13,10 @@
 <body>
 
 <% 
+	if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
+		response.sendRedirect("Home.jsp");
+	}
+
 	Alumno alum = null;
 	if(request.getAttribute("AlumnoEditar")!=null)
 	{

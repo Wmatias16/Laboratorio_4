@@ -12,6 +12,10 @@
 </head>
 <body>
 <% 
+	if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
+		response.sendRedirect("Home.jsp");
+	}
+
 	ArrayList<Alumno> listaAlumnos = null;
 	if(request.getAttribute("listaAlumnos")!=null)
 	{
