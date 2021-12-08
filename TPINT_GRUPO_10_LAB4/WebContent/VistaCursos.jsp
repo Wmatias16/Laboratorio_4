@@ -70,9 +70,14 @@
                           <i class="icon-pencil primary font-large-2 float-left"></i>
                         </div>
                         <div class="media-body text-right">
-                          <h3><% curso.getMateria().getNombre(); %></h3>
+                          <h3><%System.out.println(curso.getMateria().getNombre());
+                          System.out.println(curso.getSemestre());
+                          System.out.println(curso.getAnio());
+                          curso.getMateria().getNombre();
+                          curso.getSemestre();
+                          curso.getAnio(); %></h3>
                         </div>
-                        
+
                       </div>
                     </div>
                     <div class="card-footer text-muted">
@@ -83,10 +88,9 @@
             </div>
          <%}} %>
         </div>
-        </div>
-                    
-                      
         </section>
+        </div>
+        
 
 </body>
 </html>

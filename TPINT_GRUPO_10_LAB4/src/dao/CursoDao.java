@@ -18,7 +18,7 @@ public class CursoDao {
 	private String user = "root";
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
-	private MateriaDao materiaDao;
+	private MateriaDao materiaDao = new MateriaDao();
 
 	
 	
