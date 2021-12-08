@@ -47,4 +47,29 @@ public class MateriaDao {
 		return lista;
 	}
 	
+	public Materia getMateria(int idMateria) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Materia materia = new Materia();
+		try {
+			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT idMateria, idCarrera, nombre FROM materias WHERE idMateria = " +idMateria);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				materia.setId(resultSet.getInt(1));
+				materia.setNombre(resultSet.getString(3));
+			}
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return materia;
+	}
+	
 }

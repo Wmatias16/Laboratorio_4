@@ -130,8 +130,6 @@ public class ProfesorDao {
 				profesor.setFechaNacimiento(rs.getString("fechaNacimiento")); 
 				profesor.setDireccion(rs.getString("direccion"));
 				profesor.setNacionalidad(rs.getString("nacionalidad"));
-				
-				System.out.print("LOCALIDAD: "+rs.getString("localidad"));/// ???
 				profesor.setLocalidad(rs.getString("localidad"));
 				profesor.setEmail(rs.getString("email"));
 				profesor.setTelefono(rs.getString("telefono"));				

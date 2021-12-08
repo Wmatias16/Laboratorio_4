@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +47,13 @@ public class servletCursos extends HttpServlet {
 		if(request.getParameter("curso") != null){
 			crearCurso(request,response);
 		}
+		
+		if(request.getParameter("listar") != null) {
+			getCursoByLegajoDocente(request, response, Integer.parseInt(request.getParameter("legajoDocente")));
+			
+		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -79,7 +86,15 @@ public class servletCursos extends HttpServlet {
 		
 	}
 	
-	
+	private void getCursoByLegajoDocente(HttpServletRequest request, HttpServletResponse response, int legajo) throws ServletException, IOException {
+		CursoDao cursoDao = new CursoDao();
+		List<Curso> cursos = cursoDao.getCursosDelDocente(legajo);
+		request.setAttribute("listaCursos", cursos);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VistaCursos.jsp");
+		requestDispatcher.forward(request, response);
+		
+		
+	}
 	
 	public void crearCurso(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		Curso curso = new Curso();

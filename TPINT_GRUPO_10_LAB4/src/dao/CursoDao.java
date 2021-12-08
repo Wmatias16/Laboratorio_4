@@ -2,19 +2,23 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import dominio.Alumno;
 import dominio.Curso;
 import dominio.Materia;
+import dominio.Profesor;
 
 public class CursoDao {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
+	private MateriaDao materiaDao;
 
 	
 	
@@ -95,11 +99,7 @@ public class CursoDao {
 				
 		return id;
 	}
-	
-	
-	
-	
-	
+		
 	
 	public ArrayList<Materia> getCursos() {	
 		try {
@@ -130,5 +130,34 @@ public class CursoDao {
 		}
 		
 		return lista;
+	}
+	
+	public List<Curso> getCursosDelDocente(int legajo) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		List<Curso> cursos = new ArrayList<>();
+		try {
+			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT idCurso, idMateria, legajoDocente, semestre, anio FROM cursos WHERE legajoDocente = " +legajo);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Curso curso = new Curso();
+				curso.setId(resultSet.getInt(1));
+				curso.setMateria(materiaDao.getMateria(resultSet.getInt(2)));
+				curso.setProfesor(new Profesor(resultSet.getInt(3)));
+				curso.setSemestre(resultSet.getString(4));
+				curso.setAnio(resultSet.getString(5));
+				cursos.add(curso);				
+			}
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cursos;
 	}
 }

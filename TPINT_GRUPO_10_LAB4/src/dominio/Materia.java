@@ -4,6 +4,8 @@ public class Materia {
 	private int id;
 	private String nombre;
 	
+	public Materia() {
+	}
 	
 	public Materia(int id,String nombre) {
 		this.setId(id);

@@ -17,7 +17,7 @@
 		profesor = (Profesor)request.getAttribute("DocenteLogin");
 		session.setAttribute("usuarioSession", profesor.getNombre() + " " + profesor.getApellido());
 		session.setAttribute("tipoUsuario", "Docente");
-		response.sendRedirect("VistaCursos.jsp");
+		response.sendRedirect("servletCursos?listar=true&legajoDocente="+profesor.getLegajo());
 	}
 %>
 	 <div class="container">

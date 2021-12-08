@@ -50,7 +50,7 @@
                 <th scope="col">Parcial 2</th>
                 <th scope="col">Recuperatorio Parcial 1</th>
                 <th scope="col">Recuperatorio Parcial 2</th>
-                <th scope="col">Estado</th>
+                <th scope="col">Regularidad</th>
             </tr>
             </thead>
             <tbody>

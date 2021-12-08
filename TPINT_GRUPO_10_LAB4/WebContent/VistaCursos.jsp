@@ -1,3 +1,7 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="dominio.Curso"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="javafx.scene.control.Alert"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -18,7 +22,11 @@
 <body>
 <% if (!session.getAttribute("tipoUsuario").equals("Docente")) {
 	response.sendRedirect("Home.jsp");
-}
+	}
+	List<Curso> listaCursos = null;
+	if (request.getAttribute("listaCursos") != null) {
+		listaCursos = (List<Curso>)request.getAttribute("listaCursos");
+	}
 %>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">TP FINAL LABORATORIO</a>
@@ -49,27 +57,10 @@
               <p></p>
             </div>
           </div>
-          <div class="row">      
-              <div class="col-xl-3 col-sm-6 col-12"> 
-                <div class="card">
-                  <div class="card-content">
-                    <div class="card-body">
-                      <div class="media d-flex">
-                        <div class="align-self-center">
-                          <i class="icon-pencil primary font-large-2 float-left"></i>
-                        </div>
-                        <div class="media-body text-right">
-                          <h3>Laboratorio</h3>
-                        </div>
-                        
-                      </div>
-                    </div>
-                    <div class="card-footer text-muted">
-                      <a href="#" class="btn btn-primary btn-block" >Ver curso</a>
-                   </div>
-                  </div>
-                </div>            
-            </div>
+          <div class="row">
+          <% if (listaCursos.size() > 0) {
+        	  	for (Curso curso : listaCursos) {
+        	  		%>     
             <div class="col-xl-3 col-sm-6 col-12"> 
                 <div class="card">
                   <div class="card-content">
@@ -79,7 +70,7 @@
                           <i class="icon-pencil primary font-large-2 float-left"></i>
                         </div>
                         <div class="media-body text-right">
-                          <h3>Laboratorio</h3>
+                          <h3><% curso.getMateria().getNombre(); %></h3>
                         </div>
                         
                       </div>
@@ -90,45 +81,7 @@
                   </div>
                 </div>            
             </div>
-            <div class="col-xl-3 col-sm-6 col-12"> 
-                <div class="card">
-                  <div class="card-content">
-                    <div class="card-body">
-                      <div class="media d-flex">
-                        <div class="align-self-center">
-                          <i class="icon-pencil primary font-large-2 float-left"></i>
-                        </div>
-                        <div class="media-body text-right">
-                          <h3>Laboratorio</h3>
-                        </div>
-                        
-                      </div>
-                    </div>
-                    <div class="card-footer text-muted">
-                      <a href="#" class="btn btn-primary btn-block" >Ver curso</a>
-                   </div>
-                  </div>
-                </div>            
-            </div>
-                  <div class="col-xl-3 col-sm-6 col-12"> 
-                    <div class="card">
-                      <div class="card-content">
-                        <div class="card-body">
-                          <div class="media d-flex">
-                            <div class="align-self-center">
-                              <i class="icon-pencil primary font-large-2 float-left"></i>
-                            </div>
-                            <div class="media-body text-right">
-                              <h3>Laboratorio</h3>
-                            </div>
-                            
-                          </div>
-                        </div>
-                        <div class="card-footer text-muted">
-                          <a href="#" class="btn btn-primary btn-block" >Ver curso</a>
-                       </div>
-                </div>
-            </div>
+         <%}} %>
         </div>
         </div>
                     
