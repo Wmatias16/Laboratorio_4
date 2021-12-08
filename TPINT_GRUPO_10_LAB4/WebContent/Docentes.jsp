@@ -36,30 +36,21 @@
 			mensaje = (String)request.getAttribute("mensaje");
 		}
 		
-		if(request.getAttribute("errorMdf") != null){
-			
-			error = (Boolean)request.getAttribute("errorMdf");
-			mensaje = (String)request.getAttribute("mensajeMdf");
-		}
-		
-		if(request.getAttribute("errorElm") != null){
-			
-			error = (Boolean)request.getAttribute("errorElm");
-			mensaje = (String)request.getAttribute("mensajeElm");
-		}
 		
 	%>
 
-	<% 
 	
-	//Preguntamos si no es nulo, eso significa que es la primera vez que ingresamos a la pagina o que no hicimos ninguna accion de agregar o modificar
+	
+	
+		<% 
 		if(error != null)
 		  {%>
 		
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		  <strong><%=mensaje %></strong>
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-		</div>
+		<div class="col-sm-12" style="text-align: center;">
+		         <div class="alert alert-dark" role="alert">
+					 <strong><%=mensaje%></strong>
+				</div>
+		    </div>
 		
 		<%}%>
 		
@@ -140,11 +131,14 @@
 
 // Boton modificar
 
-   const btnModificar = document.getElementById('btnModificar');
+
+   const btnModificar = document.getElementById("btnModificar");
    const btnEliminar = document.getElementById('btnEliminar');
 
 	 	
    // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
+   
+   
    btnModificar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
        let cantCheck = [];
@@ -158,7 +152,9 @@
        
        // Verificamos que no tengan mas de una seleccion
        if(cantCheck.length == 1){
-    	   btnModificar.href="servletDocente?edit=true&legajo="+legajoSeleccionado[0];
+   		   if(confirm("¿Estas seguro de modificar este Usuario?")){
+   			   btnModificar.href="servletDocente?edit=true&legajo="+legajoSeleccionado[0];
+   			}   
        }else if(cantCheck.length > 1){
            alert("Debe seleccionar solamente un registro!");
        }else{
@@ -167,10 +163,12 @@
    });
    
    
+   
+   // El problema estaba aca, no estaba cerrado el evento click de eliminar
    ///btn eliminar
    btnEliminar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
-       let cantCheck = [];
+       let cantCheck = []; 
        let legajoSeleccionado = [];
        // JQUERY recorre todos los checkbox en estado true
        $("input[type=checkbox]:checked").each(function(cant,e) {
@@ -180,14 +178,17 @@
        });
        
        // Verificamos que no tengan mas de una seleccion
-       if(cantCheck.length >= 1){
-    	   btnEliminar.href="servletDocente?delete=true&legajos="+legajoSeleccionado;
+       if(cantCheck.length >= 1){		    	
+    	   if(confirm('¿Estas seguro de eliminar este Usuario?')){
+    	   	btnEliminar.href="servletDocente?delete=true&legajos="+legajoSeleccionado;
+    	   }
        }else{
-           alert("¡Debe seleccionar solamente un registro!");
-       }	
-   });
+           alert("¡Debe seleccionar por lo menos un registro!");
+       }
   
-	
+   });
+       
+     
 </script>
 	
 </body>

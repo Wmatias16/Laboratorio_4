@@ -205,6 +205,10 @@ public class ProfesorDao {
 			miSentencia.setString(3, profesor.getApellido());
 			miSentencia.setString(4, profesor.getEmail());
 			miSentencia.setString(5, profesor.getContrasenia());
+			
+			//System.out.println("Contraseña --> " + profesor.getContrasenia() ); 
+			//pasa null 
+			
 			miSentencia.setString(6, profesor.getDireccion());
 			miSentencia.setString(7, profesor.getLocalidad());
 			miSentencia.setString(8, profesor.getNacionalidad());

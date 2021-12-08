@@ -60,7 +60,7 @@ public class servletDocente extends HttpServlet {
 		
 		//alta alumno
 		if(request.getParameter("Alta")!= null )
-		{
+		{	
 			altaDocente(request,response);
 		}
 		
@@ -83,7 +83,7 @@ public class servletDocente extends HttpServlet {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
-		profesor.setContrasenia(request.getParameter("contrasenia")); 
+		profesor.setContrasenia(request.getParameter("contrasenia"));
 		profesor.setDni(request.getParameter("dni"));
 		profesor.setLocalidad(request.getParameter("localidad"));
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
@@ -167,7 +167,10 @@ public class servletDocente extends HttpServlet {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
-		profesor.setContrasenia(request.getParameter("contrasenia"));
+		profesor.setContrasenia(request.getParameter("Contrasenia"));
+		
+		System.out.println("Contraseña --> " + request.getParameter("Contrasenia"));
+		
 		profesor.setDni(request.getParameter("dni"));
 		profesor.setLocalidad(request.getParameter("localidad"));
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
@@ -232,6 +235,7 @@ public class servletDocente extends HttpServlet {
 			mensajeElm = "¡Error! No se eliminó el usuario";
 			errorElm = true;
 		}
+		
 		
 		
 		request.setAttribute("error", errorElm);

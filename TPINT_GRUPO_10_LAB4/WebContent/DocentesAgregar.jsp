@@ -129,7 +129,7 @@
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">Contraseña</label>
-                        <input type="password" name="contrasenia" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Contraseña" required>
+                        <input type="password" name="Contrasenia" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Contraseña" required>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">DNI</label>

@@ -80,6 +80,22 @@ public class servletAlumno extends HttpServlet {
 		AlumnoDao adao = new AlumnoDao();
 		
 		int num = adao.agregarAlumno(alumno);
+		
+		
+		//Validamos
+		String MensajeAlta = "";
+		Boolean ErorAlta= false;
+				
+		if(num == 1) {
+			MensajeAlta = "¡Se Agrego el usuario exitosamente!";
+		}else {
+			MensajeAlta = "¡Error! No se Agrego el usuario";
+			ErorAlta = true;
+		}
+		
+		request.setAttribute("error",MensajeAlta);
+		request.setAttribute("mensaje",ErorAlta);
+		
 		actualizarAlumnos(request,response);
 		RequestDispatcher rd = request.getRequestDispatcher("/Alumnos.jsp");   
         rd.forward(request, response);	
@@ -110,7 +126,23 @@ public class servletAlumno extends HttpServlet {
 		alumno.setTelefono(request.getParameter("telefono"));
 		AlumnoDao adao = new AlumnoDao();
 		
-		adao.modificarAlumno(alumno);
+		int Validar = adao.modificarAlumno(alumno);
+		
+		//Validamos
+		String mensajeMdf = "";
+		Boolean ErrorMdf= false;
+		
+		if(Validar == 1) {
+			mensajeMdf = "¡Se Modifico el usuario exitosamente!";
+		}else {
+			mensajeMdf = "¡Error! No se Modifico el usuario";
+			ErrorMdf = true;
+		}
+		
+		
+		request.setAttribute("error",mensajeMdf);
+		request.setAttribute("mensaje",ErrorMdf);
+		
 		actualizarAlumnos(request,response);
 		RequestDispatcher rd = request.getRequestDispatcher("/Alumnos.jsp");   
         rd.forward(request, response);		
@@ -128,10 +160,28 @@ public class servletAlumno extends HttpServlet {
 	public void bajaAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AlumnoDao alumDao = new AlumnoDao();
 		String[] legajos = request.getParameter("legajos").split(",");
-
+		
+		int Validar = 0;
+		
 		for(int i=0;i<legajos.length;i++) {
-			alumDao.cambiarEstadoAlumno(Integer.parseInt(legajos[i]));
+			Validar = alumDao.cambiarEstadoAlumno(Integer.parseInt(legajos[i]));
 		}
+		
+		//Validamos
+		String mensajeDel = "";
+		Boolean ErrorDel= false;
+		
+		if(Validar == 1) {
+			mensajeDel = "¡Se Elimino el usuario exitosamente!";
+		}else {
+			mensajeDel = "¡Error! No se Elimino el usuario";
+			ErrorDel = true;
+		}
+		
+		
+		request.setAttribute("error",mensajeDel);
+		request.setAttribute("mensaje",ErrorDel);
+		
 		
 		actualizarAlumnos(request,response);
 	}

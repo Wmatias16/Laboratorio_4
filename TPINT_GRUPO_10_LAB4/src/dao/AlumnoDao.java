@@ -49,7 +49,7 @@ public class AlumnoDao {
 	}	
 	
 	
-	public void modificarAlumno(Alumno alum)
+	public int modificarAlumno(Alumno alum)
 	{		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -57,6 +57,8 @@ public class AlumnoDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int Validar = 0;
 		
 		Connection cn = null;
 		try{
@@ -73,7 +75,7 @@ public class AlumnoDao {
 			miSentencia.setString(8, alum.getTelefono());
 			miSentencia.setInt(9, alum.getLegajo());
 
-			miSentencia.executeUpdate();
+			Validar = miSentencia.executeUpdate();
 			
 		    cn.close();
 		}
@@ -84,6 +86,8 @@ public class AlumnoDao {
 		finally
 		{
 		}
+		
+		return Validar;
 
 	}	
 	
@@ -172,13 +176,15 @@ public class AlumnoDao {
 	}
 	
 	
-	public void cambiarEstadoAlumno(int legajo) {
+	public int cambiarEstadoAlumno(int legajo) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		int Validar = 0;
 		
 		Connection cn = null;
 		try{
@@ -187,7 +193,7 @@ public class AlumnoDao {
 			
 			miSentencia.setInt(1, legajo);
 			
-			miSentencia.executeUpdate();
+			Validar = miSentencia.executeUpdate();
 			
 		    cn.close();
 		}
@@ -198,6 +204,8 @@ public class AlumnoDao {
 		finally
 		{
 		}
+		
+		return Validar;
 	}
 	
 

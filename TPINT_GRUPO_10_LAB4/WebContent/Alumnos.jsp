@@ -18,8 +18,27 @@
 		listaAlumnos = (ArrayList<Alumno>)request.getAttribute("listaAlumnos");
 	}
 	
- %>
+	//Validaciones
+	String mensaje = "";
+	Boolean error  = null;
+	
+	if(request.getAttribute("error")!=null){
+		mensaje = (String) request.getAttribute("error");
+		error = (Boolean)request.getAttribute("mensaje");
+	}
+	
+ %>		
  
+	 	<%if(error != null)
+		  {%>
+		
+		<div class="col-sm-12" style="text-align: center;">
+		         <div class="alert alert-dark" role="alert">
+					 <strong><%=mensaje%></strong>
+				</div>
+		    </div>
+		
+		<%}%>
  	
 
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -117,7 +136,9 @@
        
        // Verificamos que no tengan mas de una seleccion
        if(cantCheck.length == 1){
-    	   btnModificar.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
+    	   if(confirm("¿Estas seguro de modificar este Usuario?")){
+    	   		btnModificar.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
+    	   }
        }else if(cantCheck.length > 1){
            alert("¡Debe seleccionar solamente un registro!");
        }else{
@@ -139,8 +160,10 @@
        
        // Verificamos que no tengan mas de una seleccion
        if(cantCheck.length >= 1){
-    	   btnEliminar.href="servletAlumnos?delete=true&legajos="+legajoSeleccionado;
-       }else{
+    	   if(confirm("¿Estas seguro de Eliminar este Usuario?")){
+    	   		btnEliminar.href="servletAlumnos?delete=true&legajos="+legajoSeleccionado;
+    	   }
+    }else{
            alert("¡Debe seleccionar un registro!");
        }	
    });
