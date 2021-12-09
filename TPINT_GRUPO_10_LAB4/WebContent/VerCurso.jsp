@@ -43,8 +43,10 @@
     <h1><%=listaAlumnosXCurso.get(0).getCurso().getMateria().getNombre() %></h1>
     <div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
-            <button class="btn btn-success" data-toggle="modal" data-target="#calificarModal" style="margin: 5px;">Calificar</button>
-        </div>     
+            <button class="btn btn-success" data-toggle="modal" data-target="#calificarModal" style="margin: 5px;">Calificar</button>        
+        </div> 
+        
+            
     <div class="col-sm-12">    
         <table class="table table-striped">
             <thead>
@@ -132,7 +134,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="confirmarCalificaciones()" class="btn btn-primary" data-dismiss="modal">Confirmar</button>
+        <a id="btn" href="" class="btn btn-primary">Confirmar</a>
       </div>
     </div>
   </div>
@@ -141,9 +143,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript">
-	function confirmarCalificaciones() {
 
-	}
+	let btn = document.getElementById("btn");
+	
+	btn.addEventListener('click',function(){
+		let table = [];
+		let legajo;
+		
+		$("#myTable tbody").each(function () {
+          	$(this).children("tr").each(function () { // Recorre cada TR de la tabla 		
+          		
+          		if($(this).find('input[type=number]').val() != undefined){
+          			let notas = [];
+          			legajo = $(this).find('td:first-child').text(); //Busca el legajo en el primer td
+          			
+          			$(this).find('input[type=number]').each(function(i){ // Busca todos los input tipo number
+          				notas[i] = $(this).val(); // Guarda las notas
+          			})
+        
+          			notas.push(legajo); // Agregamos el legajo en el array de notas
+          			table.push(notas)
+          		}
+            		
+       		})
+       		btn.href="/servlet?notas="+table;
+		})
+       
+	})
+			      		
 </script>
 </body>
 </html>
