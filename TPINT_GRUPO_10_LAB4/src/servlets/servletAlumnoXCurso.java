@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AlumnoXCursoDao;
+import daoImpl.AlumnoXCursoDaoImpl;
 import dominio.AlumnoXCurso;
 
 @WebServlet("/servletAlumnosXCurso")
@@ -29,8 +29,8 @@ public class servletAlumnoXCurso extends HttpServlet {
 	}
 
 	public void getAlumnosXCursoByIdCurso(HttpServletRequest request, HttpServletResponse response, int idCurso) throws ServletException, IOException {
-		AlumnoXCursoDao alumnoXCursoDao = new AlumnoXCursoDao();
-		List<AlumnoXCurso> listaAlumnosXCurso = alumnoXCursoDao.getAlumnosXCursoDelCurso(idCurso);
+		AlumnoXCursoDaoImpl alumnoXCursoDaoImpl = new AlumnoXCursoDaoImpl();
+		List<AlumnoXCurso> listaAlumnosXCurso = alumnoXCursoDaoImpl.getAlumnosXCursoDelCurso(idCurso);
 		request.setAttribute("listaAlumnosXCurso", listaAlumnosXCurso);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VerCurso.jsp");
 		requestDispatcher.forward(request, response);

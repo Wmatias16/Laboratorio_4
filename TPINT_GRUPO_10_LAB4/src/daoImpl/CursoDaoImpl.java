@@ -1,4 +1,4 @@
-package dao;
+package daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,20 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.ICursoDao;
 import dominio.Alumno;
 import dominio.Curso;
 import dominio.Materia;
 import dominio.Profesor;
 
-public class CursoDao {
+public class CursoDaoImpl implements ICursoDao{
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
-	private MateriaDao materiaDao = new MateriaDao();
-	private ProfesorDao profesorDao = new ProfesorDao();
-
-	
+	private MateriaDaoImpl materiaDaoImpl = new MateriaDaoImpl();
+	private ProfesorDaoImpl profesorDaoImpl = new ProfesorDaoImpl();
 	
 	public int altaCurso(Curso curso) {
 		
@@ -107,7 +106,6 @@ public class CursoDao {
 		return id;
 	}
 		
-	
 	public ArrayList<Materia> getCursos() {	
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -152,8 +150,8 @@ public class CursoDao {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				curso.setId(resultSet.getInt(1));
-				curso.setMateria(materiaDao.getMateria(resultSet.getInt(2)));
-				curso.setProfesor(profesorDao.getProfesorByLegajo(resultSet.getInt(3)));
+				curso.setMateria(materiaDaoImpl.getMateria(resultSet.getInt(2)));
+				curso.setProfesor(profesorDaoImpl.getProfesorByLegajo(resultSet.getInt(3)));
 				curso.setSemestre(resultSet.getString(4));
 				curso.setAnio(resultSet.getString(5));
 			}
@@ -180,8 +178,8 @@ public class CursoDao {
 			while (resultSet.next()) {
 				Curso curso = new Curso();
 				curso.setId(resultSet.getInt(1));
-				curso.setMateria(materiaDao.getMateria(resultSet.getInt(2)));
-				curso.setProfesor(profesorDao.getProfesorByLegajo(resultSet.getInt(3)));
+				curso.setMateria(materiaDaoImpl.getMateria(resultSet.getInt(2)));
+				curso.setProfesor(profesorDaoImpl.getProfesorByLegajo(resultSet.getInt(3)));
 				curso.setSemestre(resultSet.getString(4));
 				curso.setAnio(resultSet.getString(5));
 				cursos.add(curso);				

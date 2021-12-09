@@ -1,4 +1,4 @@
-package dao;
+package daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,16 +7,15 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
-
+import dao.IAlumnoDao;
 import dominio.Alumno;
 
-public class AlumnoDao {
+public class AlumnoDaoImpl implements IAlumnoDao{
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
 
-	
 	public int agregarAlumno(Alumno alumno)
 	{
 		
@@ -47,7 +46,6 @@ public class AlumnoDao {
 		}
 		return filas;
 	}	
-	
 	
 	public int modificarAlumno(Alumno alum)
 	{		
@@ -90,9 +88,6 @@ public class AlumnoDao {
 		return Validar;
 
 	}	
-	
-	
-	
 	
 	public ArrayList<Alumno> getAlumnos() {	
 		try {
@@ -175,7 +170,6 @@ public class AlumnoDao {
 		return usuarioRs;
 	}
 	
-	
 	public int cambiarEstadoAlumno(int legajo) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -208,5 +202,4 @@ public class AlumnoDao {
 		return Validar;
 	}
 	
-
 }

@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AlumnoDao;
-import dao.CursoDao;
-import dao.MateriaDao;
-import dao.ProfesorDao;
+import daoImpl.AlumnoDaoImpl;
+import daoImpl.CursoDaoImpl;
+import daoImpl.MateriaDaoImpl;
+import daoImpl.ProfesorDaoImpl;
 import dominio.Alumno;
 import dominio.Curso;
 import dominio.Materia;
@@ -65,18 +65,18 @@ public class servletCursos extends HttpServlet {
 
 	
 	public void getDatosBD(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		AlumnoDao adao = new AlumnoDao();
+		AlumnoDaoImpl adao = new AlumnoDaoImpl();
 		ArrayList<Alumno> lista= adao.getAlumnos();
 		request.setAttribute("listaAlumnos", lista);
 		
 		
-		ProfesorDao pdao = new ProfesorDao();
+		ProfesorDaoImpl pdao = new ProfesorDaoImpl();
 		ArrayList<Profesor> listaP= pdao.ListarProfesores();
 		
 		request.setAttribute("listaProfesor", listaP);
 		
 		
-		MateriaDao mdao = new MateriaDao();
+		MateriaDaoImpl mdao = new MateriaDaoImpl();
 		ArrayList<Materia> listaM = mdao.getMaterias();
 		
 		request.setAttribute("listaMateria", listaM);
@@ -87,8 +87,8 @@ public class servletCursos extends HttpServlet {
 	}
 	
 	public void getCursoByLegajoDocente(HttpServletRequest request, HttpServletResponse response, int legajo) throws ServletException, IOException {
-		CursoDao cursoDao = new CursoDao();
-		List<Curso> cursos = cursoDao.getCursosDelDocente(legajo);
+		CursoDaoImpl cursoDaoImpl = new CursoDaoImpl();
+		List<Curso> cursos = cursoDaoImpl.getCursosDelDocente(legajo);
 		request.setAttribute("listaCursos", cursos);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VistaCursos.jsp");
 		requestDispatcher.forward(request, response);
@@ -106,7 +106,7 @@ public class servletCursos extends HttpServlet {
 		curso.setSemestre("Primer semestre");
 		String[] legajos = request.getParameter("legajos").split(",");
 		
-		CursoDao cdao = new CursoDao();
+		CursoDaoImpl cdao = new CursoDaoImpl();
 		// SI CREO EL CURSO PASO A AGREGAR LOS ALUMNOS EN ALUMNOSXCURSO
 		int fila = cdao.altaCurso(curso);	
 		int validar = 0;
@@ -128,9 +128,9 @@ public class servletCursos extends HttpServlet {
 		Boolean errorAlta = false;
 		
 		if(validar == 1) {
-			mensajeAlta = "¡Se Agrego el alumno exitosamente!";
+			mensajeAlta = "ï¿½Se Agrego el alumno exitosamente!";
 		}else {
-			mensajeAlta = "¡Error! No se agrego el alumno";
+			mensajeAlta = "ï¿½Error! No se agrego el alumno";
 			errorAlta = true;
 		}
 		

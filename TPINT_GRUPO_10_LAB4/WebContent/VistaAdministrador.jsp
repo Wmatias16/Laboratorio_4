@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
     <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
 
@@ -17,56 +16,53 @@
 </head>
 <body>
 
-<% if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
-	response.sendRedirect("Home.jsp");
-}
+  <% if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
+    response.sendRedirect("Home.jsp");
+  }
+  
+    //Mensaje Validacion Curso
+    String mensaje = "";
+    Boolean error  = null;
+  
+    if(request.getAttribute("error") != null){
+        
+        error = (Boolean)request.getAttribute("error");
+        mensaje = (String)request.getAttribute("mensaje");
+    }
+  
+  %>
+  
+  
+ <nav class="navbar navbar-expand-lg navbar-light" style="background:#404E67;color:white;">
+   <a class="navbar-brand" href="Home.jsp" style="color:white;">TP FINAL LABORATORIO</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: end; margin-right: 15px;">
+     <ul class="navbar-nav" >
+       <li class="nav-item dropdown" >
+         <a class="nav-link dropdown-toggle" style="color:white;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           <%= session.getAttribute("usuarioSession") %>
+         </a>
+         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+           <a class="dropdown-item" href="Home.jsp">Salir</a>
+         </div>
+       </li>
+     </ul>
+   </div>
+ </nav>
 
-	//Mensaje Validacion Curso
-	String mensaje = "";
-	Boolean error  = null;
-
-	if(request.getAttribute("error") != null){
-			
-			error = (Boolean)request.getAttribute("error");
-			mensaje = (String)request.getAttribute("mensaje");
-	}
-
-%>
-
-
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: end; margin-right: 15px;">
-          <ul class="navbar-nav" >
-            <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= session.getAttribute("usuarioSession") %>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="Home.jsp">Salir</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      
-      
       <% //Mensaje Validacion
-		if(error != null)
-		  {%>
-		
-		<div class="col-sm-12" style="text-align: center;">
-		         <div class="alert alert-dark" role="alert">
-					 <strong><%=mensaje%></strong>
-				</div>
-		    </div>
-		
-		<%}%>
+      if(error != null)
+        {%>
       
-
+      <div class="col-sm-12" style="text-align: center;">
+               <div class="alert alert-dark" role="alert">
+             <strong><%=mensaje%></strong>
+          </div>
+          </div>
+      
+      <%}%>
 
     <div class="grey-bg container">
         <section id="minimal-statistics">
@@ -141,6 +137,6 @@
                     
                       
         </section>
-        
+       
 </body>
 </html>

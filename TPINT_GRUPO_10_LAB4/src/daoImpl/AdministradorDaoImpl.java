@@ -1,13 +1,14 @@
-package dao;
+package daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import dao.IAdministradorDao;
 import dominio.Administrador;
 
-public class AdministradorDao {
+public class AdministradorDaoImpl implements IAdministradorDao {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";

@@ -1,4 +1,4 @@
-package dao;
+package daoImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import dao.IMateriaDao;
 import dominio.Materia;
 
-public class MateriaDao {
+public class MateriaDaoImpl implements IMateriaDao {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "root";

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.ProfesorDao;
+import daoImpl.ProfesorDaoImpl;
 import dominio.Profesor;
 
 /**
@@ -93,7 +93,7 @@ public class servletDocente extends HttpServlet {
 		profesor.setDireccion(request.getParameter("direccion"));
 		profesor.setTelefono(request.getParameter("telefono"));
 		
-		ProfesorDao profdao = new ProfesorDao();
+		ProfesorDaoImpl profdao = new ProfesorDaoImpl();
 		
 		int Validar =  profdao.AgregarDocente(profesor);
 		
@@ -126,7 +126,7 @@ public class servletDocente extends HttpServlet {
 	
 	public void ListarProfesores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ProfesorDao dao = new ProfesorDao();
+		ProfesorDaoImpl dao = new ProfesorDaoImpl();
 		ArrayList<Profesor> lista = dao.ListarProfesores();
 			
         request.setAttribute("listaProfesor", lista);
@@ -138,7 +138,7 @@ public class servletDocente extends HttpServlet {
 	//buscamos los datos del profesor mediante el legajo
 	public void ObetenerDatosProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String legajo = request.getParameter("legajo");
-		ProfesorDao ProfeDao = new ProfesorDao();
+		ProfesorDaoImpl ProfeDao = new ProfesorDaoImpl();
 		Profesor profe = ProfeDao.getProfesorLegajo(legajo);
 				
 		request.setAttribute("ProfesorEditar", profe);
@@ -151,7 +151,7 @@ public class servletDocente extends HttpServlet {
 	public void ObetenerDatosProfesorByEmailAndContrasenia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("contrasenia");
-		ProfesorDao ProfeDao = new ProfesorDao();
+		ProfesorDaoImpl ProfeDao = new ProfesorDaoImpl();
 		Profesor profe = ProfeDao.getProfesorByEmailAndContrasenia(email, contrasenia);
 		
 		if (profe.getLegajo() > 0) {
@@ -180,7 +180,7 @@ public class servletDocente extends HttpServlet {
 		profesor.setDireccion(request.getParameter("direccion"));
 		profesor.setTelefono(request.getParameter("telefono"));
 		profesor.setLegajo(Integer.parseInt(request.getParameter("legajo")));
-		ProfesorDao adao = new ProfesorDao();
+		ProfesorDaoImpl adao = new ProfesorDaoImpl();
 		
 
 		int validar = adao.ModificarProfesor(profesor);
@@ -208,7 +208,7 @@ public class servletDocente extends HttpServlet {
 	}
 	
 	public void ActualizarProfesores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProfesorDao adao = new ProfesorDao();
+		ProfesorDaoImpl adao = new ProfesorDaoImpl();
 		ArrayList<Profesor> lista= adao.ListarProfesores();
 		request.setAttribute("listaProfesor", lista);
 		
@@ -217,13 +217,13 @@ public class servletDocente extends HttpServlet {
 	}
 	
 	public void bajaDocente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProfesorDao profesorDao = new ProfesorDao();
+		ProfesorDaoImpl profesorDaoImpl = new ProfesorDaoImpl();
 		String[] legajos = request.getParameter("legajos").split(",");
 		
 		int Validar = 0;
 		
 		for(int i=0;i<legajos.length;i++) {
-			Validar = profesorDao.CambiarEstadoProfesor(Integer.parseInt(legajos[i]));
+			Validar = profesorDaoImpl.CambiarEstadoProfesor(Integer.parseInt(legajos[i]));
 		}
 		
 		String mensajeElm = "";

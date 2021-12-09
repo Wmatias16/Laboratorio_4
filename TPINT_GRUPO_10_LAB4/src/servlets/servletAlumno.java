@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AlumnoDao;
+import daoImpl.AlumnoDaoImpl;
 import dominio.Alumno;
 
 /**
@@ -77,7 +77,7 @@ public class servletAlumno extends HttpServlet {
 		alumno.setLocalidad(request.getParameter("localidad"));
 		alumno.setNacionalidad(request.getParameter("nacionalidad"));
 		alumno.setTelefono(request.getParameter("telefono"));
-		AlumnoDao adao = new AlumnoDao();
+		AlumnoDaoImpl adao = new AlumnoDaoImpl();
 		
 		int num = adao.agregarAlumno(alumno);
 		
@@ -103,7 +103,7 @@ public class servletAlumno extends HttpServlet {
 		
 	public void obtenerDatosAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String legajo = request.getParameter("legajo");
-		AlumnoDao alumDao = new AlumnoDao();
+		AlumnoDaoImpl alumDao = new AlumnoDaoImpl();
 		Alumno alum = alumDao.getAlumnoLegajo(legajo);
 		
 		request.setAttribute("AlumnoEditar", alum);
@@ -124,7 +124,7 @@ public class servletAlumno extends HttpServlet {
 		alumno.setLocalidad(request.getParameter("localidad"));
 		alumno.setNacionalidad(request.getParameter("nacionalidad"));
 		alumno.setTelefono(request.getParameter("telefono"));
-		AlumnoDao adao = new AlumnoDao();
+		AlumnoDaoImpl adao = new AlumnoDaoImpl();
 		
 		int Validar = adao.modificarAlumno(alumno);
 		
@@ -149,7 +149,7 @@ public class servletAlumno extends HttpServlet {
 	}
 	
 	public void actualizarAlumnos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AlumnoDao adao = new AlumnoDao();
+		AlumnoDaoImpl adao = new AlumnoDaoImpl();
 		ArrayList<Alumno> lista= adao.getAlumnos();
 		request.setAttribute("listaAlumnos", lista);
 		
@@ -158,7 +158,7 @@ public class servletAlumno extends HttpServlet {
 	}
 	
 	public void bajaAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AlumnoDao alumDao = new AlumnoDao();
+		AlumnoDaoImpl alumDao = new AlumnoDaoImpl();
 		String[] legajos = request.getParameter("legajos").split(",");
 		
 		int Validar = 0;

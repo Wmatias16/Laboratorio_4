@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.AdministradorDao;
+import daoImpl.AdministradorDaoImpl;
 import dominio.Administrador;
 
 @WebServlet("/servletAdministrador")
@@ -30,8 +30,8 @@ public class servletAdministrador extends HttpServlet {
 	public void obtenerDatosAdministrador(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("contrasenia");
-		AdministradorDao administradorDao = new AdministradorDao();
-		Administrador administrador = administradorDao.getAdministradorByEmailAndContrasenia(email, contrasenia);
+		AdministradorDaoImpl administradorDaoImpl = new AdministradorDaoImpl();
+		Administrador administrador = administradorDaoImpl.getAdministradorByEmailAndContrasenia(email, contrasenia);
 		if (administrador.getId() > 0) {
 			request.setAttribute("AdministradorLogin", administrador);
 		} else {

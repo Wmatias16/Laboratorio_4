@@ -157,11 +157,11 @@
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Fecha de nacimiento</th>
-                <th scope="col">Dirección</th>
+                <th scope="col">Direcciï¿½n</th>
                 <th scope="col">Nacionalidad</th>
                 <th scope="col">Provincia</th>
                 <th scope="col">Email</th>
-                <th scope="col">Teléfono</th>
+                <th scope="col">Telï¿½fono</th>
             </tr>
           </thead>
           <tbody>

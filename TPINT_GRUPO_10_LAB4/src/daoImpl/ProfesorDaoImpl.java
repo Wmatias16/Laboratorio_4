@@ -1,4 +1,4 @@
-package dao;
+package daoImpl;
 
 import java.awt.List;
 import java.sql.Connection;
@@ -12,7 +12,7 @@ import com.mysql.jdbc.Statement;
 import dominio.Alumno;
 import dominio.Profesor;
 
-public class ProfesorDao {
+public class ProfesorDaoImpl {
 	
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
