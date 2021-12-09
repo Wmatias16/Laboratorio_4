@@ -149,7 +149,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" id="myInput"class="form-control" placeholder="Buscar..">
+        <input type="text" id="myInput"class="form-control" placeholder="Buscar...">
         <table class="table" id="myTable">
           <thead>
             <tr>
