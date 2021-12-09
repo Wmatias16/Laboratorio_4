@@ -16,6 +16,7 @@
 <title>Admnistrador</title>
 </head>
 <body>
+
 <% if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
 	response.sendRedirect("Home.jsp");
 }

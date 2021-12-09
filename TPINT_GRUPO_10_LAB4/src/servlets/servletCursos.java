@@ -119,8 +119,11 @@ public class servletCursos extends HttpServlet {
 				cdao.altaCursoXalumno(idCurso,legajos[i]);
 			}		
 			
+			
 		}
 		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VistaAdministrador.jsp");
+		requestDispatcher.forward(request, response);
 	}
 	
 	

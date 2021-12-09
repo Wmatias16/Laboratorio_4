@@ -90,7 +90,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col"><input type="checkbox"></th>
+                <th scope="col"><input type="checkbox" id ="MarcarTodas" value="0" ></th>
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Fecha de nacimiento</th>
@@ -109,7 +109,7 @@
             		{
             %>
             <tr class="RegistroProfesor">
-                <th><input type="checkbox" value=<%=profe.getLegajo()%>></th>
+                <th><input type="checkbox" id="check" value=<%=profe.getLegajo()%>></th>
                 <td class ="legajo" ><%=profe.getLegajo()%></td>
                 <td><%=profe.getDni()%></td>
                 <td><%=profe.getFechaNacimiento()%></td>
@@ -142,6 +142,23 @@
 	 	
    // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
    
+   		
+  
+   
+ 	  $("#MarcarTodas").click(function (x) {
+ 		  if(document.getElementById('MarcarTodas').checked){
+	 		$("input[type=checkbox]").each(function(cant,e) {
+	 			$(this).prop("checked", true);
+	        }); 
+ 		  }else{
+ 			 $("input[type=checkbox]").each(function(cant,e) {
+ 	 			$(this).prop("checked", false);
+ 	        }); 
+ 		  }
+      });
+   
+   
+   
    
    btnModificar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
@@ -168,7 +185,7 @@
    
    
    
-   // El problema estaba aca, no estaba cerrado el evento click de eliminar
+
    ///btn eliminar
    btnEliminar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
@@ -177,8 +194,10 @@
        // JQUERY recorre todos los checkbox en estado true
        $("input[type=checkbox]:checked").each(function(cant,e) {
            // Guarda cantidad de checkbox en estado true
-           legajoSeleccionado.push(e.value);
-           cantCheck.push(cant);
+           if(e.value!=0){
+	           legajoSeleccionado.push(e.value);
+	           cantCheck.push(cant);
+           }
        });
        
        // Verificamos que no tengan mas de una seleccion

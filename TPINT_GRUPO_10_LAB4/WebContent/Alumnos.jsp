@@ -75,7 +75,7 @@
         <table class="table table-striped" id="table">
             <thead>
             <tr>
-                <th scope="col"><input type="checkbox"></th>
+                <th scope="col"><input type="checkbox" id="MarcarTodas" value="0"></th>
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Fecha de nacimiento</th>
@@ -93,7 +93,7 @@
 					{
 			  %>
             <tr class="registroAlumno">
-               <td><input type="checkbox" value=<%=alum.getLegajo() %>></td>
+               <td><input type="checkbox"  value=<%=alum.getLegajo() %>></td>
                <td class="legajo"><%=alum.getLegajo() %></td>  
                <td><%=alum.getDni() %></td>  
                <td>12-12-12</td>  
@@ -124,8 +124,19 @@
 
    const btnModificar = document.getElementById('btnModificar');
    const btnEliminar = document.getElementById('btnEliminar');
-
-	 	
+	
+   $("#MarcarTodas").click(function (x) {
+		  if(document.getElementById('MarcarTodas').checked){
+	 		$("input[type=checkbox]").each(function(cant,e) {
+	 			$(this).prop("checked", true);
+	        }); 
+		  }else{
+			 $("input[type=checkbox]").each(function(cant,e) {
+	 			$(this).prop("checked", false);
+	        }); 
+		  }
+   });
+   	 	
    // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
    btnModificar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true
@@ -158,8 +169,10 @@
        // JQUERY recorre todos los checkbox en estado true
        $("input[type=checkbox]:checked").each(function(cant,e) {
            // Guarda cantidad de checkbox en estado true
-           legajoSeleccionado.push(e.value);
-           cantCheck.push(cant);
+    	   if(e.value!=0){
+	           legajoSeleccionado.push(e.value);
+	           cantCheck.push(cant);
+           }
        });
        
        // Verificamos que no tengan mas de una seleccion
