@@ -138,27 +138,21 @@
 
    const btnModificar = document.getElementById("btnModificar");
    const btnEliminar = document.getElementById('btnEliminar');
-
-	 	
-   // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
+	
    
-   		
-  
-   
- 	  $("#MarcarTodas").click(function (x) {
- 		  if(document.getElementById('MarcarTodas').checked){
+   $("#MarcarTodas").click(function (x) {
+		  if(document.getElementById('MarcarTodas').checked){
 	 		$("input[type=checkbox]").each(function(cant,e) {
 	 			$(this).prop("checked", true);
 	        }); 
- 		  }else{
- 			 $("input[type=checkbox]").each(function(cant,e) {
- 	 			$(this).prop("checked", false);
- 	        }); 
- 		  }
-      });
-   
-   
-   
+		  }else{
+			 $("input[type=checkbox]").each(function(cant,e) {
+	 			$(this).prop("checked", false);
+	        }); 
+		  }
+   });
+	 	
+   // El evento click del boton checkeara si no hay mas de un checkbox seleccionado
    
    btnModificar.addEventListener('click',function(e){
        // Array cantidad checkbox en estado true

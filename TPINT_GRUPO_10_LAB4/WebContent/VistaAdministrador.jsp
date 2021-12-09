@@ -20,7 +20,20 @@
 <% if (!session.getAttribute("tipoUsuario").equals("Administrador")) {
 	response.sendRedirect("Home.jsp");
 }
+
+	//Mensaje Validacion Curso
+	String mensaje = "";
+	Boolean error  = null;
+
+	if(request.getAttribute("error") != null){
+			
+			error = (Boolean)request.getAttribute("error");
+			mensaje = (String)request.getAttribute("mensaje");
+	}
+
 %>
+
+
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +52,20 @@
           </ul>
         </div>
       </nav>
-
+      
+      
+      <% //Mensaje Validacion
+		if(error != null)
+		  {%>
+		
+		<div class="col-sm-12" style="text-align: center;">
+		         <div class="alert alert-dark" role="alert">
+					 <strong><%=mensaje%></strong>
+				</div>
+		    </div>
+		
+		<%}%>
+      
 
 
     <div class="grey-bg container">

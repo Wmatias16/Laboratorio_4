@@ -50,7 +50,7 @@ public class CursoDao {
 		return filas;
 	}
 	
-	public void altaCursoXalumno(int idCurso,String legajoAlumno) {
+	public int altaCursoXalumno(int idCurso,String legajoAlumno) {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -60,18 +60,24 @@ public class CursoDao {
 		}
 		
 		Connection cn = null;
+		
+		int Validar = 0;
+		
 		try
 		{
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			Statement st = cn.createStatement();
 						
 			String query = "Insert into AlumnosXcurso(idCurso,legajoAlumno,estado) values ('"+idCurso+"','"+legajoAlumno+"','"+1+"')";
-			st.executeUpdate(query);
+			Validar = st.executeUpdate(query);
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
+		
+		return Validar;
+		
 	}
 	
 	public int buscarMaxId() {		

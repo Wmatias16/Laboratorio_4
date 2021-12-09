@@ -153,7 +153,7 @@
         <table class="table" id="myTable">
           <thead>
             <tr>
-              	<th scope="col"><input type="checkbox"></th>
+              	<th scope="col"><input id="MarcarTodas" value="0" type="checkbox"></th>
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Fecha de nacimiento</th>
@@ -202,9 +202,21 @@
 
 <script>
   const btn = document.getElementById("btn");
- 
+ 	
+  
+	  $("#MarcarTodas").click(function (x) {
+		  if(document.getElementById('MarcarTodas').checked){
+	 		$("input[type=checkbox]").each(function(cant,e) {
+	 			$(this).prop("checked", true);
+	        }); 
+		  }else{
+			 $("input[type=checkbox]").each(function(cant,e) {
+	 			$(this).prop("checked", false);
+	        }); 
+		  }
+	});
 
-  btn.addEventListener('click',()=>{
+  btn.addEventListener('click',() => {
      
       const selectMateria = document.getElementById("inpMateria");
       const selectProfesor = document.getElementById("inpProfesor");
@@ -214,8 +226,10 @@
        // JQUERY recorre todos los checkbox en estado true
        $("input[type=checkbox]:checked").each(function(cant,e) {
            // Guarda cantidad de checkbox en estado true
-           legajoSeleccionado.push(e.value);
-           cantCheck.push(cant);
+           if(e.value!=0){
+	           legajoSeleccionado.push(e.value);
+	           cantCheck.push(cant);
+           }
        });
 
 

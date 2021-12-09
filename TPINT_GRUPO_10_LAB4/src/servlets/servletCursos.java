@@ -108,7 +108,8 @@ public class servletCursos extends HttpServlet {
 		
 		CursoDao cdao = new CursoDao();
 		// SI CREO EL CURSO PASO A AGREGAR LOS ALUMNOS EN ALUMNOSXCURSO
-		int fila = cdao.altaCurso(curso);		
+		int fila = cdao.altaCurso(curso);	
+		int validar = 0;
 		if(fila == 1) {
 			
 			// ID DEL CURSO RECIEN CREADO
@@ -116,12 +117,26 @@ public class servletCursos extends HttpServlet {
 			
 			// RECORRE LOS LEGAJOS
 			for(int i = 0;i < legajos.length; i++) {
-				cdao.altaCursoXalumno(idCurso,legajos[i]);
+				validar = cdao.altaCursoXalumno(idCurso,legajos[i]);
 			}		
 			
 			
 		}
 		
+		//Validacion
+		String mensajeAlta = "";
+		Boolean errorAlta = false;
+		
+		if(validar == 1) {
+			mensajeAlta = "¡Se Agrego el alumno exitosamente!";
+		}else {
+			mensajeAlta = "¡Error! No se agrego el alumno";
+			errorAlta = true;
+		}
+		
+		request.setAttribute("error", errorAlta);
+		request.setAttribute("mensaje",mensajeAlta);
+			
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VistaAdministrador.jsp");
 		requestDispatcher.forward(request, response);
 	}
