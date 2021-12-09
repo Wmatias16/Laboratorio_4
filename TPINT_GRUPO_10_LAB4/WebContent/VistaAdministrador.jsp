@@ -5,11 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
 
 
 <title>Admnistrador</title>
@@ -79,7 +85,8 @@
                     <div class="card-body">
                       <div class="media d-flex">
                         <div class="align-self-center">
-                            <i class="icon-book-open primary font-large-2 float-right"></i>                        </div>
+                            <i class="fas fa-users blue-text fa-3x"></i>
+                          </div>
                         <div class="media-body text-right">
                           <h3>Alumnos</h3>
                         </div>
@@ -98,7 +105,8 @@
                     <div class="card-body">
                       <div class="media d-flex">
                         <div class="align-self-center">
-                            <i class="icon-book-open primary font-large-2 float-right"></i>                        </div>
+                           <i class="fas fa-book-open blue-text fa-3x"></i>               
+                        </div>
                         <div class="media-body text-right">
                           <h3>Profesores</h3>
                         </div>
@@ -117,7 +125,8 @@
                     <div class="card-body">
                       <div class="media d-flex">
                         <div class="align-self-center">
-                            <i class="icon-book-open primary font-large-2 float-right"></i>                        </div>
+                            <i class="fas fa-chalkboard blue-text fa-3x"></i> 
+                            </div>
                         <div class="media-body text-right">
                           <h3>Cursos</h3>
                         </div>
@@ -134,9 +143,15 @@
             </div>
         </div>
         </div>
-                    
-                      
-        </section>
+     </section>
        
+       <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 </html>

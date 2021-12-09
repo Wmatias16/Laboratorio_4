@@ -6,9 +6,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
     <title>Ver curso</title>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
+    
 </head>
 <body>
 <% if (!session.getAttribute("tipoUsuario").equals("Docente")) {
@@ -19,6 +29,7 @@
 		listaAlumnosXCurso = (List<AlumnoXCurso>)request.getAttribute("listaAlumnosXCurso");
 }
 %>
+
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,41 +42,43 @@
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="SesionCerrada.jsp">Salir</a>
+                <a class="dropdown-item" href="SessionCerrada.jsp">Salir</a>
               </div>
             </li>
           </ul>
         </div>
       </nav>
-<% if (listaAlumnosXCurso != null) {
-%>
-<div class="container" style="margin-top: 100px;">
-    <h1><%=listaAlumnosXCurso.get(0).getCurso().getMateria().getNombre() %></h1>
-    <div class="row">
+      
+      
+<% if (listaAlumnosXCurso != null) {%>
+
+	<div class="container" style="margin-top: 100px;">
+    	<h1><%=listaAlumnosXCurso.get(0).getCurso().getMateria().getNombre() %></h1>
+    	<div class="row">
         <div class="col-sm" style="margin-bottom: 10px; text-align:right;" >
             <button class="btn btn-success" data-toggle="modal" data-target="#calificarModal" style="margin: 5px;">Calificar</button>        
         </div> 
-        
             
     <div class="col-sm-12">    
-        <table class="table table-striped">
-            <thead>
-            <tr>
-            	<th scope="col">ID</th>
-                <th scope="col">Legajo</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col">Parcial 1</th>
-                <th scope="col">Parcial 2</th>
-                <th scope="col">Recuperatorio Parcial 1</th>
-                <th scope="col">Recuperatorio Parcial 2</th>
-                <th scope="col">Regularidad</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (AlumnoXCurso alumnoXCurso : listaAlumnosXCurso) {
+    
+   <table id="dtBasicExample" class="table" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+     <th  class="th-sm">ID</th>
+     <th class="th-sm">DNI</th>
+     <th class="th-sm">Apellido</th>
+     <th  class="th-sm">Nombre</th>
+     <th  class="th-sm">Email</th>
+     <th  class="th-sm">Parcial 1</th>
+     <th  class="th-sm">Parcial 2</th>
+     <th  class="th-sm">Recuperatorio Parcial 1</th>
+     <th  class="th-sm">Recuperatorio Parcial 2</th>
+     <th  class="th-sm">Regularidad</th>
+    
+    </tr>
+  </thead>
+  <tbody>
+        <% for (AlumnoXCurso alumnoXCurso : listaAlumnosXCurso) {
             	%>
             <tr>
             	<td><%=alumnoXCurso.getNroInscripcion() %></td>
@@ -81,11 +94,22 @@
                 <td><%=alumnoXCurso.getRegularidad() %></td>             
             </tr>
             <%} %>
-            </tbody>
-            </table>
-
-        </div>
-    </div>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Legajo</th>
+     <th>DNI</th>
+     <th>Apellido</th>
+     <th>Nombre</th>
+     <th>Email</th>
+     <th>Parcial 1</th>
+     <th>Parcial 2</th>
+     <th>Recuperatorio Parcial 1</th>
+     <th>Recuperatorio Parcial 2</th>
+     <th>Regularidad</th>
+    </tr>
+  </tfoot>
+</table>
 <%} %>
 </div>
 <!-- Modal -->
@@ -93,7 +117,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="calificarModalLabel">Calificación de Alumnos</h5>
+        <h5 class="modal-title" id="calificarModalLabel">Calificaciï¿½n de Alumnos</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -143,10 +167,23 @@
     </div>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- DataTables JS -->
+ <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
+
 <script type="text/javascript">
+	$(document).ready(function () {
+	 	 $('#dtBasicExample').DataTable();
+	  	$('.dataTables_length').addClass('bs-select');
+	});
 
 	let btn = document.getElementById("btn");
 	
@@ -177,5 +214,6 @@
 	})
 			      		
 </script>
+
 </body>
 </html>

@@ -5,11 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
 
 <title>Alta docentes</title>
 
@@ -56,7 +60,7 @@
             	
                 <div class="col-sm-6">
                  	<div class="form-group">
- 						<label for="Legajo">Contraseña</label>
+ 						<label for="Legajo">Contraseï¿½a</label>
                         <input type="password" value=<%=profe.getContrasenia()%> class="form-control" id="idLegajo"  name="Contrasenia" required>
                       </div>
                        <div class="form-group">
@@ -72,7 +76,7 @@
                           <input type="date" name="fecha"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese fecha de nacimiento" required>
                         </div>
                          <div class="form-group">
-                        <label for="exampleInputEmail1">Teléfono</label>
+                        <label for="exampleInputEmail1">Telï¿½fono</label>
                         <input type="text" value=<%=profe.getTelefono()%> name="telefono"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono" required>
                       </div>
                      
@@ -90,7 +94,7 @@
                         </div>
                         
                         <div class="form-group">
-                        <label for="exampleInputEmail1">Dirección</label>
+                        <label for="exampleInputEmail1">Direcciï¿½n</label>
                         <input type="text" value=<%=profe.getDireccion()%> name="direccion"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion" required>
                       </div>
                       <div class="form-group">
@@ -131,8 +135,8 @@
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese email" required>
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail1">Contraseña</label>
-                        <input type="password" name="Contrasenia" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Contraseña" required>
+                        <label for="exampleInputEmail1">Contraseï¿½a</label>
+                        <input type="password" name="Contrasenia" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Contraseï¿½a" required>
                       </div>
                       <div class="form-group">
                         <label for="exampleInputEmail1">DNI</label>
@@ -162,11 +166,11 @@
                           <input type="date" name="fechaNacimiento" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese fecha de nacimiento" required>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Dirección</label>
+                          <label for="exampleInputEmail1">Direcciï¿½n</label>
                           <input type="text" name="direccion" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese direccion" required>
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Teléfono</label>
+                          <label for="exampleInputEmail1">Telï¿½fono</label>
                           <input type="text" name="telefono" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese telefono" required>
                         </div>
                        
@@ -183,5 +187,12 @@
             	
           
     </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
 </body>
 </html>

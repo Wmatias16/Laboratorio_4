@@ -6,7 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
 
 <title>Alumnos</title>
 </head>
@@ -56,8 +66,8 @@
            <%= session.getAttribute("usuarioSession") %>
          </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-           <a class="dropdown-item" href="SessionCerrada.jsp">Salir</a>
-         </div>
+          <a class="dropdown-item" href="SessionCerrada.jsp">Salir</a>
+        </div>
        </li>
      </ul>
    </div>
@@ -71,18 +81,18 @@
        <a id="btnEliminar" class="btn btn-danger" style="margin: 5px;">Eliminar alumno</a>
    </div> 
 <div class="col-sm-12">    
-   <table class="table table-striped" id="table">
+   <table id="dtBasicExample" class="table" cellspacing="0" width="100%">
        <thead>
        <tr>
-           <th scope="col"><input type="checkbox" id="MarcarTodas" value="0"></th>
-           <th scope="col">Legajo</th>
-           <th scope="col">DNI</th>
-           <th scope="col">Fecha de nacimiento</th>
-           <th scope="col">Direcci�n</th>
-           <th scope="col">Nacionalidad</th>
-           <th scope="col">Provincia</th>
-           <th scope="col">Email</th>
-           <th scope="col">Tel�fono</th>
+           <th><input type="checkbox" id="MarcarTodas" value="0"></th>
+           <th class="th-sm">Legajo</th>
+           <th class="th-sm">DNI</th>
+           <th class="th-sm">Fecha de nacimiento</th>
+           <th class="th-sm">Direccion</th>
+           <th class="th-sm">Nacionalidad</th>
+           <th class="th-sm">Provincia</th>
+           <th class="th-sm">Email</th>
+           <th class="th-sm">Telefono</th>
 
        </tr>
        </thead>
@@ -113,9 +123,17 @@
 </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- DataTables JS -->
+ <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
 
 <script>    
 
@@ -123,6 +141,12 @@
 
 const btnModificar = document.getElementById('btnModificar');
 const btnEliminar = document.getElementById('btnEliminar');
+
+$(document).ready(function () {
+	 $('#dtBasicExample').DataTable();
+ 	$('.dataTables_length').addClass('bs-select');
+});
+
 
 $("#MarcarTodas").click(function (x) {
  if(document.getElementById('MarcarTodas').checked){
