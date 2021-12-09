@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <!-- Bootstrap core CSS -->
@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="css/mdb.min.css">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css">
+  <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
     <title>Cursos</title>
 </head>
 <body>
@@ -58,15 +60,15 @@
 
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
+    <nav class="navbar navbar-expand-lg navbar-light " style="background:#404E67;">
+        <a class="navbar-brand" href="Home.jsp" style="color:white;">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: end; margin-right: 15px;">
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" style="color:white;"id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -129,10 +131,12 @@
                                      
               </div>
               <div class="col-sm-12">
-                <label for="inputState">Alumnos</label>
-                <button type="button" class="btn btn-outline-secondary form-control" data-toggle="modal" data-target="#exampleModal">
-                  Seleccionar alumnos
-                </button>
+              <div class="form-group">
+	              <label for="inputState">Alumnos</label>
+	                <button type="button" class="btn  btn-block btn-outline-primary btn-rounded waves-effect " data-toggle="modal" data-target="#exampleModal">
+	                  Seleccionar alumnos
+	                </button>
+              </div>
               </div>
               
         </div>     
@@ -156,19 +160,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" id="myInput"class="form-control" placeholder="Buscar...">
-        <table class="table" id="myTable">
+        <table id="dtBasicExample" class="table" cellspacing="0" width="100%">
           <thead>
             <tr>
-              	<th scope="col"><input id="MarcarTodas" value="0" type="checkbox"></th>
-                <th scope="col">Legajo</th>
-                <th scope="col">DNI</th>
-                <th scope="col">Fecha de nacimiento</th>
-                <th scope="col">Direcci�n</th>
-                <th scope="col">Nacionalidad</th>
-                <th scope="col">Provincia</th>
-                <th scope="col">Email</th>
-                <th scope="col">Tel�fono</th>
+              	<th><input id="MarcarTodas" value="0" type="checkbox"></th>
+                <th class="th-sm">Legajo</th>
+                <th class="th-sm">DNI</th>
+                <th class="th-sm">Fecha de nacimiento</th>
+                <th class="th-sm">Direcci�n</th>
+                <th class="th-sm">Nacionalidad</th>
+                <th class="th-sm">Provincia</th>
+                <th class="th-sm">Email</th>
+                <th class="th-sm">Telefono</th>
             </tr>
           </thead>
           <tbody>
@@ -201,17 +204,26 @@
 </div>
 
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- DataTables JS -->
+ <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
 
 <script>
   const btn = document.getElementById("btn");
  	
+  $(document).ready(function () {
+		 $('#dtBasicExample').DataTable();
+	 	$('.dataTables_length').addClass('bs-select');
+	});
+  
   
 	  $("#MarcarTodas").click(function (x) {
 		  if(document.getElementById('MarcarTodas').checked){

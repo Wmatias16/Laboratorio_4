@@ -54,15 +54,15 @@
 <%}%>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
+<nav class="navbar navbar-expand-lg navbar-light " style="background:#404E67;">
+   <a class="navbar-brand" href="Home.jsp" style="color:white;">TP FINAL LABORATORIO</a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
    </button>
    <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: end; margin-right: 15px;">
      <ul class="navbar-nav" >
        <li class="nav-item dropdown" >
-         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <a class="nav-link dropdown-toggle"style="color:white;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <%= session.getAttribute("usuarioSession") %>
          </a>
          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -178,9 +178,9 @@ btnModificar.addEventListener('click',function(e){
         btnModificar.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
     }
   }else if(cantCheck.length > 1){
-      alert("ï¿½Debe seleccionar solamente un registro!");
+      alert("¿Debe seleccionar solamente un registro!");
   }else{
-      alert("ï¿½Debe seleccionar un registro!");
+      alert("¿Debe seleccionar un registro!");
   }	
 });
 
@@ -200,11 +200,11 @@ btnEliminar.addEventListener('click',function(e){
   
   // Verificamos que no tengan mas de una seleccion
   if(cantCheck.length >= 1){
-    if(confirm("ï¿½Estas seguro de Eliminar este Usuario?")){
+    if(confirm("¿Estas seguro de Eliminar este Usuario?")){
         btnEliminar.href="servletAlumnos?delete=true&legajos="+legajoSeleccionado;
     }
  }else{
-       alert("ï¿½Debe seleccionar un registro!");
+       alert("¿Debe seleccionar un registro!");
    }	
 });
 

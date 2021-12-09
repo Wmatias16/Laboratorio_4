@@ -11,12 +11,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cursos</title>
 
- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-    <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <!-- Your custom styles (optional) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- MDBootstrap Datatables  -->
+<link href="css/addons/datatables.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -28,15 +33,15 @@
 		listaCursos = (List<Curso>)request.getAttribute("listaCursos");
 	}
 %>
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
+ <nav class="navbar navbar-expand-lg navbar-light " style="background:#404E67;">
+        <a class="navbar-brand" href="Home.jsp" style="color:white;">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: end; margin-right: 15px;">
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" style="color:white;"href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -67,11 +72,11 @@
                     <div class="card-body">
                       <div class="media d-flex">
                         <div class="align-self-center">
-                          <i class="icon-pencil primary font-large-2 float-left"></i>
+                          <i class="fas fa-marker blue-text fa-3x"></i>
                         </div>
                         <div class="media-body text-right">
-                          <h3><%=curso.getMateria().getNombre()%></h3>
-                          <h3><%=curso.getSemestre() %> - <%=curso.getAnio() %></h3>
+                          <h4><%=curso.getMateria().getNombre()%></h4>
+                          <h5><%=curso.getSemestre() %> - <%=curso.getAnio() %></h5>
                         </div>
 
                       </div>
@@ -86,6 +91,18 @@
         </div>
         </section>
         </div>
+        
+        <!-- DataTables JS -->
+ <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- MDBootstrap Datatables  -->
+<script type="text/javascript" src="js/addons/datatables.min.js"></script>
         
 
 </body>

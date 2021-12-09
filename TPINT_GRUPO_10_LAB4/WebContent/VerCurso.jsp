@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- MDBootstrap Datatables  -->
 <link href="css/addons/datatables.min.css" rel="stylesheet">
-    
 </head>
 <body>
 <% if (!session.getAttribute("tipoUsuario").equals("Docente")) {
@@ -30,15 +29,15 @@
 }
 %>
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="Home.jsp">TP FINAL LABORATORIO</a>
+ <nav class="navbar navbar-expand-lg navbar-light " style="background:#404E67;">
+        <a class="navbar-brand" href="Home.jsp" style="color:white;">TP FINAL LABORATORIO</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content: end; margin-right: 15px;">
           <ul class="navbar-nav" >
             <li class="nav-item dropdown" >
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" style="color:white;" href="#" style="color:white;" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -61,22 +60,21 @@
             
     <div class="col-sm-12">    
     
-   <table id="dtBasicExample" class="table" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-     <th  class="th-sm">ID</th>
-     <th class="th-sm">DNI</th>
-     <th class="th-sm">Apellido</th>
-     <th  class="th-sm">Nombre</th>
-     <th  class="th-sm">Email</th>
-     <th  class="th-sm">Parcial 1</th>
-     <th  class="th-sm">Parcial 2</th>
-     <th  class="th-sm">Recuperatorio Parcial 1</th>
-     <th  class="th-sm">Recuperatorio Parcial 2</th>
-     <th  class="th-sm">Regularidad</th>
-    
-    </tr>
-  </thead>
+   <table id="dtBasicExample1" class="table" cellspacing="0" width="100%">
+         <thead>
+	    <tr>
+	     <th class="th-sm">ID</th>
+	     <th class="th-sm">DNI</th>
+	     <th class="th-sm">Apellido</th>
+	     <th class="th-sm">Nombre</th>
+	     <th class="th-sm">Email</th>
+	     <th class="th-sm">Parcial 1</th>
+	     <th class="th-sm">Parcial 2</th>
+	     <th class="th-sm">Recuperatorio Parcial 1</th>
+	     <th class="th-sm">Recuperatorio Parcial 2</th>
+	     <th class="th-sm">Regularidad</th>
+	    </tr>
+  	</thead>
   <tbody>
         <% for (AlumnoXCurso alumnoXCurso : listaAlumnosXCurso) {
             	%>
@@ -123,8 +121,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <input type="text" id="myInput"class="form-control" placeholder="Buscar...">
-        <table class="table" id="myTable">
+        <table  id="dtBasicExample2" class="table" cellspacing="0" width="100%">
           <thead>
             <tr>
             	<th scope="col">ID</th>
@@ -168,8 +165,7 @@
   </div>
 </div>
 <!-- DataTables JS -->
- <!-- jQuery -->
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
@@ -180,9 +176,14 @@
 <script type="text/javascript" src="js/addons/datatables.min.js"></script>
 
 <script type="text/javascript">
+	
+	
 	$(document).ready(function () {
-	 	 $('#dtBasicExample').DataTable();
+	 	 $('#dtBasicExample2').DataTable();
 	  	$('.dataTables_length').addClass('bs-select');
+	  	
+	  	 $('#dtBasicExample1').DataTable();
+		  	$('.dataTables_length').addClass('bs-select');
 	});
 
 	let btn = document.getElementById("btn");
