@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,71 @@ public class AlumnoXCursoDaoImpl implements IAlumnoXCursoDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return listaAlumnosXCurso;
+	}
+
+	public String recalcularRegularidad(double notaP1, double notaP2, double notaR1, double notaR2) {
+		String regularidad;
+		if(notaP1 >= 6 && notaP2 >=6) {
+			regularidad = "Regular";
+			return regularidad;
+		}
+		if(notaP1 >= 6 && notaP2 < 6 && notaR2 >= 6) {
+			regularidad = "Regular";
+			return regularidad;
+		}
+		if(notaP1 < 6 && notaP2 >= 6 && notaR1 >= 6) {
+			regularidad = "Regular";
+			return regularidad;
+		}
+		if(notaP1 < 6 && notaP2 < 6 && notaR1 >= 6 && notaR2 >= 6) {
+			regularidad = "Regular";
+			return regularidad;
+		} else {
+			regularidad = "Libre";
+			return regularidad;
+		}
+		
+	}
+	
+	public List<AlumnoXCurso> actualizarNotas(String[] notas) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		try {
+			for (int i = 0; i < notas.length; i+=5) {
+				Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+				PreparedStatement preparedStatement = connection.prepareStatement("UPDATE alumnosxcurso SET notaPrimerParcial = ?, notaSegundoParcial = ?, notaPrimerRecuperatorio = ?, notaSegundoRecuperatorio = ?, regularidad = ? WHERE nroInscripcion = ?");
+				preparedStatement.setDouble(1, Double.parseDouble(notas[i]));
+				preparedStatement.setDouble(2, Double.parseDouble(notas[i+1]));
+				preparedStatement.setDouble(3, Double.parseDouble(notas[i+2]));
+				preparedStatement.setDouble(4, Double.parseDouble(notas[i+3]));
+				preparedStatement.setString(5, recalcularRegularidad(Double.parseDouble(notas[i]), Double.parseDouble(notas[i+1]), Double.parseDouble(notas[i+2]), Double.parseDouble(notas[i+3])));
+				preparedStatement.setInt(6, Integer.parseInt(notas[i+4]));
+                preparedStatement.execute();
+                preparedStatement.close();
+                connection.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		int idCurso = -1;
+		try {
+			Connection connection = DriverManager.getConnection(host+dbName,user,pass);
+			PreparedStatement preparedStatement = connection.prepareStatement("SELECT idCurso FROM alumnosxcurso WHERE nroInscripcion = " +Integer.parseInt(notas[4]));
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				idCurso =  resultSet.getInt(1);
+			}
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<AlumnoXCurso> listaAlumnosXCurso = getAlumnosXCursoDelCurso(idCurso);
 		return listaAlumnosXCurso;
 	}
 

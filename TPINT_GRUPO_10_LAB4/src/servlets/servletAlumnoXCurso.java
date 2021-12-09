@@ -25,7 +25,14 @@ public class servletAlumnoXCurso extends HttpServlet {
 		if (request.getParameter("listar") != null) {
 			getAlumnosXCursoByIdCurso(request, response, Integer.parseInt(request.getParameter("idCurso")));
 		}
-		
+		if (request.getParameter("actualizarNotas") != null) {
+			String[] notas = request.getParameter("actualizarNotas").split(",");
+			AlumnoXCursoDaoImpl alumnoXCursoDaoImpl = new AlumnoXCursoDaoImpl();
+			List<AlumnoXCurso> listaAlumnosXCurso = alumnoXCursoDaoImpl.actualizarNotas(notas);
+			request.setAttribute("listaAlumnosXCurso", listaAlumnosXCurso);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VerCurso.jsp");
+			requestDispatcher.forward(request, response);
+		}
 	}
 
 	public void getAlumnosXCursoByIdCurso(HttpServletRequest request, HttpServletResponse response, int idCurso) throws ServletException, IOException {

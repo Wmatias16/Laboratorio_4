@@ -64,6 +64,7 @@
          <thead>
 	    <tr>
 	     <th class="th-sm">ID</th>
+	     <th class=th-sm">Legajo</th>
 	     <th class="th-sm">DNI</th>
 	     <th class="th-sm">Apellido</th>
 	     <th class="th-sm">Nombre</th>
@@ -95,7 +96,8 @@
   </tbody>
   <tfoot>
     <tr>
-      <th>Legajo</th>
+    <th>ID</th>
+     <th>Legajo</th>
      <th>DNI</th>
      <th>Apellido</th>
      <th>Nombre</th>
@@ -147,12 +149,7 @@
                 <td><input type="number" min="0" max="10" step="0.5" class="form-control text-right" oninput="validity.valid||(value=0)" value="<%=alumnoXCurso.getNotaSegundoParcial() %>"></input></td>
                 <td><input type="number" min="0" max="10" step="0.5" class="form-control text-right" oninput="validity.valid||(value=0)" value="<%=alumnoXCurso.getNotaPrimerRecuperatorio() %>"></input></td>  
                 <td><input type="number" min="0" max="10" step="0.5" class="form-control text-right" oninput="validity.valid||(value=0)" value="<%=alumnoXCurso.getNotaSegundoRecuperatorio() %>"></input></td>    
-                <td><input type="text" class="form-control text-right" list="opcionesRegularidad" pattern="^(Regular|Libre)$" value="<%=alumnoXCurso.getRegularidad() %>">
-                	<datalist id="opcionesRegularidad">
-                		<option value="Regular">Regular</option>
-                		<option value="Libre">Libre</option>
-                	</datalist>
-                </td>					
+                <td><%=alumnoXCurso.getRegularidad() %></td>					
             </tr>            
             <%} %>
           </tbody>
@@ -192,7 +189,7 @@
 		let table = [];
 		let id;
 		
-		$("#myTable tbody").each(function () {
+		$("#dtBasicExample2 tbody").each(function () {
           	$(this).children("tr").each(function () { // Recorre cada TR de la tabla 		
           		
           		if($(this).find('input[type=number]').val() != undefined){
@@ -209,7 +206,7 @@
             		
        		})
        		console.log(table);
-       		btn.href="servletAlumnosXCurso?actualizarNotas?"+table;
+       		btn.href="servletAlumnosXCurso?actualizarNotas="+table;
 		})
        
 	})
