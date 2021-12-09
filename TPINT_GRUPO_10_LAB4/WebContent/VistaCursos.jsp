@@ -40,7 +40,7 @@
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="Home.jsp">Salir</a>
+                <a class="dropdown-item" href="SesionCerrada.jsp">Salir</a>
               </div>
             </li>
           </ul>
@@ -58,7 +58,7 @@
             </div>
           </div>
           <div class="row">
-          <% if (listaCursos.size() > 0) {
+          <% if (listaCursos != null) {
         	  	for (Curso curso : listaCursos) {
         	  		%>     
             <div class="col-xl-3 col-sm-6 col-12"> 

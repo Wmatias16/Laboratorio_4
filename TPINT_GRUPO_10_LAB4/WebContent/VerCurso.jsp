@@ -31,13 +31,13 @@
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="Home.jsp">Salir</a>
+                <a class="dropdown-item" href="SesionCerrada.jsp">Salir</a>
               </div>
             </li>
           </ul>
         </div>
       </nav>
-<% if (listaAlumnosXCurso.size() > 0) {
+<% if (listaAlumnosXCurso != null) {
 %>
 <div class="container" style="margin-top: 100px;">
     <h1><%=listaAlumnosXCurso.get(0).getCurso().getMateria().getNombre() %></h1>
@@ -51,6 +51,7 @@
         <table class="table table-striped">
             <thead>
             <tr>
+            	<th scope="col">ID</th>
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Apellido</th>
@@ -67,6 +68,7 @@
             <% for (AlumnoXCurso alumnoXCurso : listaAlumnosXCurso) {
             	%>
             <tr>
+            	<td><%=alumnoXCurso.getNroInscripcion() %></td>
                 <td><%=alumnoXCurso.getAlumno().getLegajo() %></td>
                 <td><%=alumnoXCurso.getAlumno().getDni() %></td>
                 <td><%=alumnoXCurso.getAlumno().getApellido() %></td>   
@@ -91,7 +93,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="calificarModalLabel">Calificaciï¿½n de Alumnos</h5>
+        <h5 class="modal-title" id="calificarModalLabel">Calificación de Alumnos</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -101,6 +103,7 @@
         <table class="table" id="myTable">
           <thead>
             <tr>
+            	<th scope="col">ID</th>
                 <th scope="col">Legajo</th>
                 <th scope="col">DNI</th>
                 <th scope="col">Parcial 1</th>
@@ -111,11 +114,12 @@
             </tr>
           </thead>
           <tbody>
-           <%  if(listaAlumnosXCurso.size() > 0)
+           <%  if(listaAlumnosXCurso != null)
 					for(AlumnoXCurso alumnoXCurso : listaAlumnosXCurso) 
 					{
 			  %>
             <tr class="registroAlumno">
+            	<td><%=alumnoXCurso.getNroInscripcion() %></td>
                 <td><%=alumnoXCurso.getAlumno().getLegajo() %></td>
                 <td><%=alumnoXCurso.getAlumno().getDni() %></td>
                 <td><input type="number" min="0" max="10" step="0.5" class="form-control text-right" oninput="validity.valid||(value=0)" value="<%=alumnoXCurso.getNotaPrimerParcial() %>"></input></td>
@@ -148,25 +152,26 @@
 	
 	btn.addEventListener('click',function(){
 		let table = [];
-		let legajo;
+		let id;
 		
 		$("#myTable tbody").each(function () {
           	$(this).children("tr").each(function () { // Recorre cada TR de la tabla 		
           		
           		if($(this).find('input[type=number]').val() != undefined){
           			let notas = [];
-          			legajo = $(this).find('td:first-child').text(); //Busca el legajo en el primer td
+          			id = $(this).find('td:first-child').text(); //Busca el ID en el primer td
           			
           			$(this).find('input[type=number]').each(function(i){ // Busca todos los input tipo number
           				notas[i] = $(this).val(); // Guarda las notas
           			})
         
-          			notas.push(legajo); // Agregamos el legajo en el array de notas
+          			notas.push(id); // Agregamos el ID en el array de notas
           			table.push(notas)
           		}
             		
        		})
-       		btn.href="/servlet?notas="+table;
+       		console.log(table);
+       		btn.href="servletAlumnosXCurso?actualizarNotas?"+table;
 		})
        
 	})
