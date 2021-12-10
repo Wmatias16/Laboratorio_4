@@ -12,14 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import daoImpl.AlumnoDaoImpl;
 import dominio.Alumno;
+import negocio.IAlumnoNegocio;
+import negocioImpl.AlumnoNegocioImpl;
 
-/**
- * Servlet implementation class servletAlumno
- */
+
 @WebServlet("/servletAlumnos")
 public class servletAlumno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
+	private IAlumnoNegocio alumNegocio = new AlumnoNegocioImpl();
+	
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -63,7 +66,6 @@ public class servletAlumno extends HttpServlet {
 		doGet(request, response);
 	}	
 	
-	
 	public void altaAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Alumno alumno = new Alumno();
@@ -77,12 +79,9 @@ public class servletAlumno extends HttpServlet {
 		alumno.setLocalidad(request.getParameter("localidad"));
 		alumno.setNacionalidad(request.getParameter("nacionalidad"));
 		alumno.setTelefono(request.getParameter("telefono"));
-		AlumnoDaoImpl adao = new AlumnoDaoImpl();
 		
-		int num = adao.agregarAlumno(alumno);
-		
-		
-		//Validamos
+		int num = alumNegocio.altaAlumnos(alumno);
+				
 		String MensajeAlta = "";
 		Boolean ErorAlta= false;
 				
@@ -103,10 +102,8 @@ public class servletAlumno extends HttpServlet {
 		
 	public void obtenerDatosAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String legajo = request.getParameter("legajo");
-		AlumnoDaoImpl alumDao = new AlumnoDaoImpl();
-		Alumno alum = alumDao.getAlumnoLegajo(legajo);
-		
-		request.setAttribute("AlumnoEditar", alum);
+				
+		request.setAttribute("AlumnoEditar", alumNegocio.obtenerAlumno(legajo));
 		RequestDispatcher rd = request.getRequestDispatcher("/AlumnosAgregar.jsp");   
         rd.forward(request, response);
 	}
@@ -124,11 +121,9 @@ public class servletAlumno extends HttpServlet {
 		alumno.setLocalidad(request.getParameter("localidad"));
 		alumno.setNacionalidad(request.getParameter("nacionalidad"));
 		alumno.setTelefono(request.getParameter("telefono"));
-		AlumnoDaoImpl adao = new AlumnoDaoImpl();
 		
-		int Validar = adao.modificarAlumno(alumno);
+		int Validar = alumNegocio.modificarAlumno(alumno);
 		
-		//Validamos
 		String mensajeMdf = "";
 		Boolean ErrorMdf= false;
 		
@@ -149,25 +144,21 @@ public class servletAlumno extends HttpServlet {
 	}
 	
 	public void actualizarAlumnos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AlumnoDaoImpl adao = new AlumnoDaoImpl();
-		ArrayList<Alumno> lista= adao.getAlumnos();
-		request.setAttribute("listaAlumnos", lista);
+		request.setAttribute("listaAlumnos", alumNegocio.listarAlumnos());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Alumnos.jsp");   
         rd.forward(request, response);		
 	}
 	
 	public void bajaAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AlumnoDaoImpl alumDao = new AlumnoDaoImpl();
 		String[] legajos = request.getParameter("legajos").split(",");
 		
 		int Validar = 0;
 		
 		for(int i=0;i<legajos.length;i++) {
-			Validar = alumDao.cambiarEstadoAlumno(Integer.parseInt(legajos[i]));
+			Validar = alumNegocio.bajaAlumnos((Integer.parseInt(legajos[i])));
 		}
 		
-		//Validamos
 		String mensajeDel = "";
 		Boolean ErrorDel= false;
 		

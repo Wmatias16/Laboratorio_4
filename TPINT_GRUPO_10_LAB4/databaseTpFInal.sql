@@ -86,7 +86,11 @@ INSERT INTO Alumnos (dni, nombre, apellido, email, fechaNacimiento, direccion, l
 ("39100101", "Roberto", "Gómez", "rgomez@alumno.com", "1995-06-16", "Cabildo 250", "Tigre", "Argentina", "1190894587", true),
 ("39100102", "Carlos", "López", "clopez@alumno.com", "1995-06-17", "Congreso 420", "Martínez", "Argentina", "1165734587", true),
 ("42100105", "Josefina", "Sánchez", "jsanchez@alumno.com", "2001-11-12", "Asunción 682", "San Fernando", "Argentina", "1133557651", true),
-("42300222", "Carla", "Rodríguez", "crodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true);
+("42300222", "Carla", "Rodríguez", "crodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
+("42300223", "Juan", "Rodríguez", "jrodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
+("42300224", "Roberto", "Rodríguez", "rrodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
+("42300225", "Mauricio", "Rodríguez", "mrodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
+("42300226", "Cristian", "Rodríguez", "crodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
 
 /*PROFESORES*/
 INSERT INTO Profesores (dni, nombre, apellido, email, contrasenia, fechaNacimiento, direccion, localidad, nacionalidad, telefono, estado) VALUES

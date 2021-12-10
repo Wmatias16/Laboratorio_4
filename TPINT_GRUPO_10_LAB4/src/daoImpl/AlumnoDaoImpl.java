@@ -16,6 +16,7 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
 
+	
 	public int agregarAlumno(Alumno alumno)
 	{
 		
@@ -81,12 +82,8 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 		{
 			System.out.println(e.toString());
 		}
-		finally
-		{
-		}
 		
 		return Validar;
-
 	}	
 	
 	public ArrayList<Alumno> getAlumnos() {	
@@ -96,7 +93,6 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		ArrayList<Alumno> lista = new ArrayList<Alumno>();
 		Connection conn = null;
@@ -125,8 +121,6 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 			conn.close();
 		}catch(Exception e){
 			e.printStackTrace();
-		}finally{
-		
 		}
 		
 		return lista;
