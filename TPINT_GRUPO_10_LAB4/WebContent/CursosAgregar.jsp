@@ -1,7 +1,9 @@
+<%@page import="java.util.Date"%>
 <%@page import="dominio.Alumno"%>
 <%@page import="dominio.Profesor"%>
 <%@page import="dominio.Materia"%>
 <%@page import="java.util.ArrayList"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -97,7 +99,7 @@
 				            		{
 				            %>
 								            
-								      <option value=<%=profe.getLegajo()%> ><%=profe.getNombre()%></option>
+								      <option value=<%=profe.getLegajo()%> ><%=profe.getNombre()%>  <%=profe.getApellido()%> legajo : <%=profe.getLegajo()%></option>
 								           
          					<% } %>
                           
@@ -130,6 +132,43 @@
                       </div>
                                      
               </div>
+              
+              <div class="col-sm-12">
+                    
+                      <div class="form-group">
+                        <label for="inputState">Semestre</label>
+                        <select id="inpSemestre" class="form-control">
+                          <option selected>Seleccionar...</option>                         							            
+								<option value="Primer semestre">Primer semestre</option>
+								<option value="Segundo semestre">Segundo semestre</option>
+								<option value="Tercer semestre">Tercer semestre</option>
+                        </select>
+                      </div>
+                                     
+              </div>
+              
+               <div class="col-sm-12">
+                    
+                      <div class="form-group">
+                        <label for="inputState">Año De Cursada</label>
+                        <select id="inpAnnio" class="form-control">
+                          <option selected>Seleccionar...</option>                         							            
+															
+						      <option value="2018">2018</option>	
+						      <option value="2019">2019</option>				           
+       						  <option value="2020">2020</option>
+       						  <option value="2021">2021</option>
+       						  <option value="2022">2022</option>
+       						  <option value="2023">2023</option>
+       						  <option value="2024">2024</option>
+       						  <option value="2025">2025</option>
+       						  
+                        </select>
+                      </div>
+                                     
+              </div>
+              
+              
               <div class="col-sm-12">
               <div class="form-group">
 	              <label for="inputState">Alumnos</label>
@@ -237,11 +276,13 @@
 		  }
 	});
 
-  btn.addEventListener('click',() => {
+  btn.addEventListener('click', () => {
      
       const selectMateria = document.getElementById("inpMateria");
       const selectProfesor = document.getElementById("inpProfesor");
-
+      const selectSemetre = document.getElementById("inpSemestre");
+      const selectAnnio = document.getElementById("inpAnnio");
+      
       let cantCheck = [];
       let legajoSeleccionado = [];
        // JQUERY recorre todos los checkbox en estado true
@@ -259,7 +300,7 @@
        console.log(selectProfesor.value);
        console.log(legajoSeleccionado);
 
-       btn.href = "servletCursos?curso=true&idMateria="+selectMateria.value+"&legajoProfesor="+selectProfesor.value+"&"+"legajos="+legajoSeleccionado;
+       btn.href = "servletCursos?curso=true&idMateria="+selectMateria.value+"&legajoProfesor="+selectProfesor.value+"&SelecSemestre="+selectSemetre.value+"&selectAnnio="+selectAnnio.value+"&"+"legajos="+legajoSeleccionado;
   })
 
 

@@ -102,8 +102,10 @@ public class servletCursos extends HttpServlet {
 		// PARAMETROS DEL FRONT
 		curso.setProfesor(new Profesor(Integer.parseInt(request.getParameter("legajoProfesor"))));
 		curso.setMateria(new Materia(Integer.parseInt(request.getParameter("idMateria"))));
-		curso.setAnio("2021");
-		curso.setSemestre("Primer semestre");
+		curso.setAnio(request.getParameter("selectAnnio"));
+		curso.setSemestre(request.getParameter("SelecSemestre"));
+		
+		
 		String[] legajos = request.getParameter("legajos").split(",");
 		
 		CursoDaoImpl cdao = new CursoDaoImpl();
