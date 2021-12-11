@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import daoImpl.ProfesorDaoImpl;
+
 import dominio.Profesor;
+import negocio.IprofesorNegocio;
+import negocioImpl.ProfesorNegocioImpl;;
 
 /**
  * Servlet implementation class servletDocente
@@ -20,6 +22,9 @@ import dominio.Profesor;
 public class servletDocente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	
+	private IprofesorNegocio profeNegocio = new ProfesorNegocioImpl();
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -83,7 +88,7 @@ public class servletDocente extends HttpServlet {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
-		profesor.setContrasenia(request.getParameter("contrasenia"));
+		profesor.setContrasenia(request.getParameter("Contrasenia"));
 		profesor.setDni(request.getParameter("dni"));
 		profesor.setLocalidad(request.getParameter("localidad"));
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
@@ -93,9 +98,8 @@ public class servletDocente extends HttpServlet {
 		profesor.setDireccion(request.getParameter("direccion"));
 		profesor.setTelefono(request.getParameter("telefono"));
 		
-		ProfesorDaoImpl profdao = new ProfesorDaoImpl();
 		
-		int Validar =  profdao.AgregarDocente(profesor);
+		int Validar =  profeNegocio.AltaProfesor(profesor);
 		
 		String mensaje = "";
 		Boolean error = false;
@@ -126,8 +130,8 @@ public class servletDocente extends HttpServlet {
 	
 	public void ListarProfesores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ProfesorDaoImpl dao = new ProfesorDaoImpl();
-		ArrayList<Profesor> lista = dao.ListarProfesores();
+		
+		ArrayList<Profesor> lista = profeNegocio.ListarProfesor();
 			
         request.setAttribute("listaProfesor", lista);
 		
@@ -138,8 +142,8 @@ public class servletDocente extends HttpServlet {
 	//buscamos los datos del profesor mediante el legajo
 	public void ObetenerDatosProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String legajo = request.getParameter("legajo");
-		ProfesorDaoImpl ProfeDao = new ProfesorDaoImpl();
-		Profesor profe = ProfeDao.getProfesorLegajo(legajo);
+		
+		Profesor profe = profeNegocio.getProfesorLegajo(legajo);
 				
 		request.setAttribute("ProfesorEditar", profe);
 		RequestDispatcher rd = request.getRequestDispatcher("/DocentesAgregar.jsp");   
@@ -151,8 +155,8 @@ public class servletDocente extends HttpServlet {
 	public void ObetenerDatosProfesorByEmailAndContrasenia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String email = request.getParameter("email");
 		String contrasenia = request.getParameter("contrasenia");
-		ProfesorDaoImpl ProfeDao = new ProfesorDaoImpl();
-		Profesor profe = ProfeDao.getProfesorByEmailAndContrasenia(email, contrasenia);
+		
+		Profesor profe = profeNegocio.getProfesorByEmailAndContrasenia(email, contrasenia);
 		
 		if (profe.getLegajo() > 0) {
 			request.setAttribute("DocenteLogin", profe);
@@ -180,10 +184,10 @@ public class servletDocente extends HttpServlet {
 		profesor.setDireccion(request.getParameter("direccion"));
 		profesor.setTelefono(request.getParameter("telefono"));
 		profesor.setLegajo(Integer.parseInt(request.getParameter("legajo")));
-		ProfesorDaoImpl adao = new ProfesorDaoImpl();
+		
 		
 
-		int validar = adao.ModificarProfesor(profesor);
+		int validar = profeNegocio.ModificarProfesor(profesor);
 		
 		
 		String mensajeMdf = "";
@@ -208,8 +212,8 @@ public class servletDocente extends HttpServlet {
 	}
 	
 	public void ActualizarProfesores(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProfesorDaoImpl adao = new ProfesorDaoImpl();
-		ArrayList<Profesor> lista= adao.ListarProfesores();
+		
+		ArrayList<Profesor> lista= profeNegocio.ListarProfesor();
 		request.setAttribute("listaProfesor", lista);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Docentes.jsp");   
@@ -217,13 +221,13 @@ public class servletDocente extends HttpServlet {
 	}
 	
 	public void bajaDocente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProfesorDaoImpl profesorDaoImpl = new ProfesorDaoImpl();
+		
 		String[] legajos = request.getParameter("legajos").split(",");
 		
 		int Validar = 0;
 		
 		for(int i=0;i<legajos.length;i++) {
-			Validar = profesorDaoImpl.CambiarEstadoProfesor(Integer.parseInt(legajos[i]));
+			Validar = profeNegocio.BajaProfesor(Integer.parseInt(legajos[i]));
 		}
 		
 		String mensajeElm = "";

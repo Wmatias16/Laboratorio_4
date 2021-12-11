@@ -10,5 +10,4 @@ public interface IAlumnoNegocio {
 	public int modificarAlumno(Alumno alum);
 	public Alumno obtenerAlumno(String legajo);
 	public int bajaAlumnos(int legajo);
-
 }

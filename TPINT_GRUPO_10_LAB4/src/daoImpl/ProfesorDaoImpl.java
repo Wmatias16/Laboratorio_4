@@ -11,8 +11,9 @@ import com.mysql.jdbc.Statement;
 
 import dominio.Alumno;
 import dominio.Profesor;
+import dao.IProfesorDao;;
 
-public class ProfesorDaoImpl {
+public class  ProfesorDaoImpl implements IProfesorDao {
 	
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
@@ -144,7 +145,7 @@ public class ProfesorDaoImpl {
 		return profesor;
 	}
 	
-	public Profesor getProfesorByLegajo(int legajo) {
+	public Profesor getProfesorByLegajo(int legajo) { 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -261,7 +262,7 @@ public class ProfesorDaoImpl {
 		
 	}	
 	
-	public void cambiarEstadoAlumno(int legajo) {
+	public void cambiarEstadoAlumno(int legajo) { /// ELIMINAR 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
