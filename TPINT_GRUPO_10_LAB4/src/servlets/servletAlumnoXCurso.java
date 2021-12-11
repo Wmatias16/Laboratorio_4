@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import daoImpl.AlumnoXCursoDaoImpl;
 import dominio.AlumnoXCurso;
+import negocio.IAlumnoXcursoNegocio;
+import negocioImpl.AlumnoXcursoNegocioImpl;
 
 @WebServlet("/servletAlumnosXCurso")
 public class servletAlumnoXCurso extends HttpServlet {
@@ -27,8 +29,10 @@ public class servletAlumnoXCurso extends HttpServlet {
 		}
 		if (request.getParameter("actualizarNotas") != null) {
 			String[] notas = request.getParameter("actualizarNotas").split(",");
-			AlumnoXCursoDaoImpl alumnoXCursoDaoImpl = new AlumnoXCursoDaoImpl();
-			List<AlumnoXCurso> listaAlumnosXCurso = alumnoXCursoDaoImpl.actualizarNotas(notas);
+			
+			IAlumnoXcursoNegocio alumXcurso = new AlumnoXcursoNegocioImpl();
+			
+			List<AlumnoXCurso> listaAlumnosXCurso = alumXcurso.actualizarNotas(notas);
 			request.setAttribute("listaAlumnosXCurso", listaAlumnosXCurso);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VerCurso.jsp");
 			requestDispatcher.forward(request, response);
@@ -36,9 +40,9 @@ public class servletAlumnoXCurso extends HttpServlet {
 	}
 
 	public void getAlumnosXCursoByIdCurso(HttpServletRequest request, HttpServletResponse response, int idCurso) throws ServletException, IOException {
-		AlumnoXCursoDaoImpl alumnoXCursoDaoImpl = new AlumnoXCursoDaoImpl();
-		List<AlumnoXCurso> listaAlumnosXCurso = alumnoXCursoDaoImpl.getAlumnosXCursoDelCurso(idCurso);
-		request.setAttribute("listaAlumnosXCurso", listaAlumnosXCurso);
+		IAlumnoXcursoNegocio alumXcurso = new AlumnoXcursoNegocioImpl();
+		
+		request.setAttribute("listaAlumnosXCurso", alumXcurso.getAlumnosXcursoDelCurso(idCurso));
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VerCurso.jsp");
 		requestDispatcher.forward(request, response);
 	}

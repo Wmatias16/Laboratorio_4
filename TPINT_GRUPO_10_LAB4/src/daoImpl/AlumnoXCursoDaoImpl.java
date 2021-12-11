@@ -16,6 +16,7 @@ public class AlumnoXCursoDaoImpl implements IAlumnoXCursoDao {
 	private String user = "root";
 	private String pass = "root";
 	private String dbName = "tpfinal?useSSL=false";
+	
 	private CursoDaoImpl cursoDaoImpl = new CursoDaoImpl();
 	private AlumnoDaoImpl alumnoDaoImpl = new AlumnoDaoImpl();
 	

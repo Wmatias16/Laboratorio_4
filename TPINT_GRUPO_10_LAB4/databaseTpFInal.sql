@@ -90,7 +90,7 @@ INSERT INTO Alumnos (dni, nombre, apellido, email, fechaNacimiento, direccion, l
 ("42300223", "Juan", "Rodríguez", "jrodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
 ("42300224", "Roberto", "Rodríguez", "rrodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
 ("42300225", "Mauricio", "Rodríguez", "mrodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
-("42300226", "Cristian", "Rodríguez", "crodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true),
+("42300226", "Cristian", "Rodríguez", "crodriguez@alumno.com", "2002-02-07", "Lima 1620", "San Isidro", "Argentina", "1159895783", true);
 
 /*PROFESORES*/
 INSERT INTO Profesores (dni, nombre, apellido, email, contrasenia, fechaNacimiento, direccion, localidad, nacionalidad, telefono, estado) VALUES
@@ -134,3 +134,4 @@ INSERT INTO AlumnosXcurso (idCurso, legajoAlumno, notaPrimerParcial, notaSegundo
 (1, 1002, 2, 2.50, 0, 0, "Libre", true),
 (1, 1003, 6, 5, 0, 8.50, "Regular", true),
 (1, 1004, 4, 8, 6.50, 0, "Regular", true);
+select * from profesores;
