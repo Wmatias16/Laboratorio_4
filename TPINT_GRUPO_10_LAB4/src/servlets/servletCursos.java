@@ -20,25 +20,23 @@ import dominio.Alumno;
 import dominio.Curso;
 import dominio.Materia;
 import dominio.Profesor;
+import negocio.IAlumnoNegocio;
+import negocio.ICursoNegocio;
+import negocio.IMateriaNegocio;
+import negocio.IprofesorNegocio;
+import negocioImpl.AlumnoNegocioImpl;
+import negocioImpl.CursoNegocioImpl;
+import negocioImpl.MateriaNegocioImpl;
+import negocioImpl.ProfesorNegocioImpl;
 
-/**
- * Servlet implementation class servletCursos
- */
 @WebServlet("/servletCursos")
 public class servletCursos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public servletCursos() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("getDatos") != null) {
 			getDatosBD(request,response);
@@ -54,10 +52,6 @@ public class servletCursos extends HttpServlet {
 		}
 	}
 
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
@@ -65,21 +59,13 @@ public class servletCursos extends HttpServlet {
 
 	
 	public void getDatosBD(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		AlumnoDaoImpl adao = new AlumnoDaoImpl();
-		ArrayList<Alumno> lista= adao.getAlumnos();
-		request.setAttribute("listaAlumnos", lista);
+		IAlumnoNegocio aNegocio = new AlumnoNegocioImpl();
+		IprofesorNegocio pNegocio = new ProfesorNegocioImpl();
+		IMateriaNegocio mNegocio = new MateriaNegocioImpl();
 		
-		
-		ProfesorDaoImpl pdao = new ProfesorDaoImpl();
-		ArrayList<Profesor> listaP= pdao.ListarProfesores();
-		
-		request.setAttribute("listaProfesor", listaP);
-		
-		
-		MateriaDaoImpl mdao = new MateriaDaoImpl();
-		ArrayList<Materia> listaM = mdao.getMaterias();
-		
-		request.setAttribute("listaMateria", listaM);
+		request.setAttribute("listaAlumnos", aNegocio.listarAlumnos());
+		request.setAttribute("listaProfesor", pNegocio.ListarProfesor());
+		request.setAttribute("listaMateria", mNegocio.listarMaterias());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/CursosAgregar.jsp");   
         rd.forward(request, response);		
@@ -87,9 +73,9 @@ public class servletCursos extends HttpServlet {
 	}
 	
 	public void getCursoByLegajoDocente(HttpServletRequest request, HttpServletResponse response, int legajo) throws ServletException, IOException {
-		CursoDaoImpl cursoDaoImpl = new CursoDaoImpl();
-		List<Curso> cursos = cursoDaoImpl.getCursosDelDocente(legajo);
-		request.setAttribute("listaCursos", cursos);
+		ICursoNegocio cNegocio = new CursoNegocioImpl();
+				
+		request.setAttribute("listaCursos", cNegocio.getCursosDocente(legajo));
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/VistaCursos.jsp");
 		requestDispatcher.forward(request, response);
 		
@@ -105,23 +91,22 @@ public class servletCursos extends HttpServlet {
 		curso.setAnio(request.getParameter("selectAnnio"));
 		curso.setSemestre(request.getParameter("SelecSemestre"));
 		
-		
 		String[] legajos = request.getParameter("legajos").split(",");
 		
-		CursoDaoImpl cdao = new CursoDaoImpl();
+		ICursoNegocio cNegocio = new CursoNegocioImpl();
+		
 		// SI CREO EL CURSO PASO A AGREGAR LOS ALUMNOS EN ALUMNOSXCURSO
-		int fila = cdao.altaCurso(curso);	
+		int fila = cNegocio.crearCurso(curso);	
 		int validar = 0;
 		if(fila == 1) {
 			
 			// ID DEL CURSO RECIEN CREADO
-			int idCurso = cdao.buscarMaxId();
+			int idCurso = cNegocio.buscarMax();
 			
 			// RECORRE LOS LEGAJOS
 			for(int i = 0;i < legajos.length; i++) {
-				validar = cdao.altaCursoXalumno(idCurso,legajos[i]);
+				validar = cNegocio.altaAlumnoXcurso(idCurso,legajos[i]);
 			}		
-			
 			
 		}
 		
@@ -130,9 +115,9 @@ public class servletCursos extends HttpServlet {
 		Boolean errorAlta = false;
 		
 		if(validar == 1) {
-			mensajeAlta = "ï¿½Se Agrego el alumno exitosamente!";
+			mensajeAlta = "¿Se Agrego el alumno exitosamente!";
 		}else {
-			mensajeAlta = "ï¿½Error! No se agrego el alumno";
+			mensajeAlta = "¿Error! No se agrego el alumno";
 			errorAlta = true;
 		}
 		

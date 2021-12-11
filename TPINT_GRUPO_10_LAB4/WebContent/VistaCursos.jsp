@@ -45,7 +45,7 @@
                 <%= session.getAttribute("usuarioSession") %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="SesionCerrada.jsp">Salir</a>
+                <a class="dropdown-item" href="SessionCerrada.jsp">Salir</a>
               </div>
             </li>
           </ul>
