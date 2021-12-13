@@ -1,7 +1,11 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,12 +70,20 @@ public class servletDocente extends HttpServlet {
 		//alta alumno
 		if(request.getParameter("Alta")!= null )
 		{	
-			altaDocente(request,response);
+			try {
+				altaDocente(request,response);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
 		if(request.getParameter("EditProfesor")!=null) {
-			modificarProfesor(request, response);	
+			try {
+				modificarProfesor(request, response);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}	
 		}
 		
 		
@@ -83,7 +95,7 @@ public class servletDocente extends HttpServlet {
 	
 	// funciones
 	
-	public void altaDocente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void altaDocente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 	
 		Profesor profesor = new Profesor();
 		
@@ -94,7 +106,8 @@ public class servletDocente extends HttpServlet {
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
 		profesor.setNombre(request.getParameter("nombre"));
 		profesor.setApellido(request.getParameter("apellido"));
-		profesor.setFechaNacimiento(request.getParameter("fechaNacimiento"));
+		Date fecha = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("fechaNacimiento"));
+		profesor.setFechaNacimiento(fecha);
 		profesor.setDireccion(request.getParameter("direccion"));
 		profesor.setTelefono(request.getParameter("telefono"));
 		
@@ -167,7 +180,7 @@ public class servletDocente extends HttpServlet {
         rd.forward(request, response);
 	}
 
-	public void modificarProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void modificarProfesor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		Profesor profesor = new Profesor();
 		
 		profesor.setEmail(request.getParameter("email"));
@@ -180,7 +193,8 @@ public class servletDocente extends HttpServlet {
 		profesor.setNacionalidad(request.getParameter("nacionalidad"));
 		profesor.setNombre(request.getParameter("nombre"));
 		profesor.setApellido(request.getParameter("apellido"));
-		profesor.setFechaNacimiento(request.getParameter("fechaNacimiento"));
+		Date fecha = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("fechaNacimiento"));
+		profesor.setFechaNacimiento(fecha);
 		profesor.setDireccion(request.getParameter("direccion"));
 		profesor.setTelefono(request.getParameter("telefono"));
 		profesor.setLegajo(Integer.parseInt(request.getParameter("legajo")));

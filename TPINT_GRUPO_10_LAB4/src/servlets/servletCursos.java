@@ -115,9 +115,9 @@ public class servletCursos extends HttpServlet {
 		Boolean errorAlta = false;
 		
 		if(validar == 1) {
-			mensajeAlta = "¿Se Agrego el alumno exitosamente!";
+			mensajeAlta = "¡Se agregó el alumno exitosamente!";
 		}else {
-			mensajeAlta = "¿Error! No se agrego el alumno";
+			mensajeAlta = "¡Error! No se agregó el alumno";
 			errorAlta = true;
 		}
 		

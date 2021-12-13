@@ -2,6 +2,7 @@ package daoImpl;
 
 import java.awt.List;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +45,7 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 			miSentencia.setString(3, profesor.getApellido());
 			miSentencia.setString(4, profesor.getEmail());
 			miSentencia.setString(5, profesor.getContrasenia());
-			miSentencia.setString(6, profesor.getFechaNacimiento());
+			miSentencia.setDate(6, new Date(profesor.getFechaNacimiento().getTime()));
 			miSentencia.setString(7, profesor.getDireccion());
 			miSentencia.setString(8, profesor.getLocalidad());
 			miSentencia.setString(9, profesor.getNacionalidad());
@@ -87,7 +88,7 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 				profesorRs.setNombre(rs.getString("nombre"));
 				profesorRs.setApellido(rs.getString("apellido"));
 				profesorRs.setEmail(rs.getString("email"));
-				profesorRs.setFechaNacimiento("fechaNacimiento");
+				profesorRs.setFechaNacimiento(new java.util.Date(rs.getDate("fechaNacimiento").getTime()));
 				profesorRs.setDireccion(rs.getString("direccion"));
 				profesorRs.setNacionalidad(rs.getString("nacionalidad"));
 				profesorRs.setLocalidad(rs.getString("localidad"));
@@ -128,7 +129,7 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 				profesor.setNombre(rs.getString("nombre"));
 				profesor.setApellido(rs.getString("apellido"));
 				profesor.setContrasenia(rs.getString("contrasenia"));
-				profesor.setFechaNacimiento(rs.getString("fechaNacimiento")); 
+				profesor.setFechaNacimiento(new java.util.Date(rs.getDate("fechaNacimiento").getTime())); 
 				profesor.setDireccion(rs.getString("direccion"));
 				profesor.setNacionalidad(rs.getString("nacionalidad"));
 				profesor.setLocalidad(rs.getString("localidad"));
@@ -162,7 +163,7 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 				profesor.setDni(resultSet.getString("dni"));
 				profesor.setNombre(resultSet.getString("nombre"));
 				profesor.setApellido(resultSet.getString("apellido"));
-				//profesor.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				profesor.setFechaNacimiento(new java.util.Date(resultSet.getDate("fechaNacimiento").getTime()));
 				profesor.setDireccion(resultSet.getString("direccion"));
 				profesor.setNacionalidad(resultSet.getString("nacionalidad"));
 				profesor.setLocalidad(resultSet.getString("localidad"));
@@ -195,7 +196,7 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 				profesor.setDni(resultSet.getString("dni"));
 				profesor.setNombre(resultSet.getString("nombre"));
 				profesor.setApellido(resultSet.getString("apellido"));
-				//profesor.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				profesor.setFechaNacimiento(new java.util.Date(resultSet.getDate("fechaNacimiento").getTime()));
 				profesor.setDireccion(resultSet.getString("direccion"));
 				profesor.setNacionalidad(resultSet.getString("nacionalidad"));
 				profesor.setLocalidad(resultSet.getString("localidad"));
@@ -224,7 +225,7 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 		
 		Connection cn = null;
 		try{
-			String query = "update profesores set  dni = ?, nombre = ?, apellido = ?, email = ?, contrasenia = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? , contrasenia = ? where legajo = ?";
+			String query = "update profesores set  dni = ?, nombre = ?, apellido = ?, email = ?, contrasenia = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? , contrasenia = ?, fechaNacimiento = ? where legajo = ?";
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			PreparedStatement miSentencia = cn.prepareStatement(query);
 			
@@ -242,7 +243,8 @@ public class  ProfesorDaoImpl implements IProfesorDao {
 			miSentencia.setString(8, profesor.getNacionalidad());
 			miSentencia.setString(9, profesor.getTelefono());
 			miSentencia.setString(10, profesor.getContrasenia());
-			miSentencia.setInt(11, profesor.getLegajo());
+			miSentencia.setDate(11, new Date(profesor.getFechaNacimiento().getTime()));
+			miSentencia.setInt(12, profesor.getLegajo());
 			
 			
 			validar = miSentencia.executeUpdate();

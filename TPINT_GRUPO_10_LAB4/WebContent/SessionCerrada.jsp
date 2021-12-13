@@ -49,8 +49,8 @@
                     <div class="logo">
                         <img src="./img/UTN_logo-removebg-preview.png" alt="" width="85">
                     </div>
-                     <h1 class="jumbotron-heading">Adios!</h1>
-                     <p class="lead text-muted">Su sesion fue finalizada exitosamente</p>
+                     <h1 class="jumbotron-heading">¡Adiós!</h1>
+                     <p class="lead text-muted">Su sesión fue finalizada exitosamente</p>
                      <p>
                          <a href="Home.jsp" class="btn btn-primary my-2">Inicio</a>
                      </p>

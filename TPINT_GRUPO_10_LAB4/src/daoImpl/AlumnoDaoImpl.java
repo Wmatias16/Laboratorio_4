@@ -1,6 +1,7 @@
 package daoImpl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -38,7 +39,7 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 			String dni = alumno.getDni();
 			System.out.print(dni);
 			
-			String query = "Insert into alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado) values ('"+alumno.getDni()+"','"+alumno.getNombre()+"','"+alumno.getApellido()+"','"+alumno.getEmail()+"','"+alumno.getFechaNacimiento()+"','"+alumno.getDireccion()+"','"+alumno.getLocalidad()+"','"+alumno.getNacionalidad()+"','"+alumno.getTelefono()+"','"+estado+"')";
+			String query = "Insert into alumnos(dni,nombre,apellido,email,fechaNacimiento,direccion,localidad,nacionalidad,telefono,estado) values ('"+alumno.getDni()+"','"+alumno.getNombre()+"','"+alumno.getApellido()+"','"+alumno.getEmail()+"','"+new Date(alumno.getFechaNacimiento().getTime())+"','"+alumno.getDireccion()+"','"+alumno.getLocalidad()+"','"+alumno.getNacionalidad()+"','"+alumno.getTelefono()+"','"+estado+"')";
 			filas=st.executeUpdate(query);
 		}
 		catch(Exception e)
@@ -62,7 +63,7 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 		Connection cn = null;
 		try{
 			cn = DriverManager.getConnection(host+dbName, user,pass);
-			PreparedStatement miSentencia = cn.prepareStatement("update alumnos set  dni = ?, nombre = ?, apellido = ?, email = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ? where legajo = ?");
+			PreparedStatement miSentencia = cn.prepareStatement("update alumnos set  dni = ?, nombre = ?, apellido = ?, email = ?, direccion = ?, localidad = ?, nacionalidad = ?, telefono = ?, fechaNacimiento = ? where legajo = ?");
 			
 			miSentencia.setString(1, alum.getDni());
 			miSentencia.setString(2, alum.getNombre());
@@ -72,7 +73,8 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 			miSentencia.setString(6, alum.getLocalidad());
 			miSentencia.setString(7, alum.getNacionalidad());
 			miSentencia.setString(8, alum.getTelefono());
-			miSentencia.setInt(9, alum.getLegajo());
+			miSentencia.setDate(9, new Date(alum.getFechaNacimiento().getTime()));
+			miSentencia.setInt(10, alum.getLegajo());
 
 			Validar = miSentencia.executeUpdate();
 			
@@ -109,7 +111,7 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 				usuarioRs.setDni(rs.getString("dni"));
 				usuarioRs.setNombre(rs.getString("nombre"));
 				usuarioRs.setApellido(rs.getString("apellido"));
-				//usuarioRs.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				usuarioRs.setFechaNacimiento(new java.util.Date(rs.getDate("fechaNacimiento").getTime()));
 				usuarioRs.setDireccion(rs.getString("direccion"));
 				usuarioRs.setNacionalidad(rs.getString("nacionalidad"));
 				usuarioRs.setLocalidad(rs.getString("localidad"));
@@ -147,7 +149,7 @@ public class AlumnoDaoImpl implements IAlumnoDao{
 				usuarioRs.setDni(rs.getString("dni"));
 				usuarioRs.setNombre(rs.getString("nombre"));
 				usuarioRs.setApellido(rs.getString("apellido"));
-				//usuarioRs.setFechaNacimiento(Date.parse(rs.getString("fechaNacimiento")));
+				usuarioRs.setFechaNacimiento(new java.util.Date(rs.getDate("fechaNacimiento").getTime()));
 				usuarioRs.setDireccion(rs.getString("direccion"));
 				usuarioRs.setNacionalidad(rs.getString("nacionalidad"));
 				usuarioRs.setLocalidad(rs.getString("localidad"));

@@ -1,7 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -56,17 +59,25 @@ public class servletAlumno extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 						
 		if(request.getParameter("altaAlumno")!=null) {
-			altaAlumno(request, response);	
+			try {
+				altaAlumno(request, response);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}	
 		}
 		
 		if(request.getParameter("mdAlumnos")!=null) {	
-			modificarAlumno(request, response);	
+			try {
+				modificarAlumno(request, response);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}	
 		}
 		
 		doGet(request, response);
 	}	
 	
-	public void altaAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void altaAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 
 		Alumno alumno = new Alumno();
 					
@@ -74,7 +85,8 @@ public class servletAlumno extends HttpServlet {
 		alumno.setNombre(request.getParameter("nombre"));
 		alumno.setApellido(request.getParameter("apellido"));
 		alumno.setEmail(request.getParameter("email"));
-		alumno.setFechaNacimiento("2017-06-15");
+		Date fecha = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("fechaNacimiento"));
+		alumno.setFechaNacimiento(fecha);
 		alumno.setDireccion(request.getParameter("direccion"));
 		alumno.setLocalidad(request.getParameter("localidad"));
 		alumno.setNacionalidad(request.getParameter("nacionalidad"));
@@ -86,9 +98,9 @@ public class servletAlumno extends HttpServlet {
 		Boolean ErorAlta= false;
 				
 		if(num == 1) {
-			MensajeAlta = "¡Se Agrego el usuario exitosamente!";
+			MensajeAlta = "¡Se agregó el usuario exitosamente!";
 		}else {
-			MensajeAlta = "¡Error! No se Agrego el usuario";
+			MensajeAlta = "¡Error! No se agregó el usuario";
 			ErorAlta = true;
 		}
 		
@@ -108,7 +120,7 @@ public class servletAlumno extends HttpServlet {
         rd.forward(request, response);
 	}
 
-	public void modificarAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void modificarAlumno(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
 		Alumno alumno = new Alumno();
 		
 		alumno.setLegajo(Integer.parseInt(request.getParameter("legajo")));
@@ -116,7 +128,8 @@ public class servletAlumno extends HttpServlet {
 		alumno.setNombre(request.getParameter("nombre"));
 		alumno.setApellido(request.getParameter("apellido"));
 		alumno.setEmail(request.getParameter("email"));
-		alumno.setFechaNacimiento("2017-06-15");
+		Date fecha = new SimpleDateFormat("MM/dd/yyyy").parse(request.getParameter("fechaNacimiento"));
+		alumno.setFechaNacimiento(fecha);
 		alumno.setDireccion(request.getParameter("direccion"));
 		alumno.setLocalidad(request.getParameter("localidad"));
 		alumno.setNacionalidad(request.getParameter("nacionalidad"));
@@ -128,9 +141,9 @@ public class servletAlumno extends HttpServlet {
 		Boolean ErrorMdf= false;
 		
 		if(Validar == 1) {
-			mensajeMdf = "¡Se Modifico el usuario exitosamente!";
+			mensajeMdf = "¡Se modificó el usuario exitosamente!";
 		}else {
-			mensajeMdf = "¡Error! No se Modifico el usuario";
+			mensajeMdf = "¡Error! No se modificó el usuario";
 			ErrorMdf = true;
 		}
 		

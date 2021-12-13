@@ -3,6 +3,8 @@
 <%@page import="dominio.Profesor"%>
 <%@page import="dominio.Materia"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -99,7 +101,7 @@
 				            		{
 				            %>
 								            
-								      <option value=<%=profe.getLegajo()%> ><%=profe.getNombre()%>  <%=profe.getApellido()%> legajo : <%=profe.getLegajo()%></option>
+								      <option value=<%=profe.getLegajo()%> ><%=profe.getNombre()%>  <%=profe.getApellido()%> Legajo : <%=profe.getLegajo()%></option>
 								           
          					<% } %>
                           
@@ -201,9 +203,9 @@
                 <th class="th-sm">Legajo</th>
                 <th class="th-sm">DNI</th>
                 <th class="th-sm">Fecha de nacimiento</th>
-                <th class="th-sm">Direcciï¿½n</th>
+                <th class="th-sm">Dirección</th>
                 <th class="th-sm">Nacionalidad</th>
-                <th class="th-sm">Provincia</th>
+                <th class="th-sm">Localidad</th>
                 <th class="th-sm">Email</th>
                 <th class="th-sm">Telefono</th>
             </tr>
@@ -217,7 +219,7 @@
                <td><input type="checkbox" value=<%=alum.getLegajo() %>></td>
                <td class="legajo"><%=alum.getLegajo() %></td>  
                <td><%=alum.getDni() %></td>  
-               <td>12-12-12</td>  
+               <td><%=new SimpleDateFormat("MM/dd/yyyy").format(alum.getFechaNacimiento()) %></td>  
                <td><%=alum.getDireccion() %></td>  
                <td><%=alum.getNacionalidad() %></td>  
                <td><%=alum.getLocalidad() %></td>  
@@ -295,7 +297,7 @@
        console.log(selectProfesor.value);
        console.log(legajoSeleccionado);
 
-       btn.href = "servletCursos?curso=true&idMateria="+selectMateria.value+"&legajoProfesor="+selectProfesor.value+"&SelecSemestre="+selectSemetre.value+"&selectAnnio="+selectAnnio.value+"&"+"legajos="+legajoSeleccionado;
+       btn.href = "servletCursos?curso=true&idMateria="+selectMateria.value+"&legajoProfesor="+selectProfesor.value+"&SelecSemestre="+selectSemetre.value+"&selectAnnio="+selectAnnio.value+"&legajos="+legajoSeleccionado;
   })
 
 

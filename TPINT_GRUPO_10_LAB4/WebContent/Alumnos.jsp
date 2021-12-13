@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="dominio.Alumno"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -105,7 +106,7 @@
           <td><input type="checkbox"  value=<%=alum.getLegajo() %>></td>
           <td class="legajo"><%=alum.getLegajo() %></td>  
           <td><%=alum.getDni() %></td>  
-          <td>12-12-12</td>  
+          <td><%=new SimpleDateFormat("MM/dd/yyyy").format(alum.getFechaNacimiento()) %></td>  
           <td><%=alum.getDireccion() %></td>  
           <td><%=alum.getNacionalidad() %></td>  
           <td><%=alum.getLocalidad() %></td>  
@@ -174,13 +175,13 @@ btnModificar.addEventListener('click',function(e){
   
   // Verificamos que no tengan mas de una seleccion
   if(cantCheck.length == 1){
-    if(confirm("ï¿½Estas seguro de modificar este Usuario?")){
+    if(confirm("¿Estás seguro de modificar este usuario?")){
         btnModificar.href="servletAlumnos?edit=true&legajo="+legajoSeleccionado[0];
     }
   }else if(cantCheck.length > 1){
-      alert("¿Debe seleccionar solamente un registro!");
+      alert("¡Debe seleccionar sólamente un registro!");
   }else{
-      alert("¿Debe seleccionar un registro!");
+      alert("¡Debe seleccionar un registro!");
   }	
 });
 
@@ -200,11 +201,11 @@ btnEliminar.addEventListener('click',function(e){
   
   // Verificamos que no tengan mas de una seleccion
   if(cantCheck.length >= 1){
-    if(confirm("¿Estas seguro de Eliminar este Usuario?")){
+    if(confirm("¿Estás seguro de eliminar este usuario?")){
         btnEliminar.href="servletAlumnos?delete=true&legajos="+legajoSeleccionado;
     }
  }else{
-       alert("¿Debe seleccionar un registro!");
+       alert("¡Debe seleccionar un registro!");
    }	
 });
 

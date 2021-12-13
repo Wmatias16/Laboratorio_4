@@ -67,7 +67,7 @@ public class CursoDaoImpl implements ICursoDao{
 			cn = DriverManager.getConnection(host+dbName, user,pass);
 			Statement st = cn.createStatement();
 						
-			String query = "Insert into AlumnosXcurso(idCurso,legajoAlumno,estado) values ('"+idCurso+"','"+legajoAlumno+"','"+1+"')";
+			String query = "Insert into AlumnosXcurso(idCurso,legajoAlumno,estado, regularidad) values ('"+idCurso+"','"+legajoAlumno+"','"+1+"', 'Libre')";
 			Validar = st.executeUpdate(query);
 		}
 		catch(Exception e)
